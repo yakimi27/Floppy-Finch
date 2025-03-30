@@ -7,49 +7,51 @@ namespace FloppyFinchWPF;
 
 public class Pipe
 {
-    private const double Speed = 5;
     private const int PipeWidth = 80;
     private const int GapSize = 150;
-    private readonly Rectangle bottomPipe;
-    private readonly Canvas gameCanvas;
-    internal readonly Rectangle topPipe;
+    internal const int PipeSpacing = 250;
+    private const double Speed = 5;
+    private readonly Rectangle _bottomPipe;
+    private readonly Canvas _gameCanvas;
+    internal readonly Rectangle TopPipe;
 
     public Pipe(Canvas canvas)
     {
-        gameCanvas = canvas;
+        _gameCanvas = canvas;
         Random rand = new();
 
         var height = rand.Next(50, (int)(canvas.ActualHeight - GapSize - 50));
 
-        topPipe = new Rectangle { Width = PipeWidth, Height = height, Fill = Brushes.Green };
-        bottomPipe = new Rectangle
+        TopPipe = new Rectangle { Width = PipeWidth, Height = height, Fill = Brushes.Green };
+        _bottomPipe = new Rectangle
             { Width = PipeWidth, Height = canvas.ActualHeight - height - GapSize, Fill = Brushes.Green };
 
-        Canvas.SetLeft(topPipe, canvas.ActualWidth);
-        Canvas.SetTop(topPipe, 0);
-        Canvas.SetLeft(bottomPipe, canvas.ActualWidth);
-        Canvas.SetTop(bottomPipe, height + GapSize);
+        Canvas.SetLeft(TopPipe, canvas.ActualWidth);
+        Canvas.SetTop(TopPipe, 0);
+        Canvas.SetLeft(_bottomPipe, canvas.ActualWidth);
+        Canvas.SetTop(_bottomPipe, height + GapSize);
 
-        gameCanvas.Children.Add(topPipe);
-        gameCanvas.Children.Add(bottomPipe);
+        _gameCanvas.Children.Add(TopPipe);
+        _gameCanvas.Children.Add(_bottomPipe);
     }
 
-    public bool IsOutOfBounds => Canvas.GetLeft(topPipe) < -PipeWidth;
+    public bool IsScored { get; set; } = false;
+
+    public bool IsOutOfBounds => Canvas.GetLeft(TopPipe) < -PipeWidth;
 
     public void Update()
     {
-        var newX = Canvas.GetLeft(topPipe) - Speed;
-        Canvas.SetLeft(topPipe, newX);
-        Canvas.SetLeft(bottomPipe, newX);
+        var newX = Canvas.GetLeft(TopPipe) - Speed;
+        Canvas.SetLeft(TopPipe, newX);
+        Canvas.SetLeft(_bottomPipe, newX);
     }
 
     public bool CheckCollision(Bird bird)
     {
         var birdBounds = bird.GetBounds();
-        var topBounds = new Rect(Canvas.GetLeft(topPipe), Canvas.GetTop(topPipe), topPipe.Width, topPipe.Height);
-        var bottomBounds = new Rect(Canvas.GetLeft(bottomPipe), Canvas.GetTop(bottomPipe), bottomPipe.Width,
-            bottomPipe.Height);
-
+        var topBounds = new Rect(Canvas.GetLeft(TopPipe), Canvas.GetTop(TopPipe), TopPipe.Width, TopPipe.Height);
+        var bottomBounds = new Rect(Canvas.GetLeft(_bottomPipe), Canvas.GetTop(_bottomPipe), _bottomPipe.Width,
+            _bottomPipe.Height);
         return birdBounds.IntersectsWith(topBounds) || birdBounds.IntersectsWith(bottomBounds);
     }
 }

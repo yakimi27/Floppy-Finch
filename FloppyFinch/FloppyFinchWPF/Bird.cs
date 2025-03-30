@@ -7,38 +7,40 @@ namespace FloppyFinchWPF;
 
 public class Bird
 {
-    private const double Gravity = 1;
-    private const double JumpStrength = -12;
-    private readonly Rectangle bird;
-    private double velocity;
+    private const double Gravity = 1.6;
+    private const double JumpStrength = -16;
+    private readonly Rectangle _bird;
+    private double _velocity;
 
     public Bird(Canvas gameCanvas)
     {
-        bird = new Rectangle { Width = 40, Height = 40, Fill = Brushes.Yellow };
-        gameCanvas.Children.Add(bird);
-        Canvas.SetLeft(bird, 100);
-        Canvas.SetTop(bird, 200);
+        _bird = new Rectangle { Width = 40, Height = 40, Fill = Brushes.Yellow };
+        gameCanvas.Children.Add(_bird);
+        Canvas.SetLeft(_bird, 100);
+        Canvas.SetTop(_bird, 200);
     }
+
+    public double X => Canvas.GetLeft(_bird);
 
     public void Jump()
     {
-        velocity = JumpStrength;
+        _velocity = JumpStrength;
     }
 
     public void Update()
     {
-        velocity += Gravity;
-        Canvas.SetTop(bird, Canvas.GetTop(bird) + velocity);
+        _velocity += Gravity;
+        Canvas.SetTop(_bird, Canvas.GetTop(_bird) + _velocity);
     }
 
     public bool IsOutOfBounds(double height)
     {
-        var top = Canvas.GetTop(bird);
-        return top < 0 || top > height;
+        var top = Canvas.GetTop(_bird);
+        return top < -100 || top > height;
     }
 
     public Rect GetBounds()
     {
-        return new Rect(Canvas.GetLeft(bird), Canvas.GetTop(bird), bird.Width, bird.Height);
+        return new Rect(Canvas.GetLeft(_bird), Canvas.GetTop(_bird), _bird.Width, _bird.Height);
     }
 }

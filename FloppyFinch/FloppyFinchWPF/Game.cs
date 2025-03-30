@@ -6,19 +6,28 @@ namespace FloppyFinchWPF;
 
 public class Game
 {
-    private const int PipeSpacing = 250;
-    private readonly Canvas gameCanvas;
-    private readonly DispatcherTimer gameTimer;
-    private readonly List<Pipe> pipes = new();
-    private readonly Random rand = new();
+    private readonly Canvas _gameCanvas;
+    private readonly DispatcherTimer _gameTimer;
+    private readonly List<Pipe> _pipes = new();
+    private readonly Random _rand = new();
+    private readonly TextBlock _scoreText;
 
-    public Game(Canvas canvas)
+    /*public static double Coefficient { get; set; } = ((Panel)Application.Current.MainWindow.Content).ActualHeight /
+                                           ((Panel)Application.Current.MainWindow.Content).ActualWidth;*/
+
+    private int _score;
+
+
+    public Game(Canvas canvas, TextBlock scoreTextBlock)
     {
-        gameCanvas = canvas;
-        Bird = new Bird(gameCanvas);
-        gameTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(20) };
-        gameTimer.Tick += GameLoop;
-        gameTimer.Start();
+        _gameCanvas = canvas;
+        _scoreText = scoreTextBlock;
+        Bird = new Bird(_gameCanvas);
+        _gameTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(30) };
+        _gameTimer.Tick += GameLoop;
+        _gameTimer.Start();
+
+        UpdateScore();
     }
 
     public Bird Bird { get; }
@@ -28,23 +37,37 @@ public class Game
         Bird.Update();
 
         // add new pipe according to spacing
-        if (pipes.Count == 0 || Canvas.GetLeft(pipes.Last().topPipe) < gameCanvas.ActualWidth - PipeSpacing)
-            pipes.Add(new Pipe(gameCanvas));
+        if (_pipes.Count == 0 || Canvas.GetLeft(_pipes.Last().TopPipe) < _gameCanvas.ActualWidth - Pipe.PipeSpacing)
+            _pipes.Add(new Pipe(_gameCanvas));
 
-        for (var i = pipes.Count - 1; i >= 0; i--)
+        for (var i = _pipes.Count - 1; i >= 0; i--)
         {
-            pipes[i].Update();
-            if (pipes[i].IsOutOfBounds) pipes.RemoveAt(i);
+            _pipes[i].Update();
 
-            if (pipes[i].CheckCollision(Bird)) GameOver();
+            if (!_pipes[i].IsScored && Canvas.GetLeft(_pipes[i].TopPipe) + _pipes[i].TopPipe.Width < Bird.X)
+            {
+                _pipes[i].IsScored = true; // mark pipe as scored
+                _score++;
+                UpdateScore(); // update score text
+            }
+
+            if (_pipes[i].CheckCollision(Bird)) GameOver();
+            if (_pipes[i].IsOutOfBounds) _pipes.RemoveAt(i);
         }
 
-        if (Bird.IsOutOfBounds(gameCanvas.ActualHeight)) GameOver();
+        if (Bird.IsOutOfBounds(_gameCanvas.ActualHeight)) GameOver();
+    }
+
+    private void UpdateScore()
+    {
+        _scoreText.Text = $"{_score}";
     }
 
     private void GameOver()
     {
-        gameTimer.Stop();
-        MessageBox.Show("Game Over!");
+        _gameTimer.Stop();
+        var looseWindow = new LooseWindow(_score);
+        looseWindow.Show();
+        if (Application.Current.MainWindow != null) Application.Current.MainWindow.Close();
     }
 }
