@@ -7,8 +7,8 @@ namespace FloppyFinchWPF;
 
 public class Pipe
 {
-    private const int PipeWidth = 80;
-    private const int GapSize = 150;
+    private const int PipeWidth = 100;
+    private const int GapSize = 190;
     internal const int PipeSpacing = 250;
     private const double Speed = 5;
     private readonly Rectangle _bottomPipe;
@@ -20,7 +20,7 @@ public class Pipe
         _gameCanvas = canvas;
         Random rand = new();
 
-        var height = rand.Next(50, (int)(canvas.ActualHeight - GapSize - 50));
+        var height = rand.Next(50, (int)(canvas.ActualHeight - GapSize - 100));
 
         TopPipe = new Rectangle { Width = PipeWidth, Height = height, Fill = Brushes.Green };
         _bottomPipe = new Rectangle
@@ -46,6 +46,7 @@ public class Pipe
         Canvas.SetLeft(_bottomPipe, newX);
     }
 
+    /*
     public bool CheckCollision(Bird bird)
     {
         var birdBounds = bird.GetBounds();
@@ -53,5 +54,13 @@ public class Pipe
         var bottomBounds = new Rect(Canvas.GetLeft(_bottomPipe), Canvas.GetTop(_bottomPipe), _bottomPipe.Width,
             _bottomPipe.Height);
         return birdBounds.IntersectsWith(topBounds) || birdBounds.IntersectsWith(bottomBounds);
+    }*/
+    public bool CheckCollision(Bird bird)
+    {
+        var birdBounds = bird.GetBounds();
+        return birdBounds.IntersectsWith(new Rect(Canvas.GetLeft(TopPipe), Canvas.GetTop(TopPipe), TopPipe.Width,
+                   TopPipe.Height)) ||
+               birdBounds.IntersectsWith(new Rect(Canvas.GetLeft(_bottomPipe), Canvas.GetTop(_bottomPipe),
+                   _bottomPipe.Width, _bottomPipe.Height));
     }
 }

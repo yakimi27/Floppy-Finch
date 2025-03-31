@@ -9,12 +9,15 @@ public class Bird
 {
     private const double Gravity = 1.6;
     private const double JumpStrength = -16;
+    private static readonly RotateTransform RotateTransformJump = new(-30);
     private readonly Rectangle _bird;
     private double _velocity;
+    public RotateTransform RotateTransformStatus = new(0);
 
     public Bird(Canvas gameCanvas)
     {
-        _bird = new Rectangle { Width = 40, Height = 40, Fill = Brushes.Yellow };
+        _bird = new Rectangle
+            { Width = 50, Height = 40, Fill = Brushes.Yellow, RenderTransformOrigin = new Point(0.5, 0.5) };
         gameCanvas.Children.Add(_bird);
         Canvas.SetLeft(_bird, 100);
         Canvas.SetTop(_bird, 200);
@@ -25,6 +28,19 @@ public class Bird
     public void Jump()
     {
         _velocity = JumpStrength;
+        _bird.RenderTransform = RotateTransformJump;
+        RotateTransformStatus.Angle = RotateTransformJump.Angle;
+    }
+
+    public double GetVelocity()
+    {
+        return _velocity;
+    }
+
+    public void SetBirdRotation(double angle)
+    {
+        RotateTransformStatus.Angle = angle;
+        _bird.RenderTransform = RotateTransformStatus;
     }
 
     public void Update()

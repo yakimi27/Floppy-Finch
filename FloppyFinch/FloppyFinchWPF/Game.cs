@@ -40,6 +40,13 @@ public class Game
         if (_pipes.Count == 0 || Canvas.GetLeft(_pipes.Last().TopPipe) < _gameCanvas.ActualWidth - Pipe.PipeSpacing)
             _pipes.Add(new Pipe(_gameCanvas));
 
+
+        if (Bird.RotateTransformStatus.Angle < 80 && Bird.GetVelocity() > 10)
+        {
+            Bird.RotateTransformStatus.Angle += 10;
+            Bird.SetBirdRotation(Bird.RotateTransformStatus.Angle);
+        }
+
         for (var i = _pipes.Count - 1; i >= 0; i--)
         {
             _pipes[i].Update();
@@ -58,9 +65,14 @@ public class Game
         if (Bird.IsOutOfBounds(_gameCanvas.ActualHeight)) GameOver();
     }
 
+    /*
     private void UpdateScore()
     {
         _scoreText.Text = $"{_score}";
+    }*/
+    private void UpdateScore()
+    {
+        _scoreText.Text = _score.ToString();
     }
 
     private void GameOver()
