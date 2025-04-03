@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Threading;
 
 namespace FloppyFinchWPF;
@@ -75,11 +74,16 @@ public class Game
         _scoreText.Text = _score.ToString();
     }
 
+    public event Action<int> OnGameOver;
+
     private void GameOver()
     {
         _gameTimer.Stop();
-        var looseWindow = new LooseWindow(_score);
+        OnGameOver?.Invoke(_score);
+
+        /*
+        var looseWindow = new GameOverWindow(_score);
         looseWindow.Show();
-        if (Application.Current.MainWindow != null) Application.Current.MainWindow.Close();
+        if (Application.Current.MainWindow != null) Application.Current.MainWindow.Close();*/
     }
 }
