@@ -1,15 +1,18 @@
-﻿<Window x:Class="FloppyFinchWPF.ClassicGameplayWindow"
+﻿<Window x:Class="FloppyFinchClassic.ClassicGameplayWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Floppy Finch" Height="600" Width="400"
+        Title="Floppy Finch" Height="600" Width="400" MinHeight="600" MinWidth="400"
         WindowStartupLocation="CenterScreen"
         KeyDown="Window_KeyDown" MouseDown="Window_MouseDown">
     <Grid>
         <Canvas Name="GameCanvas" Background="LightBlue" />
         <TextBlock x:Name="ScoreText" Text="0" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 100 0 0"
-                   FontSize="26" />
+                   FontSize="26" Visibility="Hidden" />
+        <TextBlock x:Name="KeyWait" Text="Press space to start" VerticalAlignment="Top" HorizontalAlignment="Center"
+                   Margin="0 200 0 0"
+                   FontSize="26" Visibility="Visible" />
     </Grid>
 </Window>

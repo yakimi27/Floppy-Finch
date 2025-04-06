@@ -3,15 +3,23 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace FloppyFinchWPF;
+namespace GameLogic;
 
 public class Bird
 {
     private const double Gravity = 1.6;
     private const double JumpStrength = -16;
+    private const double OscillationAmplitude = 5;
+    private const double DeathThreshold = -100;
+    private const double InitialXOffset = 35;
+    private const double InitialYOffset = 40;
+
     private static readonly RotateTransform RotateTransformJump = new(-30);
     private readonly Rectangle _bird;
+    private readonly double _initialX;
+    private readonly double _initialY;
     private double _velocity;
+    private double _waitTime;
     public RotateTransform RotateTransformStatus = new(0);
 
     public Bird(Canvas gameCanvas)
@@ -19,8 +27,10 @@ public class Bird
         _bird = new Rectangle
             { Width = 50, Height = 40, Fill = Brushes.Yellow, RenderTransformOrigin = new Point(0.5, 0.5) };
         gameCanvas.Children.Add(_bird);
-        Canvas.SetLeft(_bird, 100);
-        Canvas.SetTop(_bird, 200);
+        _initialY = Application.Current.MainWindow.Height / 2 - InitialYOffset;
+        _initialX = Application.Current.MainWindow.Width / 2 - InitialXOffset;
+        Canvas.SetLeft(_bird, _initialX);
+        Canvas.SetTop(_bird, _initialY);
     }
 
     public double X => Canvas.GetLeft(_bird);
@@ -49,10 +59,17 @@ public class Bird
         Canvas.SetTop(_bird, Canvas.GetTop(_bird) + _velocity);
     }
 
+    public void Wait()
+    {
+        _waitTime += 0.2;
+        var oscillation = Math.Sin(_waitTime) * OscillationAmplitude;
+        Canvas.SetTop(_bird, _initialY + oscillation);
+    }
+
     public bool IsOutOfBounds(double height)
     {
         var top = Canvas.GetTop(_bird);
-        return top < -100 || top > height;
+        return top < DeathThreshold || top > height;
     }
 
     public Rect GetBounds()
