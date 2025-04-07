@@ -40,7 +40,6 @@ out/
 ### Відкидаємо автозгенеровані файли ###
 *.g.cs
 *.g.i.cs
-*.xaml.cs
 Generated_Code/
 ServiceReferences/
 ServiceConfigurations/
@@ -63,7 +62,6 @@ $RECYCLE.BIN/
 ### Відкидаємо специфічні файли для WPF та Windows Forms ###
 *.cache
 *.resources
-*.resx
 *.tt~
 *.psess
 *.testresults

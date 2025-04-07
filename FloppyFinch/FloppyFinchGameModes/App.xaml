@@ -1,7 +1,7 @@
-﻿<Application x:Class="FloppyFinchWPF.App"
+﻿<Application x:Class="FloppyFinchClassic.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="ClassicGameplayWindow.xaml">
+             StartupUri="ClassicGameplayMode.xaml">
     <Application.Resources>
 
     </Application.Resources>

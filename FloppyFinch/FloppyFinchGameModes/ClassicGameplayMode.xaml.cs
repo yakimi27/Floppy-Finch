@@ -1,0 +1,69 @@
+﻿using System.Windows;
+using System.Windows.Input;
+using System.Windows.Interop;
+using FloppyFinchGameLogics;
+
+namespace FloppyFinchGameModes;
+
+public partial class ClassicGameplayMode : Window
+{
+    private readonly Game _game;
+    private bool _gameStarted;
+
+
+    public ClassicGameplayMode()
+    {
+        InitializeComponent();
+
+        _game = new Game(GameCanvas, ScoreText);
+        _game.OnGameOver += OpenGameOverWindow;
+
+        // set the window to use hardware acceleration
+        Loaded += (s, e) =>
+        {
+            var hwndSource = PresentationSource.FromVisual(this) as HwndSource;
+            if (hwndSource == null) return;
+            var hwndTarget = hwndSource.CompositionTarget;
+            if (hwndTarget != null) hwndTarget.RenderMode = RenderMode.Default;
+        };
+    }
+
+    private void OpenGameOverWindow(int score)
+    {
+        Dispatcher.Invoke(() =>
+        {
+            var gameOverWindow = new GameOverWindow(score, Game.CaptureGameCanvas());
+            gameOverWindow.Show();
+            Close();
+        });
+    }
+
+    private void Window_KeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.Space)
+        {
+            _game.Bird.Jump();
+            if (!_gameStarted)
+            {
+                _game.StartCheck(true);
+                _gameStarted = true;
+            }
+
+            ScoreText.Visibility = Visibility.Visible;
+            KeyWait.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        _game.Bird.Jump();
+        if (!_gameStarted)
+        {
+            _game.StartCheck(true);
+            _gameStarted = true;
+        }
+
+        ScoreText.Visibility = Visibility.Visible;
+        KeyWait.Visibility = Visibility.Hidden;
+    }
+}
