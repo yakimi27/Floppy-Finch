@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="FloppyFinch" Height="600" Width="400" MinHeight="600" MinWidth="400">
+        Title="FloppyFinch" Height="auto" Width="auto" MinHeight="600" MinWidth="400">
     <Grid>
         <Canvas Cursor="Help" Height="15" Width="15" Background="Transparent" VerticalAlignment="Top"
                 HorizontalAlignment="Right"
@@ -45,7 +45,7 @@
                     MaxWidth="400" MaxHeight="85" />
             <Button x:Name="ButtonExtendedMode" Click="ButtonExtendedMode_OnClick" Grid.Row="3" Content="Extended"
                     Margin="50 20" MaxWidth="400" MaxHeight="85" />
-            <Button x:Name="ButtonMainMenu" Click="ButtonMainMenu_OnClick" Grid.Row="4" Content="Back to main menu"
+            <Button x:Name="ButtonMainMenu" Click="ButtonBackMainMenu_OnClick" Grid.Row="4" Content="Back to main menu"
                     Margin="50 20"
                     MaxWidth="400" MaxHeight="85" />
         </Grid>

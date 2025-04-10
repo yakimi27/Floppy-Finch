@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Floppy Finch" Height="600" Width="400" MinHeight="600" MinWidth="400"
-        WindowStartupLocation="CenterScreen"
+        Title="Floppy Finch" Height="auto" Width="auto" MinHeight="600" MinWidth="400"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
         KeyDown="Window_KeyDown" MouseDown="Window_MouseDown">
     <Grid>
         <Canvas Name="GameCanvas" Background="LightBlue" />

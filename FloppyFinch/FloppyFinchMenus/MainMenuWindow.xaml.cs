@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Test;
 
 namespace FloppyFinchMenus;
 
@@ -7,12 +8,31 @@ public partial class MainMenuWindow : Window
     public MainMenuWindow()
     {
         InitializeComponent();
+        Application.Current.MainWindow = this;
+        if (Class1.Maximized)
+        {
+            Application.Current.MainWindow.WindowState = WindowState.Maximized;
+        }
+        else
+        {
+            Application.Current.MainWindow.Width = Class1.WindowHeight;
+            Application.Current.MainWindow.Height = Class1.WindowHeight;
+        }
     }
 
     private void ButtonPlay_OnClick(object sender, RoutedEventArgs e)
     {
-        var test = new GameModesMenuWindow();
-        test.Show();
+        Application.Current.MainWindow = this;
+        Class1.Maximized = Application.Current.MainWindow.WindowState == WindowState.Maximized;
+        Class1.WindowWidth = Application.Current.MainWindow.Width;
+        Class1.WindowHeight = Application.Current.MainWindow.Height;
+        var testPlay = new GameModesMenuWindow();
+        testPlay.Show();
+        Close();
+    }
+
+    private void ButtonShop_OnClick(object sender, RoutedEventArgs e)
+    {
         Close();
     }
 

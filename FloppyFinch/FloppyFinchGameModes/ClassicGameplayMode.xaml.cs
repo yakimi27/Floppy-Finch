@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using System.Windows.Interop;
 using FloppyFinchGameLogics;
+using Test;
 
 namespace FloppyFinchGameModes;
 
@@ -14,6 +15,17 @@ public partial class ClassicGameplayMode : Window
     public ClassicGameplayMode()
     {
         InitializeComponent();
+
+        Application.Current.MainWindow = this;
+        if (Class1.Maximized)
+        {
+            Application.Current.MainWindow.WindowState = WindowState.Maximized;
+        }
+        else
+        {
+            Application.Current.MainWindow.Width = Class1.WindowWidth;
+            Application.Current.MainWindow.Height = Class1.WindowHeight;
+        }
 
         _game = new Game(GameCanvas, ScoreText);
         _game.OnGameOver += OpenGameOverWindow;
@@ -40,18 +52,16 @@ public partial class ClassicGameplayMode : Window
 
     private void Window_KeyDown(object sender, KeyEventArgs e)
     {
-        if (e.Key == Key.Space)
+        if (e.Key != Key.Space) return;
+        _game.Bird.Jump();
+        if (!_gameStarted)
         {
-            _game.Bird.Jump();
-            if (!_gameStarted)
-            {
-                _game.StartCheck(true);
-                _gameStarted = true;
-            }
-
-            ScoreText.Visibility = Visibility.Visible;
-            KeyWait.Visibility = Visibility.Hidden;
+            _game.StartCheck(true);
+            _gameStarted = true;
         }
+
+        ScoreText.Visibility = Visibility.Visible;
+        KeyWait.Visibility = Visibility.Hidden;
     }
 
     private void Window_MouseDown(object sender, MouseButtonEventArgs e)

@@ -4,11 +4,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen"
-        Title="Floppy Finch" Height="600" Width="400" MinHeight="600" MinWidth="400">
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Title="Floppy Finch" Height="auto" Width="auto" MinHeight="600" MinWidth="400">
     <Grid>
-        <Image x:Name="GameImage" HorizontalAlignment="Center" VerticalAlignment="Top" Height="600"
-               Width="400" />
+        <Image x:Name="GameImage" HorizontalAlignment="Center" VerticalAlignment="Top" Height="auto"
+               Width="auto" Stretch="Fill" />
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />

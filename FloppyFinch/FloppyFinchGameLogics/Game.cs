@@ -45,7 +45,6 @@ public class Game
         Bird.Wait();
     }
 
-
     private void GameLoop(object sender, EventArgs e)
     {
         Bird.Update();
@@ -65,7 +64,7 @@ public class Game
         {
             _pipes[i].Update();
 
-            if (!_pipes[i].IsScored && Canvas.GetLeft(_pipes[i].TopPipe) + _pipes[i].TopPipe.Width < Bird.X)
+            if (!_pipes[i].IsScored && Canvas.GetLeft(_pipes[i].TopPipe) + _pipes[i].TopPipe.Width < Bird.X * 1.5)
             {
                 _pipes[i].IsScored = true; // mark pipe as scored
                 _score++;

@@ -11,6 +11,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\FloppyFinchGameLogics\FloppyFinchGameLogics.csproj"/>
+        <ProjectReference Include="..\Test\Test.csproj"/>
     </ItemGroup>
 
 </Project>

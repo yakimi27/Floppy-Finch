@@ -16,4 +16,9 @@
         </Page>
     </ItemGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\FloppyFinchGameModes\FloppyFinchGameModes.csproj"/>
+        <ProjectReference Include="..\Test\Test.csproj"/>
+    </ItemGroup>
+
 </Project>
