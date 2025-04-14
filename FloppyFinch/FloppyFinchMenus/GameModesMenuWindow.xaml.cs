@@ -25,8 +25,8 @@ public partial class GameModesMenuWindow : Window
     {
         Application.Current.MainWindow = this;
         Class1.Maximized = Application.Current.MainWindow.WindowState == WindowState.Maximized;
-        Class1.WindowWidth = Application.Current.MainWindow.ActualWidth;
-        Class1.WindowHeight = Application.Current.MainWindow.ActualHeight;
+        Class1.WindowWidth = Application.Current.MainWindow.Width;
+        Class1.WindowHeight = Application.Current.MainWindow.Height;
 
         var testPlayClassic = new ClassicGameplayMode();
         testPlayClassic.Show();

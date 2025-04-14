@@ -1,0 +1,104 @@
+﻿<Window x:Class="FloppyFinchMenus.ShopMenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Floppy Finch" Height="auto" Width="auto" MinHeight="600" MinWidth="400">
+    <Grid>
+        <!--resize corner info-->
+        <Canvas Cursor="Help" Height="15" Width="15" Background="Transparent" VerticalAlignment="Top"
+                HorizontalAlignment="Right" Margin="8" ToolTipService.InitialShowDelay="100">
+            <Line X1="0" Y1="0" X2="15" Y2="0" Stroke="Black" />
+            <Line X1="15" Y1="0" X2="15" Y2="15" Stroke="Black" />
+            <Canvas.ToolTip>
+                <ToolTip Content="To adjust resolution resize window." />
+            </Canvas.ToolTip>
+        </Canvas>
+        <Canvas Cursor="Help" Height="15" Width="15" Background="Transparent" VerticalAlignment="Bottom"
+                HorizontalAlignment="Left"
+                Margin="8" ToolTipService.InitialShowDelay="100">
+            <Line X1="0" Y1="15" X2="15" Y2="15" Stroke="Black" />
+            <Line X1="0" Y1="0" X2="0" Y2="15" Stroke="Black" />
+            <Canvas.ToolTip>
+                <ToolTip Content="To adjust resolution resize window." />
+            </Canvas.ToolTip>
+        </Canvas>
+        <!--shop grid-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="0" x:Name="ButtonShopBack" Click="ButtonShopBack_OnClick" Content="Back" Width="75"
+                    Height="25"
+                    HorizontalAlignment="Left" Margin="35 0 " />
+
+            <!--objects grid-->
+            <ScrollViewer Grid.Row="1" MaxWidth="600">
+                <Grid Margin="20 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <!--grids inside-->
+
+                    <StackPanel Grid.Row="0" Grid.Column="0" Margin="15">
+                        <Rectangle Fill="Aqua" Margin="0 0 0 15" Height="100" />
+                        <Button Content="Buy" Height="40" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="1" Margin="15 ">
+                        <Rectangle Fill="Aqua" Margin="0 0 0 15" Height="100" />
+                        <Button Content="Buy" Height="40" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="15">
+                        <Rectangle Fill="Aqua" Margin="0 0 0 15" Height="100" />
+                        <Button Content="Buy" Height="40" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="1" Margin="15">
+                        <Rectangle Fill="Aqua" Margin="0 0 0 15" Height="100" />
+                        <Button Content="Buy" Height="40" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="0" Margin="15">
+                        <Rectangle Fill="Aqua" Margin="0 0 0 15" Height="100" />
+                        <Button Content="Buy" Height="40" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="1" Margin="15">
+                        <Rectangle Fill="Aqua" Margin="0 0 0 15" Height="100" />
+                        <Button Content="Buy" Height="40" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Grid.Column="0" Margin="15">
+                        <Rectangle Fill="Aqua" Margin="0 0 0 15" Height="100" />
+                        <Button Content="Buy" Height="40" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Grid.Column="1" Margin="15">
+                        <Rectangle Fill="Aqua" Margin="0 0 0 15" Height="100" />
+                        <Button Content="Buy" Height="40" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="4" Grid.Column="0" Margin="15">
+                        <Rectangle Fill="Aqua" Margin="0 0 0 15" Height="100" />
+                        <Button Content="Buy" Height="40" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="4" Grid.Column="1" Margin="15">
+                        <Rectangle Fill="Aqua" Margin="0 0 0 15" Height="100" />
+                        <Button Content="Buy" Height="40" />
+                    </StackPanel>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>

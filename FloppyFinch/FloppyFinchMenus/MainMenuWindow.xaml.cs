@@ -15,7 +15,7 @@ public partial class MainMenuWindow : Window
         }
         else
         {
-            Application.Current.MainWindow.Width = Class1.WindowHeight;
+            Application.Current.MainWindow.Width = Class1.WindowWidth;
             Application.Current.MainWindow.Height = Class1.WindowHeight;
         }
     }
@@ -33,6 +33,12 @@ public partial class MainMenuWindow : Window
 
     private void ButtonShop_OnClick(object sender, RoutedEventArgs e)
     {
+        Application.Current.MainWindow = this;
+        Class1.Maximized = Application.Current.MainWindow.WindowState == WindowState.Maximized;
+        Class1.WindowWidth = Application.Current.MainWindow.Width;
+        Class1.WindowHeight = Application.Current.MainWindow.Height;
+        var testShop = new ShopMenuWindow();
+        testShop.Show();
         Close();
     }
 
