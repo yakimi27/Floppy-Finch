@@ -2,13 +2,14 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using FloppyFinchLogics.WindowLogics;
 
-namespace FloppyFinchGameLogics;
+namespace FloppyFinchLogics.GameLogics;
 
 public class Bird
 {
-    private const double Gravity = 1.6;
-    private const double JumpStrength = -16;
+    private const double Gravity = 1.6; /*originally 1.6*/
+    private const double JumpStrength = -16; /*originally -16*/
     private const double OscillationAmplitude = 5;
     private const double DeathThreshold = -100;
     private const double InitialXOffset = 35;
@@ -27,8 +28,8 @@ public class Bird
         _bird = new Rectangle
             { Width = 50, Height = 40, Fill = Brushes.Yellow, RenderTransformOrigin = new Point(0.5, 0.5) };
         gameCanvas.Children.Add(_bird);
-        _initialY = Application.Current.MainWindow.Height / 2 - InitialYOffset;
-        _initialX = Application.Current.MainWindow.Width / 2 - InitialXOffset;
+        _initialY = WindowStateData.WindowHeight / 2 - InitialYOffset;
+        _initialX = WindowStateData.WindowWidth / 2 - InitialXOffset;
         Canvas.SetLeft(_bird, _initialX);
         Canvas.SetTop(_bird, _initialY);
     }

@@ -1,8 +1,10 @@
 ﻿using System.Windows;
 using System.Windows.Media.Imaging;
-using Test;
+using FloppyFinchGameModes.MenuWindows;
+using FloppyFinchLogics.WindowLogics;
+using WindowState = System.Windows.WindowState;
 
-namespace FloppyFinchGameModes;
+namespace FloppyFinchGameModes.GameWindows;
 
 public partial class GameOverWindow : Window
 {
@@ -10,14 +12,16 @@ public partial class GameOverWindow : Window
     {
         InitializeComponent();
         Application.Current.MainWindow = this;
-        if (Class1.Maximized)
+        if (WindowStateData.Maximized)
         {
             Application.Current.MainWindow.WindowState = WindowState.Maximized;
         }
         else
         {
-            Application.Current.MainWindow.Width = Class1.WindowWidth;
-            Application.Current.MainWindow.Height = Class1.WindowHeight;
+            Application.Current.MainWindow.Width = WindowStateData.WindowWidth;
+            Application.Current.MainWindow.Height = WindowStateData.WindowHeight;
+            Application.Current.MainWindow.Left = WindowStateData.WindowPositionX;
+            Application.Current.MainWindow.Top = WindowStateData.WindowPositionY;
         }
 
         LoseScreenScoreTextBlock.Text = $"You scored: {score}";
@@ -34,6 +38,9 @@ public partial class GameOverWindow : Window
 
     private void MainMenuButton_Click(object sender, RoutedEventArgs e)
     {
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        var mainMenuWindow = new MainMenu();
+        mainMenuWindow.Show();
         Close();
     }
 

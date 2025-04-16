@@ -3,12 +3,12 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace FloppyFinchGameLogics;
+namespace FloppyFinchLogics.GameLogics;
 
 public class Pipe
 {
     private const int PipeWidth = 100;
-    private const int GapSize = 190;
+    private const int GapSize = 150;
     internal const int PipeSpacing = 250;
     private const double Speed = 5;
     private readonly Rectangle _bottomPipe;

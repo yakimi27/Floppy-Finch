@@ -1,10 +1,11 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
-using FloppyFinchGameLogics;
-using Test;
+using FloppyFinchLogics.GameLogics;
+using FloppyFinchLogics.WindowLogics;
+using WindowState = System.Windows.WindowState;
 
-namespace FloppyFinchGameModes;
+namespace FloppyFinchGameModes.GameWindows;
 
 public partial class ClassicGameplayMode : Window
 {
@@ -15,16 +16,17 @@ public partial class ClassicGameplayMode : Window
     public ClassicGameplayMode()
     {
         InitializeComponent();
-
         Application.Current.MainWindow = this;
-        if (Class1.Maximized)
+        if (WindowStateData.Maximized)
         {
             Application.Current.MainWindow.WindowState = WindowState.Maximized;
         }
         else
         {
-            Application.Current.MainWindow.Width = Class1.WindowWidth;
-            Application.Current.MainWindow.Height = Class1.WindowHeight;
+            Application.Current.MainWindow.Width = WindowStateData.WindowWidth;
+            Application.Current.MainWindow.Height = WindowStateData.WindowHeight;
+            Application.Current.MainWindow.Left = WindowStateData.WindowPositionX;
+            Application.Current.MainWindow.Top = WindowStateData.WindowPositionY;
         }
 
         _game = new Game(GameCanvas, ScoreText);
