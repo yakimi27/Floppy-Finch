@@ -4,11 +4,11 @@ using FloppyFinchGameModes.MenuWindows;
 using FloppyFinchLogics.WindowLogics;
 using WindowState = System.Windows.WindowState;
 
-namespace FloppyFinchGameModes.GameWindows;
+namespace FloppyFinchGameModes.GameWindows.TargetScoreWindows;
 
-public partial class GameOverWindow : Window
+public partial class TargetScoreGameOverWindow : Window
 {
-    public GameOverWindow(int score, BitmapSource gameImage)
+    public TargetScoreGameOverWindow(int score, BitmapSource gameImage, int targetScoreValue)
     {
         InitializeComponent();
         Application.Current.MainWindow = this;
@@ -24,14 +24,18 @@ public partial class GameOverWindow : Window
             Application.Current.MainWindow.Top = WindowStateData.WindowPositionY;
         }
 
+        if (score == targetScoreValue)
+            GameOverLabel.Content = "Congratulations!";
+        else
+            GameOverLabel.Content = "Game over";
         LoseScreenScoreTextBlock.Text = $"You scored: {score}";
         GameImage.Source = gameImage;
     }
 
     private void RestartButton_Click(object sender, RoutedEventArgs e)
     {
-        var classicGameplayWindow = new ClassicGameplayMode();
-        classicGameplayWindow.Show();
+        var targetScoreGameplayWindow = new TargetScoreGameplayMode();
+        targetScoreGameplayWindow.Show();
         Close();
     }
 

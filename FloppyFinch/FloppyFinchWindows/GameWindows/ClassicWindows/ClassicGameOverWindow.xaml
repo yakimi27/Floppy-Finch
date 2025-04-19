@@ -1,4 +1,4 @@
-﻿<Window x:Class="FloppyFinchGameModes.GameWindows.GameOverWindow"
+﻿<Window x:Class="FloppyFinchGameModes.GameWindows.ClassicWindows.ClassicGameOverWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -20,7 +20,8 @@
                 <RowDefinition Height="*" MaxHeight="150" />
                 <RowDefinition Height="*" MaxHeight="150" />
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Content="Game over" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="50" />
+            <Label Grid.Row="0" Content="Game over" HorizontalAlignment="Center"
+                   VerticalAlignment="Top" FontSize="50" />
             <TextBlock Grid.Row="1" x:Name="LoseScreenScoreTextBlock" Text="You scored: 0"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Top" FontSize="30" />

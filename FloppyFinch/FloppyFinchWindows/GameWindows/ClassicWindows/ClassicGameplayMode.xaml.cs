@@ -5,13 +5,12 @@ using FloppyFinchLogics.GameLogics;
 using FloppyFinchLogics.WindowLogics;
 using WindowState = System.Windows.WindowState;
 
-namespace FloppyFinchGameModes.GameWindows;
+namespace FloppyFinchGameModes.GameWindows.ClassicWindows;
 
 public partial class ClassicGameplayMode : Window
 {
     private readonly Game _game;
     private bool _gameStarted;
-
 
     public ClassicGameplayMode()
     {
@@ -29,9 +28,6 @@ public partial class ClassicGameplayMode : Window
             Application.Current.MainWindow.Top = WindowStateData.WindowPositionY;
         }
 
-        _game = new Game(GameCanvas, ScoreText);
-        _game.OnGameOver += OpenGameOverWindow;
-
         // set the window to use hardware acceleration
         Loaded += (s, e) =>
         {
@@ -40,13 +36,16 @@ public partial class ClassicGameplayMode : Window
             var hwndTarget = hwndSource.CompositionTarget;
             if (hwndTarget != null) hwndTarget.RenderMode = RenderMode.Default;
         };
+
+        _game = new Game(GameCanvas, ScoreText);
+        _game.OnGameOver += OpenGameOverWindow;
     }
 
     private void OpenGameOverWindow(int score)
     {
         Dispatcher.Invoke(() =>
         {
-            var gameOverWindow = new GameOverWindow(score, Game.CaptureGameCanvas());
+            var gameOverWindow = new ClassicGameOverWindow(score, Game.CaptureGameCanvas());
             gameOverWindow.Show();
             Close();
         });

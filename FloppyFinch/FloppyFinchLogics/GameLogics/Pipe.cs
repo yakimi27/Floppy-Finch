@@ -8,23 +8,26 @@ namespace FloppyFinchLogics.GameLogics;
 public class Pipe
 {
     private const int PipeWidth = 100;
-    private const int GapSize = 150;
+    private const int GapSize = 165;
     internal const int PipeSpacing = 250;
     private const double Speed = 5;
     private readonly Rectangle _bottomPipe;
     private readonly Canvas _gameCanvas;
     internal readonly Rectangle TopPipe;
 
-    public Pipe(Canvas canvas)
+    public Pipe(Canvas canvas, bool isFinal)
     {
         _gameCanvas = canvas;
         Random rand = new();
+        IsFinal = isFinal;
+
+        Brush pipeColor = IsFinal ? Brushes.Gold : Brushes.Green;
 
         var height = rand.Next(50, (int)(canvas.ActualHeight - GapSize - 100));
 
-        TopPipe = new Rectangle { Width = PipeWidth, Height = height, Fill = Brushes.Green };
+        TopPipe = new Rectangle { Width = PipeWidth, Height = height, Fill = pipeColor };
         _bottomPipe = new Rectangle
-            { Width = PipeWidth, Height = canvas.ActualHeight - height - GapSize, Fill = Brushes.Green };
+            { Width = PipeWidth, Height = canvas.ActualHeight - height - GapSize, Fill = pipeColor };
 
         Canvas.SetLeft(TopPipe, canvas.ActualWidth);
         Canvas.SetTop(TopPipe, 0);
@@ -34,6 +37,8 @@ public class Pipe
         _gameCanvas.Children.Add(TopPipe);
         _gameCanvas.Children.Add(_bottomPipe);
     }
+
+    public bool IsFinal { get; }
 
     public bool IsScored { get; set; } = false;
 

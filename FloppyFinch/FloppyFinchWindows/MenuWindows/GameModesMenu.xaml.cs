@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using FloppyFinchGameModes.GameWindows;
+using FloppyFinchGameModes.GameWindows.ClassicWindows;
+using FloppyFinchGameModes.GameWindows.TargetScoreWindows;
 using FloppyFinchLogics.WindowLogics;
 using WindowState = System.Windows.WindowState;
 
@@ -32,8 +34,11 @@ public partial class GameModesMenu : Window
         Close();
     }
 
-    private void ButtonRaceMode_OnClick(object sender, RoutedEventArgs e)
+    private void ButtonTargetScoreMode_OnClick(object sender, RoutedEventArgs e)
     {
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        var targetScoreGameplayWindow = new TargetScoreGameplayMode();
+        targetScoreGameplayWindow.Show();
         Close();
     }
 
