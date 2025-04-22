@@ -1,15 +1,18 @@
 ﻿using System.Windows.Controls;
+using FloppyFinchLogics.WindowLogics;
 
 namespace FloppyFinchLogics.GameLogics.TargetScoreLogics;
 
 public class TargetScoreGame : Game
 {
     private readonly int _targetScore;
+    private readonly ProgressBar _targetScoreProgressBar;
     private bool _isFinalPipeSpawned;
     private int _pipesGenerated;
 
 
-    public TargetScoreGame(Canvas canvas, TextBlock scoreTextBlock, ref int targetScoreValue) : base(canvas,
+    public TargetScoreGame(Canvas canvas, TextBlock scoreTextBlock, ref int targetScoreValue,
+        ProgressBar targetScoreProgressBar) : base(canvas,
         scoreTextBlock)
     {
         var rand = new Random();
@@ -17,15 +20,16 @@ public class TargetScoreGame : Game
         targetScoreValue = _targetScore;
         _isFinalPipeSpawned = false;
         _pipesGenerated = 0;
+        _targetScoreProgressBar = targetScoreProgressBar;
     }
 
     protected override void GameLoop(object sender, EventArgs e)
-    { 
+    {
         Bird.Update();
 
         if (Pipes.Count == 0 ||
             Canvas.GetLeft(Pipes.Last().TopPipe) <
-            GameCanvas.ActualWidth - Pipe.PipeSpacing)
+            GameCanvas.ActualWidth - Pipe.PipeSpacing * WindowStateData.WidthScaleFactor)
         {
             if (_pipesGenerated != _targetScore - 1 && !_isFinalPipeSpawned)
             {
@@ -53,6 +57,7 @@ public class TargetScoreGame : Game
             {
                 pipe.IsScored = true;
                 Score++;
+                UpdateProgressBar();
                 UpdateScore();
 
                 if (Score >= _targetScore)
@@ -73,5 +78,10 @@ public class TargetScoreGame : Game
         Pipes.RemoveAll(pipe => pipe.IsOutOfBounds);
 
         if (Bird.IsOutOfBounds(GameCanvas.ActualHeight)) GameOver();
+    }
+
+    private void UpdateProgressBar()
+    {
+        _targetScoreProgressBar.Value = Score;
     }
 }

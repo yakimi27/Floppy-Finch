@@ -41,8 +41,9 @@ public partial class TargetScoreGameplayMode : Window
             if (hwndTarget != null) hwndTarget.RenderMode = RenderMode.Default;
         };
 
-        _game = new TargetScoreGame(GameCanvas, ScoreText, ref _targetScoreValue);
+        _game = new TargetScoreGame(GameCanvas, ScoreText, ref _targetScoreValue, TargetScoreProgressBar);
         TargetScoreText.Text = "Target score: " + _targetScoreValue;
+        TargetScoreProgressBar.Maximum = _targetScoreValue;
         _game.OnGameOver += OpenGameOverWindow;
     }
 

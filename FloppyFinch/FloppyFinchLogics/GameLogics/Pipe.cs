@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using FloppyFinchLogics.WindowLogics;
 
 namespace FloppyFinchLogics.GameLogics;
 
@@ -9,8 +10,8 @@ public class Pipe
 {
     private const int PipeWidth = 100;
     private const int GapSize = 165;
-    internal const int PipeSpacing = 250;
     private const double Speed = 5;
+    internal static readonly int PipeSpacing = 250;
     private readonly Rectangle _bottomPipe;
     private readonly Canvas _gameCanvas;
     internal readonly Rectangle TopPipe;
@@ -23,7 +24,8 @@ public class Pipe
 
         Brush pipeColor = IsFinal ? Brushes.Gold : Brushes.Green;
 
-        var height = rand.Next(50, (int)(canvas.ActualHeight - GapSize - 100));
+        var height = rand.Next((int)(50 * WindowStateData.HeightScaleFactor),
+            (int)(canvas.ActualHeight - GapSize - 100 * WindowStateData.HeightScaleFactor));
 
         TopPipe = new Rectangle { Width = PipeWidth, Height = height, Fill = pipeColor };
         _bottomPipe = new Rectangle

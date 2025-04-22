@@ -2,6 +2,7 @@
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using FloppyFinchLogics.WindowLogics;
 
 namespace FloppyFinchLogics.GameLogics;
 
@@ -40,7 +41,7 @@ public class Game
         }
     }
 
-    public void WaitLoop(object sender, EventArgs e)
+    private void WaitLoop(object sender, EventArgs e)
     {
         Bird.Wait();
     }
@@ -49,12 +50,10 @@ public class Game
     {
         Bird.Update();
 
-
-        // add new pipe according to spacing
         if (Pipes.Count == 0 ||
             Canvas.GetLeft(Pipes.Last().TopPipe) <
-            GameCanvas.ActualWidth - Pipe.PipeSpacing /*add new variable dependent on screen width*/
-           ) Pipes.Add(new Pipe(GameCanvas, false));
+            GameCanvas.ActualWidth - Pipe.PipeSpacing * WindowStateData.WidthScaleFactor)
+            Pipes.Add(new Pipe(GameCanvas, false));
 
 
         if (Bird.RotateTransformStatus.Angle < 80 && Bird.GetVelocity() > 10)
