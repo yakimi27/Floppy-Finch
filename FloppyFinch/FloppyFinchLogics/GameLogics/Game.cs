@@ -103,4 +103,10 @@ public class Game
         _gameTimer.Stop();
         OnGameOver?.Invoke(Score);
     }
+
+    public void PauseGame(bool paused)
+    {
+        if (paused) _gameTimer.Stop();
+        else _gameTimer.Start();
+    }
 }

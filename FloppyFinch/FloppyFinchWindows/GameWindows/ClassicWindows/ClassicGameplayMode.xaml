@@ -14,5 +14,14 @@
         <TextBlock x:Name="KeyWait" Text="Press space to start" VerticalAlignment="Top" HorizontalAlignment="Center"
                    Margin="0 200 0 0"
                    FontSize="26" Visibility="Visible" />
+        <Button x:Name="ButtonReturnMainMenu" Click="ButtonReturnMainMenu_OnClick"
+                Content="Main Menu" Width="75"
+                Height="25"
+                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15" Visibility="Visible" />
+        <Button x:Name="ButtonGamePause" Click="ButtonGamePause_OnClick" Content="Pause"
+                Width="75"
+                Height="25"
+                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15" Visibility="Hidden"
+                Focusable="False" />
     </Grid>
 </Window>
