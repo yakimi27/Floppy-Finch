@@ -41,6 +41,9 @@ public partial class MainMenu : Window
 
     private void ButtonSettings_OnClick(object sender, RoutedEventArgs e)
     {
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        var settingsMenuWindow = new SettingsMenu();
+        settingsMenuWindow.Show();
         Close();
     }
 

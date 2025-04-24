@@ -15,8 +15,7 @@ public class TargetScoreGame : Game
         ProgressBar targetScoreProgressBar) : base(canvas,
         scoreTextBlock)
     {
-        var rand = new Random();
-        _targetScore = rand.Next(10, 50);
+        _targetScore = Random.Next(10, 50);
         targetScoreValue = _targetScore;
         _isFinalPipeSpawned = false;
         _pipesGenerated = 0;
@@ -44,9 +43,9 @@ public class TargetScoreGame : Game
             }
         }
 
-        if (Bird.RotateTransformStatus.Angle < 80 && Bird.GetVelocity() > 10)
+        if (Bird.RotateTransformStatus.Angle < BirdMaxRotation && Bird.GetVelocity() > BirdVelocityToRotate)
         {
-            Bird.RotateTransformStatus.Angle += 10;
+            Bird.RotateTransformStatus.Angle += BirdFallRotation;
             Bird.SetBirdRotation(Bird.RotateTransformStatus.Angle);
         }
 

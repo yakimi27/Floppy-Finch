@@ -33,7 +33,6 @@ public static class WindowStateData
         }
     }
 
-
     public static void SaveWindowState(Window window)
     {
         Maximized = window.WindowState == WindowState.Maximized;

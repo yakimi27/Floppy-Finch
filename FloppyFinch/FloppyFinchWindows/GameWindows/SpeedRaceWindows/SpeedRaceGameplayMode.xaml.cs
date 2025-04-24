@@ -3,20 +3,19 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using FloppyFinchGameModes.MenuWindows;
 using FloppyFinchLogics.GameLogics;
-using FloppyFinchLogics.GameLogics.TargetScoreLogics;
+using FloppyFinchLogics.GameLogics.SpeedRaceLogics;
 using FloppyFinchLogics.WindowLogics;
-using WindowState = System.Windows.WindowState;
 
-namespace FloppyFinchGameModes.GameWindows.TargetScoreWindows;
+namespace FloppyFinchGameModes.GameWindows.SpeedRaceWindows;
 
-public partial class TargetScoreGameplayMode : Window
+public partial class SpeedRaceGameplayMode : Window
 {
-    private readonly TargetScoreGame _game;
-    private readonly int _targetScoreValue;
+    private readonly SpeedRaceGame _game;
+    private readonly int _gameSpeed;
     private bool _gameStarted;
     private bool _pauseState;
 
-    public TargetScoreGameplayMode()
+    public SpeedRaceGameplayMode(int gameSpeed)
     {
         InitializeComponent();
         Application.Current.MainWindow = this;
@@ -32,6 +31,8 @@ public partial class TargetScoreGameplayMode : Window
             Application.Current.MainWindow.Top = WindowStateData.WindowPositionY;
         }
 
+        _gameSpeed = gameSpeed;
+
         // set the window to use hardware acceleration
         Loaded += (s, e) =>
         {
@@ -41,9 +42,7 @@ public partial class TargetScoreGameplayMode : Window
             if (hwndTarget != null) hwndTarget.RenderMode = RenderMode.Default;
         };
 
-        _game = new TargetScoreGame(GameCanvas, ScoreText, ref _targetScoreValue, TargetScoreProgressBar);
-        TargetScoreText.Text = "Target score: " + _targetScoreValue;
-        TargetScoreProgressBar.Maximum = _targetScoreValue;
+        _game = new SpeedRaceGame(GameCanvas, ScoreText, _gameSpeed);
         _game.OnGameOver += OpenGameOverWindow;
     }
 
@@ -51,7 +50,7 @@ public partial class TargetScoreGameplayMode : Window
     {
         Dispatcher.Invoke(() =>
         {
-            var gameOverWindow = new TargetScoreGameOverWindow(score, Game.CaptureGameCanvas(), _targetScoreValue);
+            var gameOverWindow = new SpeedRaceGameOverWindow(score, Game.CaptureGameCanvas(), _gameSpeed);
             gameOverWindow.Show();
             Close();
         });
@@ -82,13 +81,17 @@ public partial class TargetScoreGameplayMode : Window
 
     private void ButtonGamePause_OnClick(object sender, RoutedEventArgs e)
     {
-        TogglePauseState();
+        _pauseState = !_pauseState;
+        _game.PauseGame(_pauseState);
+
+        ButtonGamePause.Content = _pauseState ? "Resume" : "Pause";
+        ButtonReturnMainMenu.Visibility = _pauseState ? Visibility.Visible : Visibility.Hidden;
+        ButtonReturnMainMenu.Margin = _pauseState ? new Thickness(105, 15, 15, 15) : new Thickness(15);
     }
 
     private void SetItemsVisibility()
     {
         ScoreText.Visibility = Visibility.Visible;
-        TargetScoreText.Visibility = Visibility.Hidden;
         KeyWait.Visibility = Visibility.Hidden;
         ButtonReturnMainMenu.Visibility = Visibility.Hidden;
         ButtonGamePause.Visibility = Visibility.Visible;

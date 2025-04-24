@@ -1,4 +1,4 @@
-﻿<Window x:Class="FloppyFinchGameModes.GameWindows.TargetScoreWindows.TargetScoreGameplayMode"
+﻿<Window x:Class="FloppyFinchGameModes.GameWindows.SpeedRaceWindows.SpeedRaceGameplayMode"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -11,9 +11,6 @@
         <Canvas Name="GameCanvas" Background="LightBlue" />
         <TextBlock x:Name="ScoreText" Text="0" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 100 0 0"
                    FontSize="26" Visibility="Hidden" />
-        <TextBlock x:Name="TargetScoreText" Text="" VerticalAlignment="Top" HorizontalAlignment="Center"
-                   Margin="0 100 0 0"
-                   FontSize="26" Visibility="Visible" />
         <TextBlock x:Name="KeyWait" Text="Press space to start" VerticalAlignment="Top" HorizontalAlignment="Center"
                    Margin="0 200 0 0"
                    FontSize="26" Visibility="Visible" />
@@ -26,6 +23,5 @@
                 Height="25"
                 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15" Visibility="Hidden"
                 Focusable="False" />
-        <ProgressBar x:Name="TargetScoreProgressBar" Minimum="0" VerticalAlignment="Top" Height="5" Margin="0" />
     </Grid>
 </Window>

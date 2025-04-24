@@ -1,0 +1,42 @@
+﻿<Window x:Class="FloppyFinchGameModes.GameWindows.SpeedRaceWindows.SpeedRaceDifficultyAdjuster"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        Title="Floppy Finch" Height="220" Width="350">
+    <Grid>
+        <Grid Margin="15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="25" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Label Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="0" Content="Speed presets:" />
+            <Button Click="SlowSpeedButton_OnClick" Content="Slow" ToolTip="Set speed = 3; Default speed = 5."
+                    ToolTipService.InitialShowDelay="500"
+                    Grid.Column="0" Grid.Row="1" Margin="5" />
+            <Button Click="FasterSpeedButton_OnClick" Content="Faster" ToolTip="Set speed = 7; Default speed = 5."
+                    ToolTipService.InitialShowDelay="500"
+                    Grid.Column="1" Grid.Row="1" Margin="5" />
+            <Button Click="FastSpeedButton_OnClick" Content="Fast" ToolTip="Set speed = 10; Default speed = 5."
+                    ToolTipService.InitialShowDelay="500"
+                    Grid.Column="2" Grid.Row="1" Margin="5" />
+            <Label Content="Set own speed:" ToolTip="Minimal speed = 1, maximum speed = 13."
+                   ToolTipService.InitialShowDelay="500" Grid.Column="0" Grid.Row="2" VerticalContentAlignment="Center" />
+            <TextBox x:Name="OwnSpeedTextBox" TextChanged="OwnSpeedTextBox_OnTextChanged" Grid.Column="1"
+                     Grid.ColumnSpan="2" Grid.Row="2"
+                     VerticalContentAlignment="Center" Margin="5 0" />
+            <Button x:Name="OwnSpeedStartButton" Click="OwnSpeedStartButton_OnClick" Content="Start" Grid.Row="3"
+                    Grid.Column="0" Grid.ColumnSpan="3"
+                    Margin="5" IsEnabled="False" />
+        </Grid>
+    </Grid>
+</Window>

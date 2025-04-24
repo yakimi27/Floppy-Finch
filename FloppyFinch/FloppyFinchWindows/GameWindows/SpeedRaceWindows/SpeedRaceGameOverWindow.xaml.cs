@@ -2,13 +2,14 @@
 using System.Windows.Media.Imaging;
 using FloppyFinchGameModes.MenuWindows;
 using FloppyFinchLogics.WindowLogics;
-using WindowState = System.Windows.WindowState;
 
-namespace FloppyFinchGameModes.GameWindows.ClassicWindows;
+namespace FloppyFinchGameModes.GameWindows.SpeedRaceWindows;
 
-public partial class ClassicGameOverWindow : Window
+public partial class SpeedRaceGameOverWindow : Window
 {
-    public ClassicGameOverWindow(int score, BitmapSource gameImage)
+    private readonly int _gameSpeed;
+
+    public SpeedRaceGameOverWindow(int score, BitmapSource gameImage, int gameSpeed)
     {
         InitializeComponent();
         Application.Current.MainWindow = this;
@@ -26,12 +27,13 @@ public partial class ClassicGameOverWindow : Window
 
         LoseScreenScoreTextBlock.Text = $"You scored: {score}";
         GameImage.Source = gameImage;
+        _gameSpeed = gameSpeed;
     }
 
     private void RestartButton_Click(object sender, RoutedEventArgs e)
     {
-        var classicGameplayWindow = new ClassicGameplayMode();
-        classicGameplayWindow.Show();
+        var speedRaceGameplayWindow = new SpeedRaceGameplayMode(_gameSpeed);
+        speedRaceGameplayWindow.Show();
         Close();
     }
 

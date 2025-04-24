@@ -8,12 +8,15 @@ namespace FloppyFinchLogics.GameLogics;
 
 public class Game
 {
+    protected const int BirdFallRotation = 10;
+    protected const int BirdVelocityToRotate = 10;
+
     private static Canvas _gameOverCanvas;
     private readonly DispatcherTimer _gameTimer;
-    private readonly Random _rand = new();
     private readonly TextBlock _scoreText;
     protected readonly Canvas GameCanvas;
     protected readonly List<Pipe> Pipes = new();
+    protected readonly Random Random = new();
     protected int Score;
 
 
@@ -24,10 +27,12 @@ public class Game
         _scoreText = scoreTextBlock;
         Bird = new Bird(GameCanvas);
         _gameTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(30) };
-        _gameTimer.Tick += WaitLoop;
+        _gameTimer.Tick += WaitLoop!;
         _gameTimer.Start();
         UpdateScore();
     }
+
+    protected static int BirdMaxRotation { get; } = 80;
 
     public Bird Bird { get; }
 
@@ -35,9 +40,9 @@ public class Game
     {
         if (started)
         {
-            _gameTimer.Tick -= WaitLoop;
-            _gameTimer.Tick -= GameLoop;
-            _gameTimer.Tick += GameLoop;
+            _gameTimer.Tick -= WaitLoop!;
+            _gameTimer.Tick -= GameLoop!;
+            _gameTimer.Tick += GameLoop!;
         }
     }
 
@@ -56,9 +61,9 @@ public class Game
             Pipes.Add(new Pipe(GameCanvas, false));
 
 
-        if (Bird.RotateTransformStatus.Angle < 80 && Bird.GetVelocity() > 10)
+        if (Bird.RotateTransformStatus.Angle < BirdMaxRotation && Bird.GetVelocity() > BirdVelocityToRotate)
         {
-            Bird.RotateTransformStatus.Angle += 10;
+            Bird.RotateTransformStatus.Angle += BirdFallRotation;
             Bird.SetBirdRotation(Bird.RotateTransformStatus.Angle);
         }
 
@@ -100,7 +105,7 @@ public class Game
     protected void GameOver()
     {
         _gameTimer.Stop();
-        OnGameOver?.Invoke(Score);
+        OnGameOver(Score);
     }
 
     public void PauseGame(bool paused)

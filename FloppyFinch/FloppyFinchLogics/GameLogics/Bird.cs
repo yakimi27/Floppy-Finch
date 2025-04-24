@@ -19,9 +19,9 @@ public class Bird
     private readonly Rectangle _bird;
     private readonly double _initialX;
     private readonly double _initialY;
+    public readonly RotateTransform RotateTransformStatus = new(0);
     private double _velocity;
     private double _waitTime;
-    public RotateTransform RotateTransformStatus = new(0);
 
     public Bird(Canvas gameCanvas)
     {

@@ -55,35 +55,18 @@ public partial class ClassicGameplayMode : Window
 
     private void Window_KeyDown(object sender, KeyEventArgs e)
     {
-        if (e.Key != Key.Space && e.Key != Key.Escape) return;
-        if (e.Key == Key.Escape)
+        if (e.Key == Key.Escape && _gameStarted)
         {
-            _pauseState = !_pauseState;
-            _game.PauseGame(_pauseState);
-            ButtonGamePause.Content = _pauseState ? "Resume" : "Pause";
-            ButtonReturnMainMenu.Visibility = _pauseState ? Visibility.Visible : Visibility.Hidden;
-            ButtonReturnMainMenu.Margin = _pauseState ? new Thickness(105, 15, 15, 15) : new Thickness(15);
+            TogglePauseState();
             return;
         }
 
-        if (!_pauseState) _game.Bird.Jump();
-        if (!_gameStarted)
-        {
-            _game.StartCheck(true);
-            _gameStarted = true;
-            SetItemsVisibility();
-        }
+        if (e.Key == Key.Space) HandleActionKey();
     }
 
     private void Window_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        if (!_pauseState) _game.Bird.Jump();
-        if (!_gameStarted)
-        {
-            _game.StartCheck(true);
-            _gameStarted = true;
-            SetItemsVisibility();
-        }
+        HandleActionKey();
     }
 
     private void ButtonReturnMainMenu_OnClick(object sender, RoutedEventArgs e)
@@ -109,5 +92,30 @@ public partial class ClassicGameplayMode : Window
         KeyWait.Visibility = Visibility.Hidden;
         ButtonReturnMainMenu.Visibility = Visibility.Hidden;
         ButtonGamePause.Visibility = Visibility.Visible;
+    }
+
+    private void HandleActionKey()
+    {
+        if (!_pauseState) _game.Bird.Jump();
+        if (!_gameStarted)
+        {
+            _game.StartCheck(true);
+            _gameStarted = true;
+            SetItemsVisibility();
+        }
+    }
+
+    private void TogglePauseState()
+    {
+        _pauseState = !_pauseState;
+        _game.PauseGame(_pauseState);
+        UpdatePauseUi();
+    }
+
+    private void UpdatePauseUi()
+    {
+        ButtonGamePause.Content = _pauseState ? "Resume" : "Pause";
+        ButtonReturnMainMenu.Visibility = _pauseState ? Visibility.Visible : Visibility.Hidden;
+        ButtonReturnMainMenu.Margin = _pauseState ? new Thickness(105, 15, 15, 15) : new Thickness(15);
     }
 }
