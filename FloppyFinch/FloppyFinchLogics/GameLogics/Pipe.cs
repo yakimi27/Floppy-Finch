@@ -16,11 +16,10 @@ public class Pipe
     internal static readonly int PipeSpacing = 250;
     private static readonly Random Random = new();
     private static int _lastGapY = -1;
-
-    private readonly Rectangle _bottomPipe;
     private readonly Canvas _gameCanvas;
     private readonly bool _isFinal;
 
+    internal readonly Rectangle BottomPipe;
     internal readonly Rectangle TopPipe;
 
     public Pipe(Canvas canvas, bool isFinal)
@@ -31,11 +30,11 @@ public class Pipe
         var pipeColor = _isFinal ? Brushes.Gold : Brushes.Green;
         var height = CalculateGapHeight(canvas);
 
-        (TopPipe, _bottomPipe) = CreatePipes(canvas, height, pipeColor);
+        (TopPipe, BottomPipe) = CreatePipes(canvas, height, pipeColor);
         InitializePipePositions(canvas, height);
 
         _gameCanvas.Children.Add(TopPipe);
-        _gameCanvas.Children.Add(_bottomPipe);
+        _gameCanvas.Children.Add(BottomPipe);
     }
 
     public bool IsScored { get; set; }
@@ -79,15 +78,15 @@ public class Pipe
     {
         Canvas.SetLeft(TopPipe, canvas.ActualWidth);
         Canvas.SetTop(TopPipe, 0);
-        Canvas.SetLeft(_bottomPipe, canvas.ActualWidth);
-        Canvas.SetTop(_bottomPipe, height + GapSize);
+        Canvas.SetLeft(BottomPipe, canvas.ActualWidth);
+        Canvas.SetTop(BottomPipe, height + GapSize);
     }
 
     public void Update(double speed = DefaultSpeed)
     {
         var newX = Canvas.GetLeft(TopPipe) - speed;
         Canvas.SetLeft(TopPipe, newX);
-        Canvas.SetLeft(_bottomPipe, newX);
+        Canvas.SetLeft(BottomPipe, newX);
     }
 
     public bool CheckCollision(Bird bird)
@@ -95,7 +94,7 @@ public class Pipe
         var birdBounds = bird.GetBounds();
         return birdBounds.IntersectsWith(new Rect(Canvas.GetLeft(TopPipe), Canvas.GetTop(TopPipe),
                    TopPipe.Width, TopPipe.Height)) ||
-               birdBounds.IntersectsWith(new Rect(Canvas.GetLeft(_bottomPipe), Canvas.GetTop(_bottomPipe),
-                   _bottomPipe.Width, _bottomPipe.Height));
+               birdBounds.IntersectsWith(new Rect(Canvas.GetLeft(BottomPipe), Canvas.GetTop(BottomPipe),
+                   BottomPipe.Width, BottomPipe.Height));
     }
 }

@@ -113,4 +113,14 @@ public class Game
         if (paused) _gameTimer.Stop();
         else _gameTimer.Start();
     }
+
+    protected void GameTimerStop()
+    {
+        _gameTimer.Stop();
+    }
+
+    protected void GameTimerResume()
+    {
+        _gameTimer.Start();
+    }
 }

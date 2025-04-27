@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using FloppyFinchLogics.WindowLogics;
 
 namespace FloppyFinchLogics.GameLogics.SpeedRaceLogics;
 
@@ -18,7 +19,7 @@ public class SpeedRaceGame : Game
 
         if (Pipes.Count == 0 ||
             Canvas.GetLeft(Pipes.Last().TopPipe) <
-            GameCanvas.ActualWidth - Pipe.PipeSpacing)
+            GameCanvas.ActualWidth - Pipe.PipeSpacing * WindowStateData.WidthScaleFactor)
             Pipes.Add(new Pipe(GameCanvas, false));
 
 
