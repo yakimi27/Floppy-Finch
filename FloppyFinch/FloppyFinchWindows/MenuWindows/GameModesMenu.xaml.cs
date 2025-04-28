@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using FloppyFinchGameModes.GameWindows.ClassicWindows;
+using FloppyFinchGameModes.GameWindows.ExtendedWindows;
 using FloppyFinchGameModes.GameWindows.SpeedRaceWindows;
 using FloppyFinchGameModes.GameWindows.TargetScoreWindows;
 using FloppyFinchLogics.WindowLogics;
@@ -44,7 +45,9 @@ public partial class GameModesMenu : Window
 
     private void ButtonExtendedMode_OnClick(object sender, RoutedEventArgs e)
     {
-        Close();
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        var extendedGameplayWindow = new ExtendedGameplayMode();
+        extendedGameplayWindow.Show();
     }
 
     private void ButtonSpeedRaceMode_OnClick(object sender, RoutedEventArgs e)
@@ -52,6 +55,7 @@ public partial class GameModesMenu : Window
         WindowStateData.SaveWindowState(Application.Current.MainWindow);
         var speedRaceDifficultyAdjusterWindow = new SpeedRaceDifficultyAdjuster();
         speedRaceDifficultyAdjusterWindow.Show();
+        Close();
     }
 
     private void ButtonBackToMainMenu_OnClick(object sender, RoutedEventArgs e)

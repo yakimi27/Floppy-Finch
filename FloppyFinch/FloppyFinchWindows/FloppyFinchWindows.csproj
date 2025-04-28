@@ -44,10 +44,15 @@
             <XamlRuntime>Wpf</XamlRuntime>
             <SubType>Designer</SubType>
         </Page>
-        <Page Update="GameWindows\TargetScoreWindows\TargetScoreGameOverWindow.xaml">
+        <Page Update="GameWindows\TargetScoreWindows\ExtendedGameplayMode.xaml">
             <Generator>MSBuild:Compile</Generator>
             <XamlRuntime>Wpf</XamlRuntime>
             <SubType>Designer</SubType>
+        </Page>
+        <Page Update="GameWindows\ExtendedWindows\ExtendedGameplayMode.xaml">
+          <Generator>MSBuild:Compile</Generator>
+          <XamlRuntime>Wpf</XamlRuntime>
+          <SubType>Designer</SubType>
         </Page>
     </ItemGroup>
 

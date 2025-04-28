@@ -1,0 +1,28 @@
+﻿<Window x:Class="FloppyFinchGameModes.GameWindows.ExtendedWindows.ExtendedGameplayMode"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:FloppyFinchGameModes.GameWindows.ExtendedWindows"
+        mc:Ignorable="d"
+        Title="Floppy Finch" Height="auto" Width="auto" MinHeight="600" MinWidth="400"
+        ResizeMode="NoResize"
+        KeyDown="Window_KeyDown" MouseDown="Window_MouseDown">
+    <Grid>
+        <Canvas Name="GameCanvas" Background="LightBlue" />
+        <TextBlock x:Name="ScoreText" Text="0" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 100 0 0"
+                   FontSize="26" Visibility="Hidden" />
+        <TextBlock x:Name="KeyWait" Text="Press space to start" VerticalAlignment="Top" HorizontalAlignment="Center"
+                   Margin="0 200 0 0"
+                   FontSize="26" Visibility="Visible" />
+        <Button x:Name="ButtonReturnMainMenu" Click="ButtonReturnMainMenu_OnClick"
+                Content="Main Menu" Width="75"
+                Height="25"
+                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15" Visibility="Visible" />
+        <Button x:Name="ButtonGamePause" Click="ButtonGamePause_OnClick" Content="Pause"
+                Width="75"
+                Height="25"
+                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15" Visibility="Hidden"
+                Focusable="False" />
+    </Grid>
+</Window>

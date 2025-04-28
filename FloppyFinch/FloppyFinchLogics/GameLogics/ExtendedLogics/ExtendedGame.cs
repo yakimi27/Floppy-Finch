@@ -6,7 +6,7 @@ namespace FloppyFinchLogics.GameLogics.ExtendedLogics;
 public class ExtendedGame : Game
 {
     private int _heartsQuantity = 3;
-    private bool _scoreMultiplyer;
+    private bool _scoreMultiplyer = true;
     private bool _shield = true;
 
     public ExtendedGame(Canvas canvas, TextBlock scoreTextBlock) : base(canvas,
@@ -35,7 +35,7 @@ public class ExtendedGame : Game
             if (!pipe.IsScored && Canvas.GetLeft(pipe.TopPipe) + pipe.TopPipe.Width < Bird.X)
             {
                 pipe.IsScored = true;
-                Score++;
+                Score +=  _scoreMultiplyer ? 2 : 1;
                 UpdateScore();
             }
         }
@@ -46,12 +46,8 @@ public class ExtendedGame : Game
             if (_shield)
             {
                 Pipes.Remove(nextPipe);
-                GameTimerStop();
-                await StartTimer(1);
                 GameCanvas.Children.Remove(nextPipe.TopPipe);
                 GameCanvas.Children.Remove(nextPipe.BottomPipe);
-                await StartTimer(1);
-                GameTimerResume();
                 _shield = false;
             }
             else
