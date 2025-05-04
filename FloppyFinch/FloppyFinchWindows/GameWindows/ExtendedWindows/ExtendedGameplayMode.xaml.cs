@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
-using FloppyFinchGameModes.GameWindows.ClassicWindows;
 using FloppyFinchGameModes.MenuWindows;
 using FloppyFinchLogics.GameLogics;
 using FloppyFinchLogics.GameLogics.ExtendedLogics;
@@ -48,7 +47,7 @@ public partial class ExtendedGameplayMode : Window
     {
         Dispatcher.Invoke(() =>
         {
-            var gameOverWindow = new ClassicGameOverWindow(score, Game.CaptureGameCanvas());
+            var gameOverWindow = new ExtendedGameOverWindow(score, Game.CaptureGameCanvas());
             gameOverWindow.Show();
             Close();
         });

@@ -48,6 +48,7 @@ public partial class GameModesMenu : Window
         WindowStateData.SaveWindowState(Application.Current.MainWindow);
         var extendedGameplayWindow = new ExtendedGameplayMode();
         extendedGameplayWindow.Show();
+        Close();
     }
 
     private void ButtonSpeedRaceMode_OnClick(object sender, RoutedEventArgs e)
@@ -55,7 +56,6 @@ public partial class GameModesMenu : Window
         WindowStateData.SaveWindowState(Application.Current.MainWindow);
         var speedRaceDifficultyAdjusterWindow = new SpeedRaceDifficultyAdjuster();
         speedRaceDifficultyAdjusterWindow.Show();
-        Close();
     }
 
     private void ButtonBackToMainMenu_OnClick(object sender, RoutedEventArgs e)

@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Media.Imaging;
-using FloppyFinchGameModes.GameWindows.TargetScoreWindows;
 using FloppyFinchGameModes.MenuWindows;
 using FloppyFinchLogics.WindowLogics;
 
@@ -31,7 +30,7 @@ public partial class ExtendedGameOverWindow : Window
     private void RestartButton_Click(object sender, RoutedEventArgs e)
     {
         var extendedGameplayWindow = new ExtendedGameplayMode();
-        extendedGameplayWindow .Show();
+        extendedGameplayWindow.Show();
         Close();
     }
 

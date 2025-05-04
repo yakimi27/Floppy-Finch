@@ -19,6 +19,7 @@ public class Pipe
     private readonly Canvas _gameCanvas;
     private readonly bool _isFinal;
 
+
     internal readonly Rectangle BottomPipe;
     internal readonly Rectangle TopPipe;
 
