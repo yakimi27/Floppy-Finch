@@ -56,4 +56,25 @@
         </Page>
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Update="GameWindows\SpeedRaceWindows\SpeedRaceGameplayWindow.xaml.cs">
+        <DependentUpon>SpeedRaceGameplayMode.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="GameWindows\SpeedRaceWindows\SpeedRaceDifficultyWindow.xaml.cs">
+        <DependentUpon>SpeedRaceDifficultyWindow.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="GameWindows\ExtendedWindows\ExtendedGameplayWindow.xaml.cs">
+        <DependentUpon>ExtendedGameplayMode.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="GameWindows\TargetScoreWindows\TargetScoreGameplayWindow.xaml.cs">
+        <DependentUpon>TargetScoreGameplayMode.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="GameModes\ExtendedMode\ExtendedModeGameplayWindow.xaml.cs">
+        <DependentUpon>ExtendedModeModeGameplayWindow.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="GameModes\SpeedRaceWindows\SpeedRaceGameplayWindow.xaml.cs">
+        <DependentUpon>SpeedRaceGameplayMode.xaml</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
 </Project>
