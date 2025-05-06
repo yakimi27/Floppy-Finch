@@ -1,6 +1,8 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
+using System.Windows.Media;
 using FloppyFinchGameModes.MenuWindows;
 using FloppyFinchLogics.GameLogics;
 using FloppyFinchLogics.GameLogics.ExtendedLogics;
@@ -39,8 +41,9 @@ public partial class ExtendedGameplayMode : Window
             if (hwndTarget != null) hwndTarget.RenderMode = RenderMode.Default;
         };
 
-        _game = new ExtendedGame(GameCanvas, ScoreText);
+        _game = new ExtendedGame(GameCanvas, ScoreText, HeartsCountLabel);
         _game.OnGameOver += OpenGameOverWindow;
+        RefreshLayout();
     }
 
     private void OpenGameOverWindow(int score)
@@ -117,5 +120,55 @@ public partial class ExtendedGameplayMode : Window
         ButtonGamePause.Content = _pauseState ? "Resume" : "Pause";
         ButtonReturnMainMenu.Visibility = _pauseState ? Visibility.Visible : Visibility.Hidden;
         ButtonReturnMainMenu.Margin = _pauseState ? new Thickness(105, 15, 15, 15) : new Thickness(15);
+    }
+
+    private void RefreshLayout()
+    {
+        PowerupSpaceGrid.Children.Clear();
+        var itemJetpack = CreateItem("Jetpack", true);
+        var itemScoreMultiplayer = CreateItem("Score Multiplayer", true);
+        var itemShield = CreateItem("Shield", true);
+
+        if (itemJetpack.Visibility == Visibility.Visible) PowerupSpaceGrid.Children.Add(itemJetpack);
+        if (itemScoreMultiplayer.Visibility == Visibility.Visible) PowerupSpaceGrid.Children.Add(itemScoreMultiplayer);
+        if (itemShield.Visibility == Visibility.Visible) PowerupSpaceGrid.Children.Add(itemShield);
+
+        PowerupSpaceGrid.Columns = PowerupSpaceGrid.Children.Count > 0 ? PowerupSpaceGrid.Children.Count : 1;
+    }
+
+    private Border CreateItem(string content, bool isVisible)
+    {
+        var progressBar = new ProgressBar
+        {
+            Minimum = 0,
+            Maximum = 100,
+            Value = 0, //dynamically based on the powerup progress
+            Height = 10,
+            Margin = new Thickness(4, 2, 4, 0)
+        };
+
+        return new Border
+        {
+            Background = Brushes.LightGray,
+            BorderBrush = Brushes.Black,
+            BorderThickness = new Thickness(1),
+            Margin = new Thickness(4),
+            Child = new StackPanel
+            {
+                Orientation = Orientation.Vertical,
+                Children =
+                {
+                    new TextBlock
+                    {
+                        Text = $"{content}",
+                        FontSize = 14,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center
+                    },
+                    progressBar
+                }
+            },
+            Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed
+        };
     }
 }

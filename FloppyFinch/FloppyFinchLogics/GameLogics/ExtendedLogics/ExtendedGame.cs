@@ -8,16 +8,26 @@ public class ExtendedGame : Game
     private const int PowerupHeight = 40;
     private const int PowerupSpawnChance = 5; // 5% chance per game loop
     private const double PowerupSpeed = 5;
+    private const int MaxHearts = 3;
+    private const int HeartPowerupIndex = 1;
+    private const int JetpackPowerupIndex = 2;
+    private const int ScoreMultiplierPowerupIndex = 3;
+    private readonly TextBlock _heartsTextBlock;
     private readonly List<Powerup> _powerups = new();
 
-    public ExtendedGame(Canvas canvas, TextBlock scoreTextBlock) : base(canvas,
+    public ExtendedGame(Canvas canvas, TextBlock scoreTextBlock, TextBlock HeartsTextBlock) : base(canvas,
         scoreTextBlock)
     {
+        Hearts = 1;
+        Jetpack = 0;
+        Shield = false;
+        ScoreMultiplier = false;
+        _heartsTextBlock = HeartsTextBlock;
     }
 
     internal static int Jetpack { private get; set; } /*jetpack duration is upgradeable and sets in config*/
 
-    internal static int Hearts { get; set; } = 1;
+    internal static int Hearts { get; set; }
 
     internal static bool ScoreMultiplier { get; set; } /*score multiplayer duration is upgradeable and sets in config*/
 
@@ -69,6 +79,7 @@ public class ExtendedGame : Game
             else
             {
                 Hearts--;
+                UpdateHearts();
                 if (Hearts == 0)
                 {
                     GameOver();
@@ -99,11 +110,13 @@ public class ExtendedGame : Game
             return false;
         });
 
-        if (Random.Next(1, 100) < PowerupSpawnChance && _powerups.Count == 0)
+        if (Random.Next(1, 1000) < PowerupSpawnChance && _powerups.Count == 0 && Jetpack <= 0)
         {
             var x = GameCanvas.ActualWidth;
             var y = Random.NextDouble() * (GameCanvas.ActualHeight - PowerupHeight);
-            _powerups.Add(new Powerup(GameCanvas, x, y, RanodmPowerupType(Random.Next(1, 4))));
+            var newPowerup = new Powerup(GameCanvas, x, y, DeterminePowerupTypeByIndex(Random.Next(1, 5)));
+
+            if (!Pipes.Any(pipe => pipe.CheckPowerupCollision(newPowerup))) _powerups.Add(newPowerup);
         }
 
         for (var i = _powerups.Count - 1; i >= 0; i--)
@@ -138,6 +151,7 @@ public class ExtendedGame : Game
         {
             case Powerup.PowerupType.Heart:
                 PowerupProperties.HeartPickup();
+                UpdateHearts();
                 break;
             case Powerup.PowerupType.Jetpack:
                 PowerupProperties.JetpackDuration();
@@ -156,16 +170,24 @@ public class ExtendedGame : Game
         await Task.Delay(seconds * 1000);
     }
 
-    private Powerup.PowerupType RanodmPowerupType(int powerupIndex)
+    private Powerup.PowerupType DeterminePowerupTypeByIndex(int powerupIndex)
     {
-        switch (powerupIndex)
+        return powerupIndex switch
         {
-            case 1: return Powerup.PowerupType.Heart;
-            case 2: return Powerup.PowerupType.Jetpack;
-            case 3: return Powerup.PowerupType.ScoreMultiplier;
-            case 4: return Powerup.PowerupType.Shield;
-        }
+            HeartPowerupIndex when CanReceiveHeart() => Powerup.PowerupType.Heart,
+            JetpackPowerupIndex => Powerup.PowerupType.Jetpack,
+            ScoreMultiplierPowerupIndex => Powerup.PowerupType.ScoreMultiplier,
+            _ => Powerup.PowerupType.Shield
+        };
+    }
 
-        return Powerup.PowerupType.Heart;
+    private bool CanReceiveHeart()
+    {
+        return Hearts < MaxHearts;
+    }
+
+    private void UpdateHearts()
+    {
+        _heartsTextBlock.Text = Hearts.ToString();
     }
 }

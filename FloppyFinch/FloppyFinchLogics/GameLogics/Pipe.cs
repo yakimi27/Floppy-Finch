@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using FloppyFinchLogics.GameLogics.ExtendedLogics;
 
 namespace FloppyFinchLogics.GameLogics;
 
@@ -96,6 +97,15 @@ public class Pipe
         return birdBounds.IntersectsWith(new Rect(Canvas.GetLeft(TopPipe), Canvas.GetTop(TopPipe),
                    TopPipe.Width, TopPipe.Height)) ||
                birdBounds.IntersectsWith(new Rect(Canvas.GetLeft(BottomPipe), Canvas.GetTop(BottomPipe),
+                   BottomPipe.Width, BottomPipe.Height));
+    }
+
+    public bool CheckPowerupCollision(Powerup powerup)
+    {
+        var powerupBounds = powerup.GetBounds();
+        return powerupBounds.IntersectsWith(new Rect(Canvas.GetLeft(TopPipe), Canvas.GetTop(TopPipe),
+                   TopPipe.Width, TopPipe.Height)) ||
+               powerupBounds.IntersectsWith(new Rect(Canvas.GetLeft(BottomPipe), Canvas.GetTop(BottomPipe),
                    BottomPipe.Width, BottomPipe.Height));
     }
 }
