@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using FloppyFinchGameModes.GameWindows.ExtendedWindows;
+using FloppyFinchGameModes.GameModes.ExtendedMode;
 using FloppyFinchGameModes.GameWindows.SpeedRaceWindows;
 using FloppyFinchGameModes.GameWindows.TargetScoreWindows;
 using FloppyFinchLogics.WindowLogics;

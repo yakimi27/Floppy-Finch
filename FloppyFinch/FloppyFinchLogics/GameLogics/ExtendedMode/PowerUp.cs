@@ -7,7 +7,7 @@ namespace FloppyFinchLogics.GameLogics.ExtendedLogics;
 
 public class PowerUp
 {
-    public enum PowerupType
+    public enum PowerUpType
     {
         Heart,
         Jetpack,
@@ -16,55 +16,65 @@ public class PowerUp
     }
 
     private readonly Canvas _gameCanvas;
-    private readonly Rectangle _powerup;
+    private readonly Rectangle _powerUp;
 
-    public PowerUp(Canvas gameCanvas, double x, double y, PowerupType type)
+    public PowerUp(Canvas gameCanvas, double x, double y, PowerUpType type)
     {
         _gameCanvas = gameCanvas;
         Type = type;
-        _powerup = new Rectangle
+        _powerUp = new Rectangle
         {
             Width = 40,
             Height = 40,
             Fill = GetPowerupColor(type)
         };
-        Canvas.SetLeft(_powerup, x);
-        Canvas.SetTop(_powerup, y);
-        _gameCanvas.Children.Add(_powerup);
+        Canvas.SetLeft(_powerUp, x);
+        Canvas.SetTop(_powerUp, y);
+        /*_gameCanvas.Children.Add(_powerUp);*/
     }
 
-    public PowerupType Type { get; }
+    public PowerUpType Type { get; }
 
-    private static Brush GetPowerupColor(PowerupType type)
+    private static Brush GetPowerupColor(PowerUpType type)
     {
         return type switch
         {
-            PowerupType.Heart => Brushes.Red,
-            PowerupType.Jetpack => Brushes.DarkGray,
-            PowerupType.ScoreMultiplier => Brushes.Yellow,
-            PowerupType.Shield => Brushes.Blue,
+            PowerUpType.Heart => Brushes.Red,
+            PowerUpType.Jetpack => Brushes.DarkGray,
+            PowerUpType.ScoreMultiplier => Brushes.Yellow,
+            PowerUpType.Shield => Brushes.Blue,
             _ => Brushes.White
         };
     }
 
     public void Update(double speed)
     {
-        var left = Canvas.GetLeft(_powerup) - speed;
-        Canvas.SetLeft(_powerup, left);
+        var left = Canvas.GetLeft(_powerUp) - speed;
+        Canvas.SetLeft(_powerUp, left);
     }
 
     public bool IsOutOfBounds()
     {
-        return Canvas.GetLeft(_powerup) + _powerup.Width < 0;
+        return Canvas.GetLeft(_powerUp) + _powerUp.Width < 0;
     }
 
     public Rect GetBounds()
     {
-        return new Rect(Canvas.GetLeft(_powerup), Canvas.GetTop(_powerup), _powerup.Width, _powerup.Height);
+        return new Rect(Canvas.GetLeft(_powerUp), Canvas.GetTop(_powerUp), _powerUp.Width, _powerUp.Height);
+    }
+
+    public Rect GetBoundsManual(double x, double y)
+    {
+        return new Rect(x, y, _powerUp.Width, _powerUp.Height);
     }
 
     public void Remove()
     {
-        _gameCanvas.Children.Remove(_powerup);
+        _gameCanvas.Children.Remove(_powerUp);
+    }
+
+    public Rectangle GetShape()
+    {
+        return _powerUp;
     }
 }

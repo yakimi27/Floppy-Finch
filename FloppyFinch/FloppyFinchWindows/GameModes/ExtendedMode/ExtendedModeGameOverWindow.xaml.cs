@@ -3,7 +3,7 @@ using System.Windows.Media.Imaging;
 using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.WindowLogics;
 
-namespace FloppyFinchGameModes.GameWindows.ExtendedWindows;
+namespace FloppyFinchGameModes.GameModes.ExtendedMode;
 
 public partial class ExtendedModeGameOverWindow : Window
 {

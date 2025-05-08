@@ -2,7 +2,6 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using FloppyFinchLogics.GameLogics.ExtendedLogics;
 
 namespace FloppyFinchLogics.GameLogics;
 
@@ -24,7 +23,7 @@ public class Pipe
     internal readonly Rectangle BottomPipe;
     internal readonly Rectangle TopPipe;
 
-    public Pipe(Canvas canvas, bool isFinal)
+    public Pipe(Canvas canvas, bool isFinal, double pipeOffset = 0)
     {
         _gameCanvas = canvas;
         _isFinal = isFinal;
@@ -33,7 +32,7 @@ public class Pipe
         var height = CalculateGapHeight(canvas);
 
         (TopPipe, BottomPipe) = CreatePipes(canvas, height, pipeColor);
-        InitializePipePositions(canvas, height);
+        InitializePipePositions(canvas, height, pipeOffset);
 
         _gameCanvas.Children.Add(TopPipe);
         _gameCanvas.Children.Add(BottomPipe);
@@ -76,9 +75,9 @@ public class Pipe
         return (top, bottom);
     }
 
-    private void InitializePipePositions(Canvas canvas, int height)
+    private void InitializePipePositions(Canvas canvas, int height, double pipeOffset)
     {
-        Canvas.SetLeft(TopPipe, canvas.ActualWidth);
+        Canvas.SetLeft(TopPipe, canvas.ActualWidth + pipeOffset);
         Canvas.SetTop(TopPipe, 0);
         Canvas.SetLeft(BottomPipe, canvas.ActualWidth);
         Canvas.SetTop(BottomPipe, height + GapSize);
@@ -100,12 +99,11 @@ public class Pipe
                    BottomPipe.Width, BottomPipe.Height));
     }
 
-    public bool CheckPowerupCollision(PowerUp powerUp)
+    public bool CheckPowerUpCollision(Rect powerUpBounds)
     {
-        var powerupBounds = powerUp.GetBounds();
-        return powerupBounds.IntersectsWith(new Rect(Canvas.GetLeft(TopPipe), Canvas.GetTop(TopPipe),
+        return powerUpBounds.IntersectsWith(new Rect(Canvas.GetLeft(TopPipe), Canvas.GetTop(TopPipe),
                    TopPipe.Width, TopPipe.Height)) ||
-               powerupBounds.IntersectsWith(new Rect(Canvas.GetLeft(BottomPipe), Canvas.GetTop(BottomPipe),
+               powerUpBounds.IntersectsWith(new Rect(Canvas.GetLeft(BottomPipe), Canvas.GetTop(BottomPipe),
                    BottomPipe.Width, BottomPipe.Height));
     }
 }

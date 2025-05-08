@@ -8,7 +8,7 @@ using FloppyFinchLogics.GameLogics;
 using FloppyFinchLogics.GameLogics.ExtendedLogics;
 using FloppyFinchLogics.WindowLogics;
 
-namespace FloppyFinchGameModes.GameWindows.ExtendedWindows;
+namespace FloppyFinchGameModes.GameModes.ExtendedMode;
 
 public partial class ExtendedModeModeGameplayWindow : Window
 {
@@ -125,9 +125,9 @@ public partial class ExtendedModeModeGameplayWindow : Window
     private void RefreshLayout()
     {
         PowerupSpaceGrid.Children.Clear();
-        var itemJetpack = CreateItem("Jetpack", true);
-        var itemScoreMultiplayer = CreateItem("Score Multiplayer", true);
-        var itemShield = CreateItem("Shield", true);
+        var itemJetpack = CreateItem("Jetpack", false);
+        var itemScoreMultiplayer = CreateItem("Score Multiplayer", false);
+        var itemShield = CreateItem("Shield", false);
 
         if (itemJetpack.Visibility == Visibility.Visible) PowerupSpaceGrid.Children.Add(itemJetpack);
         if (itemScoreMultiplayer.Visibility == Visibility.Visible) PowerupSpaceGrid.Children.Add(itemScoreMultiplayer);
