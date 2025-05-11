@@ -32,6 +32,6 @@
             <Rectangle Grid.Column="0" Width="10" Height="10" Fill="Red" />
             <TextBlock Grid.Column="1" Text="1" x:Name="HeartsCountLabel" Margin="10 0 0 0" />
         </Grid>
-        <UniformGrid x:Name="PowerupSpaceGrid" Rows="1" VerticalAlignment="Bottom" />
+        <UniformGrid x:Name="PowerUpSpaceGrid" Rows="1" VerticalAlignment="Bottom" />
     </Grid>
 </Window>

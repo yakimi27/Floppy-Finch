@@ -1,22 +1,29 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using FloppyFinchLogics.WindowLogics;
 
-namespace FloppyFinchLogics.GameLogics.ExtendedLogics;
+namespace FloppyFinchLogics.GameLogics.ExtendedMode;
 
 public class ExtendedModeGame : Game
 {
-    private const int PowerupHeight = 40;
-    private const int PowerupSpawnChance = 5; // 5% chance per game loop
-    private const double PowerupSpeed = 5;
+    private const int PowerUpHeight = 40;
+    private const int PowerUpSpawnChance = 5; // 5% chance per game loop
+    private const double PowerUpSpeed = 5;
     private const int MaxHearts = 3;
-    private const int HeartPowerupIndex = 1;
-    private const int JetpackPowerupIndex = 2;
-    private const int ScoreMultiplierPowerupIndex = 3;
-    private const int pipeOffset = 100;
+    private const int HeartPowerUpIndex = 1;
+    private const int JetpackPowerUpIndex = 2;
+    private const int ScoreMultiplierPowerUpIndex = 3;
+    private const int PipeOffset = 100;
     private readonly TextBlock _heartsTextBlock;
     private readonly List<PowerUp> _powerUps = new();
+    private readonly UniformGrid? _powerUpSpaceGrid;
+    private readonly Border itemJetpack;
+    private readonly Border itemScoreMultiplayer;
+    private readonly Border itemShield;
 
-    public ExtendedModeGame(Canvas canvas, TextBlock scoreTextBlock, TextBlock heartsTextBlock) : base(canvas,
+
+    public ExtendedModeGame(Canvas canvas, TextBlock scoreTextBlock, TextBlock heartsTextBlock,
+        UniformGrid? powerUpSpaceGrid) : base(canvas,
         scoreTextBlock)
     {
         Hearts = 1;
@@ -24,9 +31,14 @@ public class ExtendedModeGame : Game
         Shield = false;
         ScoreMultiplier = false;
         _heartsTextBlock = heartsTextBlock;
+        _powerUpSpaceGrid = powerUpSpaceGrid;
+        PowerUpProperties.Initialize(powerUpSpaceGrid);
+        itemJetpack = PowerUpProgress.CreateItem("Jetpack", true);
+        itemScoreMultiplayer = PowerUpProgress.CreateItem("Score Multiplayer", true);
+        itemShield = PowerUpProgress.CreateItem("Shield", true);
     }
 
-    internal static int Jetpack { private get; set; } /*jetpack duration is upgradeable and sets in config*/
+    internal static int Jetpack { get; set; } /*jetpack duration is upgradeable and sets in config*/
 
     internal static int Hearts { get; set; }
 
@@ -42,7 +54,7 @@ public class ExtendedModeGame : Game
         if (Pipes.Count == 0 ||
             Canvas.GetLeft(Pipes.Last().TopPipe) <
             GameCanvas.ActualWidth - Pipe.PipeSpacing * WindowStateData.WidthScaleFactor)
-            Pipes.Add(new Pipe(GameCanvas, false, pipeOffset));
+            Pipes.Add(new Pipe(GameCanvas, false, PipeOffset));
 
         if (Bird.RotateTransformStatus.Angle < BirdMaxRotation && Bird.GetVelocity() > BirdVelocityToRotate)
         {
@@ -111,10 +123,10 @@ public class ExtendedModeGame : Game
             return false;
         });
 
-        if (Random.Next(1, 500) < PowerupSpawnChance && _powerUps.Count == 0 && Jetpack <= 0)
+        if (Random.Next(1, 100) < PowerUpSpawnChance && _powerUps.Count == 0 && Jetpack <= 0)
         {
-            var x = GameCanvas.ActualWidth + pipeOffset - 40;
-            var y = Random.NextDouble() * (GameCanvas.ActualHeight - PowerupHeight);
+            var x = GameCanvas.ActualWidth + PipeOffset - PowerUpHeight;
+            var y = Random.NextDouble() * (GameCanvas.ActualHeight - PowerUpHeight);
             var tempPowerUp = new PowerUp(GameCanvas, x, y, DeterminePowerUpTypeByIndex(Random.Next(1, 5)));
             var tempBounds = tempPowerUp.GetBoundsManual(x, y);
 
@@ -131,7 +143,7 @@ public class ExtendedModeGame : Game
             if (Jetpack > 0)
                 powerUp.Update(50);
             else
-                powerUp.Update(PowerupSpeed);
+                powerUp.Update(PowerUpSpeed);
 
             if (powerUp.GetBounds().IntersectsWith(Bird.GetBounds()))
             {
@@ -153,21 +165,32 @@ public class ExtendedModeGame : Game
 
     private void ApplyPowerUp(PowerUp.PowerUpType powerUpType)
     {
+        Border progressBarItem = null;
+
         switch (powerUpType)
         {
             case PowerUp.PowerUpType.Heart:
                 PowerUpProperties.HeartPickup();
                 UpdateHearts();
-                break;
+                return; // No progress bar needed for Heart
             case PowerUp.PowerUpType.Jetpack:
                 PowerUpProperties.JetpackDuration();
+                progressBarItem = itemJetpack;
                 break;
             case PowerUp.PowerUpType.ScoreMultiplier:
                 PowerUpProperties.ScoreMultiplierDuration();
+                progressBarItem = itemScoreMultiplayer;
                 break;
             case PowerUp.PowerUpType.Shield:
                 PowerUpProperties.ShieldDuration();
+                progressBarItem = itemShield;
                 break;
+        }
+
+        if (progressBarItem != null)
+        {
+            if (!_powerUpSpaceGrid.Children.Contains(progressBarItem)) _powerUpSpaceGrid.Children.Add(progressBarItem);
+            PowerUpProperties.StartProgressBarUpdate(progressBarItem, powerUpType);
         }
     }
 
@@ -180,9 +203,9 @@ public class ExtendedModeGame : Game
     {
         return powerUpIndex switch
         {
-            HeartPowerupIndex when CanReceiveHeart() => PowerUp.PowerUpType.Heart,
-            JetpackPowerupIndex => PowerUp.PowerUpType.Jetpack,
-            ScoreMultiplierPowerupIndex => PowerUp.PowerUpType.ScoreMultiplier,
+            HeartPowerUpIndex when CanReceiveHeart() => PowerUp.PowerUpType.Heart,
+            JetpackPowerUpIndex => PowerUp.PowerUpType.Jetpack,
+            ScoreMultiplierPowerUpIndex => PowerUp.PowerUpType.ScoreMultiplier,
             _ => PowerUp.PowerUpType.Shield
         };
     }
@@ -195,5 +218,11 @@ public class ExtendedModeGame : Game
     private void UpdateHearts()
     {
         _heartsTextBlock.Text = Hearts.ToString();
+    }
+
+    public override void PauseGame(bool paused)
+    {
+        PowerUpProperties.SetPauseState(paused);
+        base.PauseGame(paused);
     }
 }

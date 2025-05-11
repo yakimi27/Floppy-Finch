@@ -108,7 +108,7 @@ public class Game
         OnGameOver(Score);
     }
 
-    public void PauseGame(bool paused)
+    public virtual void PauseGame(bool paused)
     {
         if (paused) _gameTimer.Stop();
         else _gameTimer.Start();

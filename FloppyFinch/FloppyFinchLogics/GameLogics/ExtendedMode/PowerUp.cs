@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace FloppyFinchLogics.GameLogics.ExtendedLogics;
+namespace FloppyFinchLogics.GameLogics.ExtendedMode;
 
 public class PowerUp
 {
@@ -26,7 +26,7 @@ public class PowerUp
         {
             Width = 40,
             Height = 40,
-            Fill = GetPowerupColor(type)
+            Fill = GetPowerUpColor(type)
         };
         Canvas.SetLeft(_powerUp, x);
         Canvas.SetTop(_powerUp, y);
@@ -35,7 +35,7 @@ public class PowerUp
 
     public PowerUpType Type { get; }
 
-    private static Brush GetPowerupColor(PowerUpType type)
+    private static Brush GetPowerUpColor(PowerUpType type)
     {
         return type switch
         {

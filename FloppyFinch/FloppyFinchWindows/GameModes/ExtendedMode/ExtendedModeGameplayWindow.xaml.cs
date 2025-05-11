@@ -1,11 +1,9 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
-using System.Windows.Media;
 using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.GameLogics;
-using FloppyFinchLogics.GameLogics.ExtendedLogics;
+using FloppyFinchLogics.GameLogics.ExtendedMode;
 using FloppyFinchLogics.WindowLogics;
 
 namespace FloppyFinchGameModes.GameModes.ExtendedMode;
@@ -41,7 +39,7 @@ public partial class ExtendedModeModeGameplayWindow : Window
             if (hwndTarget != null) hwndTarget.RenderMode = RenderMode.Default;
         };
 
-        _modeGame = new ExtendedModeGame(GameCanvas, ScoreText, HeartsCountLabel);
+        _modeGame = new ExtendedModeGame(GameCanvas, ScoreText, HeartsCountLabel, PowerUpSpaceGrid);
         _modeGame.OnGameOver += OpenModeGameOverWindow;
         RefreshLayout();
     }
@@ -124,51 +122,17 @@ public partial class ExtendedModeModeGameplayWindow : Window
 
     private void RefreshLayout()
     {
-        PowerupSpaceGrid.Children.Clear();
+        PowerUpSpaceGrid.Children.Clear();
+        /*
         var itemJetpack = CreateItem("Jetpack", false);
         var itemScoreMultiplayer = CreateItem("Score Multiplayer", false);
         var itemShield = CreateItem("Shield", false);
 
-        if (itemJetpack.Visibility == Visibility.Visible) PowerupSpaceGrid.Children.Add(itemJetpack);
-        if (itemScoreMultiplayer.Visibility == Visibility.Visible) PowerupSpaceGrid.Children.Add(itemScoreMultiplayer);
-        if (itemShield.Visibility == Visibility.Visible) PowerupSpaceGrid.Children.Add(itemShield);
-
-        PowerupSpaceGrid.Columns = PowerupSpaceGrid.Children.Count > 0 ? PowerupSpaceGrid.Children.Count : 1;
-    }
-
-    private Border CreateItem(string content, bool isVisible)
-    {
-        var progressBar = new ProgressBar
-        {
-            Minimum = 0,
-            Maximum = 100,
-            Value = 0, //dynamically based on the powerup progress
-            Height = 10,
-            Margin = new Thickness(4, 2, 4, 0)
-        };
-
-        return new Border
-        {
-            Background = Brushes.LightGray,
-            BorderBrush = Brushes.Black,
-            BorderThickness = new Thickness(1),
-            Margin = new Thickness(4),
-            Child = new StackPanel
-            {
-                Orientation = Orientation.Vertical,
-                Children =
-                {
-                    new TextBlock
-                    {
-                        Text = $"{content}",
-                        FontSize = 14,
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                        VerticalAlignment = VerticalAlignment.Center
-                    },
-                    progressBar
-                }
-            },
-            Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed
-        };
+        if (itemJetpack.Visibility == Visibility.Visible) PowerUpSpaceGrid.Children.Add(itemJetpack);
+        if (itemScoreMultiplayer.Visibility == Visibility.Visible) PowerUpSpaceGrid.Children.Add(itemScoreMultiplayer);
+        if (itemShield.Visibility == Visibility.Visible) PowerUpSpaceGrid.Children.Add(itemShield);
+?
+        PowerUpSpaceGrid.Columns = PowerUpSpaceGrid.Children.Count > 0 ? PowerUpSpaceGrid.Children.Count : 1;
+        */
     }
 }
