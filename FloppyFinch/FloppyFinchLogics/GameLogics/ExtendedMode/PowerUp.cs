@@ -30,7 +30,6 @@ public class PowerUp
         };
         Canvas.SetLeft(_powerUp, x);
         Canvas.SetTop(_powerUp, y);
-        /*_gameCanvas.Children.Add(_powerUp);*/
     }
 
     public PowerUpType Type { get; }

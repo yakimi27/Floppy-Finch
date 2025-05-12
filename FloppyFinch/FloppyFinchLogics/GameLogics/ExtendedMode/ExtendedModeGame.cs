@@ -124,7 +124,7 @@ public class ExtendedModeGame : Game
             return false;
         });
 
-        if (Random.Next(1, 100) < PowerUpSpawnChance && _powerUps.Count == 0 && Jetpack <= 0)
+        if (Random.Next(1, 250) < PowerUpSpawnChance && _powerUps.Count == 0 && Jetpack <= 0)
         {
             var x = GameCanvas.ActualWidth + PipeOffset - PowerUpHeight;
             var y = Random.NextDouble() * (GameCanvas.ActualHeight - PowerUpHeight);
@@ -173,7 +173,7 @@ public class ExtendedModeGame : Game
             case PowerUp.PowerUpType.Heart:
                 PowerUpProperties.HeartPickup();
                 UpdateHearts();
-                return; // No progress bar needed for Heart
+                return;
             case PowerUp.PowerUpType.Jetpack:
                 PowerUpProperties.JetpackDuration();
                 progressBarItem = itemJetpack;

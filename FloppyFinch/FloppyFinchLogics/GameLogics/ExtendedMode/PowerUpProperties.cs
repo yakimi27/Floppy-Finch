@@ -15,6 +15,7 @@ public class PowerUpProperties
 
     private static bool _paused;
 
+    private static CancellationTokenSource? _shieldCancellation;
 
     public static void Initialize(UniformGrid? powerUpSpaceGrid)
     {
@@ -55,23 +56,45 @@ public class PowerUpProperties
 
     public static async void ShieldDuration(int seconds = 15)
     {
-        _shieldDuration = MaxShieldDuration;
-
-        if (!ExtendedModeGame.Shield)
+        if (_shieldCancellation != null)
         {
-            ExtendedModeGame.Shield = true;
-            while (_shieldDuration != 0)
-            {
-                await Task.Delay(1000);
-                if (!_paused && ExtendedModeGame.Jetpack <= 0) _shieldDuration--;
-            }
+            _shieldDuration = MaxShieldDuration;
+            return;
+        }
 
+        _shieldCancellation = new CancellationTokenSource();
+        _shieldDuration = MaxShieldDuration;
+        ExtendedModeGame.Shield = true;
+
+        try
+        {
+            while (_shieldDuration > 0)
+            {
+                await Task.Delay(1000, _shieldCancellation.Token);
+                if (!_paused && ExtendedModeGame.Jetpack <= 0)
+                    _shieldDuration--;
+            }
+        }
+        catch (OperationCanceledException)
+        {
+        }
+        finally
+        {
             ExtendedModeGame.Shield = false;
+            _shieldDuration = 0;
+            _shieldCancellation = null;
         }
     }
 
     public static void UpdateShieldState()
     {
+        if (_shieldCancellation != null)
+        {
+            _shieldCancellation.Cancel();
+            _shieldCancellation.Dispose();
+            _shieldCancellation = null;
+        }
+
         _shieldDuration = 0;
     }
 
