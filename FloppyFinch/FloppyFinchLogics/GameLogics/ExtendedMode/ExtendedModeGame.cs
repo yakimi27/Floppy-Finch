@@ -88,6 +88,7 @@ public class ExtendedModeGame : Game
                 GameCanvas.Children.Remove(nextPipe.TopPipe);
                 GameCanvas.Children.Remove(nextPipe.BottomPipe);
                 Shield = false;
+                PowerUpProperties.UpdateShieldState();
             }
             else
             {
@@ -178,12 +179,14 @@ public class ExtendedModeGame : Game
                 progressBarItem = itemJetpack;
                 break;
             case PowerUp.PowerUpType.ScoreMultiplier:
+                if (!ScoreMultiplier)
+                    progressBarItem = itemScoreMultiplayer;
                 PowerUpProperties.ScoreMultiplierDuration();
-                progressBarItem = itemScoreMultiplayer;
                 break;
             case PowerUp.PowerUpType.Shield:
+                if (!Shield)
+                    progressBarItem = itemShield;
                 PowerUpProperties.ShieldDuration();
-                progressBarItem = itemShield;
                 break;
         }
 

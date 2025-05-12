@@ -7,7 +7,12 @@ public class PowerUpProperties
 {
     private static UniformGrid? _powerUpSpaceGrid;
     private static int _scoreMultiplayerDuration;
+    private static readonly int MaxScoreMultiplayerDuration = 15;
     private static int _shieldDuration;
+    private static readonly int MaxShieldDuration = 15;
+    private static int _jetpackDuration;
+    private static readonly int MaxJetpackDuration = 15;
+
     private static bool _paused;
 
 
@@ -21,7 +26,6 @@ public class PowerUpProperties
         _paused = paused;
     }
 
-
     public static void HeartPickup()
     {
         ExtendedModeGame.Hearts++;
@@ -29,41 +33,46 @@ public class PowerUpProperties
 
     public static void JetpackDuration()
     {
-        ExtendedModeGame.Jetpack = 15;
+        ExtendedModeGame.Jetpack = MaxJetpackDuration;
     }
 
-    public static async void ScoreMultiplierDuration(int seconds = 5)
+    public static async void ScoreMultiplierDuration(int seconds = 10)
     {
-        _scoreMultiplayerDuration = seconds;
-        ExtendedModeGame.ScoreMultiplier = true;
-        while (seconds != 0)
-        {
-            await Task.Delay(seconds * 1000);
-            if (!_paused)
-            {
-                seconds--;
-                _scoreMultiplayerDuration--;
-            }
-        }
+        _scoreMultiplayerDuration = MaxScoreMultiplayerDuration;
 
-        ExtendedModeGame.ScoreMultiplier = false;
+        if (!ExtendedModeGame.ScoreMultiplier)
+        {
+            ExtendedModeGame.ScoreMultiplier = true;
+            while (_scoreMultiplayerDuration != 0)
+            {
+                await Task.Delay(1000);
+                if (!_paused) _scoreMultiplayerDuration--;
+            }
+
+            ExtendedModeGame.ScoreMultiplier = false;
+        }
     }
 
     public static async void ShieldDuration(int seconds = 15)
     {
-        _shieldDuration = seconds;
-        ExtendedModeGame.Shield = true;
-        while (seconds != 0)
-        {
-            await Task.Delay(seconds * 1000);
-            if (!_paused)
-            {
-                seconds--;
-                _shieldDuration--;
-            }
-        }
+        _shieldDuration = MaxShieldDuration;
 
-        ExtendedModeGame.Shield = false;
+        if (!ExtendedModeGame.Shield)
+        {
+            ExtendedModeGame.Shield = true;
+            while (_shieldDuration != 0)
+            {
+                await Task.Delay(1000);
+                if (!_paused && ExtendedModeGame.Jetpack <= 0) _shieldDuration--;
+            }
+
+            ExtendedModeGame.Shield = false;
+        }
+    }
+
+    public static void UpdateShieldState()
+    {
+        _shieldDuration = 0;
     }
 
     public static async void StartProgressBarUpdate(Border progressBarItem, PowerUp.PowerUpType powerUpType)
@@ -71,9 +80,9 @@ public class PowerUpProperties
         var progressBar = (ProgressBar)((StackPanel)progressBarItem.Child).Children[1];
         var duration = powerUpType switch
         {
-            PowerUp.PowerUpType.Jetpack => 15,
-            PowerUp.PowerUpType.ScoreMultiplier => 5,
-            PowerUp.PowerUpType.Shield => 15,
+            PowerUp.PowerUpType.Jetpack => MaxJetpackDuration,
+            PowerUp.PowerUpType.ScoreMultiplier => MaxScoreMultiplayerDuration,
+            PowerUp.PowerUpType.Shield => MaxShieldDuration,
             _ => 0
         };
 
@@ -87,12 +96,14 @@ public class PowerUpProperties
                 await Task.Delay(50);
                 duration = ExtendedModeGame.Jetpack;
             }
-            else if (powerUpType == PowerUp.PowerUpType.ScoreMultiplier)
+
+            if (powerUpType == PowerUp.PowerUpType.ScoreMultiplier)
             {
                 await Task.Delay(50);
                 duration = _scoreMultiplayerDuration;
             }
-            else
+
+            if (powerUpType == PowerUp.PowerUpType.Shield)
             {
                 await Task.Delay(50);
                 duration = _shieldDuration;
