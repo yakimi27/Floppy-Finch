@@ -10,11 +10,28 @@
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="250">
             <Label Content="Floppy Finch" HorizontalContentAlignment="Center" FontSize="26" Margin="0 0 0 20" />
             <Label Content="Username" />
-            <TextBox Height="30" VerticalContentAlignment="Center" />
+            <TextBox x:Name="TextBoxUsername" TextChanged="TextBoxUsername_OnTextChanged" Height="30"
+                     VerticalContentAlignment="Center" />
             <Label Content="Password" />
-            <TextBox Height="30" VerticalContentAlignment="Center" />
-            <CheckBox Content="Remember me" Margin="0 20 0 0" />
-            <Button Click="ButtonSignIn_OnClick" Content="Sign In" Margin="0 20" Height="30" />
+            <StackPanel>
+                <TextBox x:Name="TextBoxPassword" TextChanged="TextBoxPassword_OnTextChanged" Height="30"
+                         VerticalContentAlignment="Center" Visibility="Collapsed" />
+                <PasswordBox x:Name="PasswordBoxPassword" PasswordChanged="PasswordBoxPassword_OnPasswordChanged"
+                             Height="30" VerticalContentAlignment="Center" Visibility="Visible" />
+            </StackPanel>
+            <Label x:Name="LabelSignInHelper" Content="SomeContent" Visibility="Collapsed" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Column="0" x:Name="CheckBoxRememberMe" Content="Remember me" Margin="0 20 0 0" />
+                <CheckBox Grid.Column="1" x:Name="CheckBoxShowPassword" Checked="CheckBoxShowPassword_OnChecked"
+                          Unchecked="CheckBoxShowPassword_OnUnchecked" Content="Show password" Margin="0 20 0 0" />
+            </Grid>
+
+            <Button x:Name="ButtonSignIn" Click="ButtonSignIn_OnClick" IsEnabled="False" Content="Sign In"
+                    Margin="0 20" Height="30" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />

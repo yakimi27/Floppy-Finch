@@ -7,23 +7,47 @@
         ResizeMode="NoResize"
         Title="Floppy Finch - Sign Up" Height="600" Width="400">
     <Grid>
-
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="250">
             <Label Content="Floppy Finch" HorizontalContentAlignment="Center" FontSize="26" Margin="0 0 0 20" />
             <Label Content="Username" />
-            <TextBox Height="30" VerticalContentAlignment="Center" />
+            <TextBox x:Name="TextBoxUsername" TextChanged="TextBoxUsername_OnTextChanged" Height="30"
+                     VerticalContentAlignment="Center" />
             <Label Content="Password" />
-            <TextBox Height="30" VerticalContentAlignment="Center" />
+            <StackPanel>
+                <TextBox x:Name="TextBoxPassword" TextChanged="TextBoxPassword_OnTextChanged" Height="30"
+                         VerticalContentAlignment="Center" Visibility="Collapsed" />
+                <PasswordBox x:Name="PasswordBoxPassword" PasswordChanged="PasswordBoxPassword_OnPasswordChanged"
+                             Height="30"
+                             VerticalContentAlignment="Center" Visibility="Visible" />
+            </StackPanel>
             <Label Content="Confirm password" />
-            <TextBox Height="30" VerticalContentAlignment="Center" />
-            <CheckBox Content="Remember me" Margin="0 20 0 0" />
-            <Button Click="ButtonSignUp_OnClick" Content="Sign Up" Margin="0 20" Height="30" />
+            <StackPanel>
+                <TextBox x:Name="TextBoxConfirmPassword" TextChanged="TextBoxConfirmPassword_OnTextChanged" Height="30"
+                         VerticalContentAlignment="Center" Visibility="Collapsed" />
+                <PasswordBox x:Name="PasswordBoxConfirmPassword"
+                             PasswordChanged="PasswordBoxConfirmPassword_OnPasswordChanged"
+                             Height="30"
+                             VerticalContentAlignment="Center" Visibility="Visible" />
+            </StackPanel>
+            <Label x:Name="LabelSignUpHelper" Content="SomeContent" Visibility="Collapsed" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Click="ButtonSgnIn_OnClick" Content="Sign In" Margin="0 0 10 0" Height="24" />
+                <CheckBox Grid.Column="0" x:Name="CheckBoxRememberMe" Content="Remember me" Margin="0 20 0 0" />
+                <CheckBox Grid.Column="1" x:Name="CheckBoxShowPassword" Unchecked="CheckBoxShowPassword_OnUnchecked"
+                          Checked="CheckBoxShowPassword_OnChecked" Content="Show password" Margin="0 20 0 0" />
+            </Grid>
+            <Button x:Name="ButtonSignUp" Click="ButtonSignUp_OnClick" IsEnabled="False" Content="Sign Up"
+                    Margin="0 20" Height="30" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Click="ButtonSignIn_OnClick" Content="Sign In"
+                        Margin="0 0 10 0" Height="24" />
                 <Button Grid.Column="1" Content="Play as Guest" Margin="10 0 0 0" Height="24"
                         ToolTip="Your score and progress will not be saved." ToolTipService.InitialShowDelay="100" />
             </Grid>
