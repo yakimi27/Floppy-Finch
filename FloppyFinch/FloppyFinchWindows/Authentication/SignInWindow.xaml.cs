@@ -38,7 +38,7 @@ public partial class SignInWindow : Window
     private void ButtonSignIn_OnClick(object sender, RoutedEventArgs e)
     {
         var username = TextBoxUsername.Text.Trim();
-        var password = TextBoxPassword.Text;
+        var password = _isPasswordVisible ? TextBoxPassword.Text : PasswordBoxPassword.Password;
 
         var account = AccountManager.Login(username, password);
         if (account != null)
