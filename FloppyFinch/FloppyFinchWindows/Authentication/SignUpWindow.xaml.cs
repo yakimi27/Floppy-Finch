@@ -1,14 +1,18 @@
-﻿using System.Windows;
+﻿using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Controls;
 using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
 
-namespace FloppyFinchGameModes.AuthenticationWindows;
+namespace FloppyFinchWindows.Authentication;
 
 public partial class SignUpWindow : Window
 {
+    private readonly Regex _passwordCheckout = new(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*()_+]+$");
+    private readonly Regex _usernameCheckout = new(@"^[A-Za-z0-9][A-Za-z0-9-_]+$");
     private bool _isPasswordVisible;
+    private Match _match;
 
     public SignUpWindow()
     {
@@ -26,21 +30,53 @@ public partial class SignUpWindow : Window
 
         if (username.Length < 3)
         {
-            ShowError("Username too short!");
+            ShowError("Username too short.");
+            ButtonSignUp.IsEnabled = false;
+            return;
+        }
+
+        if (username.Length > 16)
+        {
+            ShowError("Username too long.");
+            ButtonSignUp.IsEnabled = false;
+            return;
+        }
+
+        _match = _usernameCheckout.Match(username);
+
+        if (!_match.Success)
+        {
+            ShowError("Invalid characters in username.");
             ButtonSignUp.IsEnabled = false;
             return;
         }
 
         if (password.Length < 4)
         {
-            ShowError("Password too short!");
+            ShowError("Password too short.");
+            ButtonSignUp.IsEnabled = false;
+            return;
+        }
+
+        if (password.Length > 24)
+        {
+            ShowError("Password too long.");
+            ButtonSignUp.IsEnabled = false;
+            return;
+        }
+
+        _match = _passwordCheckout.Match(password);
+
+        if (!_match.Success)
+        {
+            ShowError("Password doesn't meet requirements.");
             ButtonSignUp.IsEnabled = false;
             return;
         }
 
         if (password != confirm)
         {
-            ShowError("Passwords mismatch!");
+            ShowError("Passwords mismatch.");
             ButtonSignUp.IsEnabled = false;
             return;
         }
@@ -65,6 +101,14 @@ public partial class SignUpWindow : Window
         WindowStateData.SaveWindowState(Application.Current.MainWindow);
         var signInWindow = new SignInWindow();
         signInWindow.Show();
+        Close();
+    }
+
+    private void ButtonPlayAsGuest_OnClick(object sender, RoutedEventArgs e)
+    {
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        var mainMenuWindow = new MainMenuWindow();
+        mainMenuWindow.Show();
         Close();
     }
 
@@ -126,8 +170,6 @@ public partial class SignUpWindow : Window
         _isPasswordVisible = false;
         PasswordBoxPassword.Password = TextBoxPassword.Text;
         PasswordBoxConfirmPassword.Password = TextBoxConfirmPassword.Text;
-
-
         TextBoxPassword.Visibility = Visibility.Collapsed;
         TextBoxConfirmPassword.Visibility = Visibility.Collapsed;
         PasswordBoxPassword.Visibility = Visibility.Visible;

@@ -4,7 +4,7 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using FloppyFinchLogics.WindowLogics;
 
-namespace FloppyFinchLogics.GameLogics;
+namespace FloppyFinchLogics.GameLogics.Core;
 
 public class Bird
 {

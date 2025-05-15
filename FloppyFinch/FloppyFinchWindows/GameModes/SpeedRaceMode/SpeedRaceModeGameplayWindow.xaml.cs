@@ -2,16 +2,16 @@
 using System.Windows.Input;
 using System.Windows.Interop;
 using FloppyFinchGameModes.Menus;
-using FloppyFinchLogics.GameLogics;
-using FloppyFinchLogics.GameLogics.SpeedRaceLogics;
+using FloppyFinchLogics.GameLogics.Core;
+using FloppyFinchLogics.GameLogics.SpeedRaceMode;
 using FloppyFinchLogics.WindowLogics;
 
-namespace FloppyFinchGameModes.GameWindows.SpeedRaceWindows;
+namespace FloppyFinchWindows.GameModes.SpeedRaceMode;
 
 public partial class SpeedRaceModeGameplayWindow : Window
 {
-    private readonly SpeedRaceModeGame _modeGame;
     private readonly int _gameSpeed;
+    private readonly SpeedRaceModeGame _modeGame;
     private bool _gameStarted;
     private bool _pauseState;
 

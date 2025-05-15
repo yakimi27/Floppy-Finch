@@ -1,7 +1,8 @@
 ﻿using System.Windows.Controls;
+using FloppyFinchLogics.GameLogics.Core;
 using FloppyFinchLogics.WindowLogics;
 
-namespace FloppyFinchLogics.GameLogics.TargetScoreLogics;
+namespace FloppyFinchLogics.GameLogics.TargetScoreMode;
 
 public class TargetScoreModeGame : Game
 {

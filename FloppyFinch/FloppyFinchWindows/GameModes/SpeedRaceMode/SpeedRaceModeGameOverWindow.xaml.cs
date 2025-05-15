@@ -3,7 +3,7 @@ using System.Windows.Media.Imaging;
 using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.WindowLogics;
 
-namespace FloppyFinchGameModes.GameWindows.SpeedRaceWindows;
+namespace FloppyFinchWindows.GameModes.SpeedRaceMode;
 
 public partial class SpeedRaceModeGameOverWindow : Window
 {

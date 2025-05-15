@@ -4,7 +4,7 @@ using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.WindowLogics;
 using WindowState = System.Windows.WindowState;
 
-namespace FloppyFinchGameModes.GameModes.ClassicMode;
+namespace FloppyFinchWindows.GameModes.ClassicMode;
 
 public partial class ClassicModeGameOverWindow : Window
 {

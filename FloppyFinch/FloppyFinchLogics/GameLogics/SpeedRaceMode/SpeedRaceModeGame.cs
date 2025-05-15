@@ -1,7 +1,8 @@
 ﻿using System.Windows.Controls;
+using FloppyFinchLogics.GameLogics.Core;
 using FloppyFinchLogics.WindowLogics;
 
-namespace FloppyFinchLogics.GameLogics.SpeedRaceLogics;
+namespace FloppyFinchLogics.GameLogics.SpeedRaceMode;
 
 public class SpeedRaceModeGame : Game
 {

@@ -2,12 +2,12 @@
 using System.Windows.Input;
 using System.Windows.Interop;
 using FloppyFinchGameModes.Menus;
-using FloppyFinchLogics.GameLogics;
-using FloppyFinchLogics.GameLogics.TargetScoreLogics;
+using FloppyFinchLogics.GameLogics.Core;
+using FloppyFinchLogics.GameLogics.TargetScoreMode;
 using FloppyFinchLogics.WindowLogics;
 using WindowState = System.Windows.WindowState;
 
-namespace FloppyFinchGameModes.GameWindows.TargetScoreWindows;
+namespace FloppyFinchWindows.GameModes.TargetScoreMode;
 
 public partial class TargetScoreModeGameplayWindow : Window
 {

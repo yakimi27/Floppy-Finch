@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using FloppyFinchLogics.GameLogics.Core;
 using FloppyFinchLogics.WindowLogics;
 
 namespace FloppyFinchLogics.GameLogics.ExtendedMode;

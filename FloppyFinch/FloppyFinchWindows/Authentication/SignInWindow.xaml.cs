@@ -5,7 +5,7 @@ using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
 using WindowState = System.Windows.WindowState;
 
-namespace FloppyFinchGameModes.AuthenticationWindows;
+namespace FloppyFinchWindows.Authentication;
 
 public partial class SignInWindow : Window
 {
@@ -21,17 +21,8 @@ public partial class SignInWindow : Window
         }
         else
         {
-            if (WindowStateData.Maximized)
-            {
-                Application.Current.MainWindow.WindowState = WindowState.Maximized;
-            }
-            else
-            {
-                Application.Current.MainWindow.Width = WindowStateData.WindowWidth;
-                Application.Current.MainWindow.Height = WindowStateData.WindowHeight;
-                Application.Current.MainWindow.Left = WindowStateData.WindowPositionX;
-                Application.Current.MainWindow.Top = WindowStateData.WindowPositionY;
-            }
+            Application.Current.MainWindow.Left = WindowStateData.WindowPositionX;
+            Application.Current.MainWindow.Top = WindowStateData.WindowPositionY;
         }
     }
 
@@ -43,7 +34,14 @@ public partial class SignInWindow : Window
         var account = AccountManager.Login(username, password);
         if (account != null)
         {
+            if (CheckBoxRememberMe.IsChecked == true)
+                SessionManager.SaveSession(new SessionData
+                {
+                    LastUsername = account.Username,
+                    RememberMe = true
+                });
             SaveWindowProperties();
+            AccountManager.Login(account);
             var mainMenuWindow = new MainMenuWindow();
             mainMenuWindow.Show();
             Close();
@@ -52,6 +50,7 @@ public partial class SignInWindow : Window
         else
         {
             ButtonSignIn.IsEnabled = false;
+            SessionManager.ClearSession();
             ShowError("Wrong username or password.");
         }
     }
@@ -62,6 +61,15 @@ public partial class SignInWindow : Window
         SaveWindowProperties();
         var signUpWindow = new SignUpWindow();
         signUpWindow.Show();
+        Close();
+    }
+
+    private void ButtonPlayAsGuest_OnClick(object sender, RoutedEventArgs e)
+    {
+        AccountManager.LoginAsGuest();
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        var mainMenuWindow = new MainMenuWindow();
+        mainMenuWindow.Show();
         Close();
     }
 
@@ -120,5 +128,15 @@ public partial class SignInWindow : Window
         PasswordBoxPassword.Password = TextBoxPassword.Text;
         TextBoxPassword.Visibility = Visibility.Collapsed;
         PasswordBoxPassword.Visibility = Visibility.Visible;
+    }
+
+    private void SignInWindow_OnLoaded(object sender, RoutedEventArgs e)
+    {
+        var session = SessionManager.LoadSession();
+        if (session.RememberMe)
+        {
+            TextBoxUsername.Text = session.LastUsername;
+            CheckBoxRememberMe.IsChecked = true;
+        }
     }
 }

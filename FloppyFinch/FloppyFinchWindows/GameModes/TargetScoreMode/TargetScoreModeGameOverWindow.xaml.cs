@@ -4,7 +4,7 @@ using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.WindowLogics;
 using WindowState = System.Windows.WindowState;
 
-namespace FloppyFinchGameModes.GameWindows.TargetScoreWindows;
+namespace FloppyFinchWindows.GameModes.TargetScoreMode;
 
 public partial class TargetScoreModeGameOverWindow : Window
 {

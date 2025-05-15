@@ -2,11 +2,11 @@
 using System.Windows.Input;
 using System.Windows.Interop;
 using FloppyFinchGameModes.Menus;
-using FloppyFinchLogics.GameLogics;
+using FloppyFinchLogics.GameLogics.Core;
 using FloppyFinchLogics.WindowLogics;
 using WindowState = System.Windows.WindowState;
 
-namespace FloppyFinchGameModes.GameModes.ClassicMode;
+namespace FloppyFinchWindows.GameModes.ClassicMode;
 
 public partial class ClassicModeGameplayWindow : Window
 {

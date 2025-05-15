@@ -1,12 +1,13 @@
 ﻿using System.Windows;
-using FloppyFinchGameModes.GameModes.ExtendedMode;
-using FloppyFinchGameModes.GameWindows.SpeedRaceWindows;
-using FloppyFinchGameModes.GameWindows.TargetScoreWindows;
+using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.WindowLogics;
-using ClassicModeGameplayWindow = FloppyFinchGameModes.GameModes.ClassicMode.ClassicModeGameplayWindow;
+using FloppyFinchWindows.GameModes.ExtendedMode;
+using FloppyFinchWindows.GameModes.SpeedRaceMode;
+using FloppyFinchWindows.GameModes.TargetScoreMode;
+using ClassicModeGameplayWindow = FloppyFinchWindows.GameModes.ClassicMode.ClassicModeGameplayWindow;
 using WindowState = System.Windows.WindowState;
 
-namespace FloppyFinchGameModes.Menus;
+namespace FloppyFinchWindows.Menus;
 
 public partial class GameModesMenuWindow : Window
 {

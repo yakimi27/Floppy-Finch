@@ -2,11 +2,11 @@
 using System.Windows.Input;
 using System.Windows.Interop;
 using FloppyFinchGameModes.Menus;
-using FloppyFinchLogics.GameLogics;
+using FloppyFinchLogics.GameLogics.Core;
 using FloppyFinchLogics.GameLogics.ExtendedMode;
 using FloppyFinchLogics.WindowLogics;
 
-namespace FloppyFinchGameModes.GameModes.ExtendedMode;
+namespace FloppyFinchWindows.GameModes.ExtendedMode;
 
 public partial class ExtendedModeModeGameplayWindow : Window
 {

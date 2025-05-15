@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using FloppyFinchLogics.WindowLogics;
 
-namespace FloppyFinchGameModes.GameWindows.SpeedRaceWindows;
+namespace FloppyFinchWindows.GameModes.SpeedRaceMode;
 
 public partial class SpeedRaceModeDifficultyWindow : Window
 {

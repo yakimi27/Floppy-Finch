@@ -1,4 +1,4 @@
-﻿<Window x:Class="FloppyFinchGameModes.Menus.SettingsMenuWindow"
+﻿<Window x:Class="FloppyFinchWindows.Menus.SettingsMenuWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -47,21 +47,21 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Grid.Row="0" Content="Chose resolution preset:" Margin="0 10 0 0"/>
+                    <Label Grid.Column="0" Grid.Row="0" Content="Chose resolution preset:" Margin="0 10 0 0" />
                     <ComboBox Grid.Column="1" Grid.Row="0" Margin="0 10 0 0">
                         <ComboBoxItem Content="1920 x 1200" />
                         <ComboBoxItem Content="1920 x 1080" />
                         <ComboBoxItem Content="600 x 400" />
                     </ComboBox>
 
-                    <Label Grid.Column="0" Grid.Row="1" Content="Chose appearance:" Margin="0 10 0 0"/>
+                    <Label Grid.Column="0" Grid.Row="1" Content="Chose appearance:" Margin="0 10 0 0" />
                     <ComboBox Grid.Column="1" Grid.Row="1" Margin="0 10 0 0">
                         <ComboBoxItem Content="Light Mode" />
                         <ComboBoxItem Content="Dark mode" />
                         <ComboBoxItem Content="Automatic" />
                     </ComboBox>
 
-                    <Label Grid.Column="0" Grid.Row="2" Content="Chose language:" Margin="0 10 0 0"/>
+                    <Label Grid.Column="0" Grid.Row="2" Content="Chose language:" Margin="0 10 0 0" />
                     <ComboBox Grid.Column="1" Grid.Row="2" Margin="0 10 0 0">
                         <ComboBoxItem Content="English" />
                         <ComboBoxItem Content="Українська" />
@@ -70,7 +70,8 @@
             </StackPanel>
             <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Margin="35 0">
                 <Label Content="Account settings" Margin="0 5" FontSize="16" />
-                <Button Content="Sign out" Margin="0 5" Height="30" />
+                <Button x:Name="ButtonSignOut" Click="ButtonSignOut_OnClick" Content="Sign out" Margin="0 5"
+                        Height="30" />
                 <Button Content="Clear account data" Margin="0 5" Height="30" />
                 <Button Content="Delete account" Margin="0 5" Height="30" />
             </StackPanel>

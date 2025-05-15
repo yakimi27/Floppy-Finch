@@ -1,4 +1,4 @@
-﻿<Window x:Class="FloppyFinchGameModes.AuthenticationWindows.SignUpWindow"
+﻿<Window x:Class="FloppyFinchWindows.Authentication.SignUpWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -9,10 +9,12 @@
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="250">
             <Label Content="Floppy Finch" HorizontalContentAlignment="Center" FontSize="26" Margin="0 0 0 20" />
-            <Label Content="Username" />
+            <Label Content="Username"
+                   ToolTip="Username must be 3–16 characters. Use only A–Z, 0–9, underscores (_) or hyphens (-)" />
             <TextBox x:Name="TextBoxUsername" TextChanged="TextBoxUsername_OnTextChanged" Height="30"
                      VerticalContentAlignment="Center" />
-            <Label Content="Password" />
+            <Label Content="Password"
+                   ToolTip="Password must be 4–24 characters. Must include at least one lowercase letter, one uppercase letter, and one number. Special characters like !@# are allowed." />
             <StackPanel>
                 <TextBox x:Name="TextBoxPassword" TextChanged="TextBoxPassword_OnTextChanged" Height="30"
                          VerticalContentAlignment="Center" Visibility="Collapsed" />
@@ -48,7 +50,8 @@
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" Click="ButtonSignIn_OnClick" Content="Sign In"
                         Margin="0 0 10 0" Height="24" />
-                <Button Grid.Column="1" Content="Play as Guest" Margin="10 0 0 0" Height="24"
+                <Button Grid.Column="1" Click="ButtonPlayAsGuest_OnClick" Content="Play as Guest" Margin="10 0 0 0"
+                        Height="24"
                         ToolTip="Your score and progress will not be saved." ToolTipService.InitialShowDelay="100" />
             </Grid>
         </StackPanel>

@@ -4,7 +4,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using FloppyFinchLogics.WindowLogics;
 
-namespace FloppyFinchLogics.GameLogics;
+namespace FloppyFinchLogics.GameLogics.Core;
 
 public class Game
 {

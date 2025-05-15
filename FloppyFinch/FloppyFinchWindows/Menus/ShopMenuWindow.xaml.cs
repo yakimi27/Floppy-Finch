@@ -1,8 +1,9 @@
 ﻿using System.Windows;
+using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.WindowLogics;
 using WindowState = System.Windows.WindowState;
 
-namespace FloppyFinchGameModes.Menus;
+namespace FloppyFinchWindows.Menus;
 
 public partial class ShopMenuWindow : Window
 {
