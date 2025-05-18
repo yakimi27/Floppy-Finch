@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
+using FloppyFinchGameModes.GameModes.ExtendedMode;
 using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.GameLogics.Core;
 using FloppyFinchLogics.GameLogics.ExtendedMode;

@@ -20,9 +20,9 @@
                 <RowDefinition Height="*" MaxHeight="150" />
                 <RowDefinition Height="*" MaxHeight="150" />
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Content="Game over" HorizontalAlignment="Center"
+            <Label Grid.Row="0" x:Name="LabelGameOver" Content="Game over" HorizontalAlignment="Center"
                    VerticalAlignment="Top" FontSize="50" />
-            <TextBlock Grid.Row="1" x:Name="LoseScreenScoreTextBlock" Text="You scored: 0"
+            <TextBlock Grid.Row="1" x:Name="TextBlockScoredPoints" Text="You scored: 0"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Top" FontSize="30" />
             <Button Grid.Row="2" Content="Restart" Click="RestartButton_Click" Margin="50 20" MaxWidth="400"

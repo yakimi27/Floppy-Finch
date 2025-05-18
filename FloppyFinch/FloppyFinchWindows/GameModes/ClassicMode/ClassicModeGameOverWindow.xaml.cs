@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media.Imaging;
 using FloppyFinchGameModes.Menus;
+using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
 using WindowState = System.Windows.WindowState;
 
@@ -24,8 +25,19 @@ public partial class ClassicModeGameOverWindow : Window
             Application.Current.MainWindow.Top = WindowStateData.WindowPositionY;
         }
 
-        LoseScreenScoreTextBlock.Text = $"You scored: {score}";
         GameImage.Source = gameImage;
+        if (score > AccountManager.CurrentAccount!.HighScore)
+        {
+            LabelGameOver.Content = "Congratulations!";
+            TextBlockScoredPoints.Text = $"New high score: {score}";
+        }
+        else
+        {
+            LabelGameOver.Content = "Game over";
+            TextBlockScoredPoints.Text = $"You scored: {score}";
+        }
+
+        UpdateAccountInfo(score);
     }
 
     private void RestartButton_Click(object sender, RoutedEventArgs e)
@@ -47,5 +59,12 @@ public partial class ClassicModeGameOverWindow : Window
     private void ExitButton_Click(object sender, RoutedEventArgs e)
     {
         Close();
+    }
+
+    private void UpdateAccountInfo(int score)
+    {
+        AccountManager.CurrentAccount!.Coins += score;
+        if (score > AccountManager.CurrentAccount.HighScore) AccountManager.CurrentAccount.HighScore = score;
+        AccountManager.SaveAccount(AccountManager.CurrentAccount);
     }
 }

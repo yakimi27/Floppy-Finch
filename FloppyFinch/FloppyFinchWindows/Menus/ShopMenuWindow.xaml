@@ -16,88 +16,84 @@
             </Canvas.ToolTip>
         </Canvas>
         <Canvas Cursor="Help" Height="15" Width="15" Background="Transparent" VerticalAlignment="Bottom"
-                HorizontalAlignment="Left"
-                Margin="8" ToolTipService.InitialShowDelay="100">
+                HorizontalAlignment="Left" Margin="8" ToolTipService.InitialShowDelay="100">
             <Line X1="0" Y1="15" X2="15" Y2="15" Stroke="Black" />
             <Line X1="0" Y1="0" X2="0" Y2="15" Stroke="Black" />
             <Canvas.ToolTip>
                 <ToolTip Content="To adjust resolution resize window." />
             </Canvas.ToolTip>
         </Canvas>
-        <!--shop grid-->
+
+        <!--main layout-->
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
+                <RowDefinition Height="40" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Button Grid.Row="0" x:Name="ButtonBack" Click="ButtonBack_OnClick" Content="Back" Width="75"
-                    Height="25"
-                    HorizontalAlignment="Left" Margin="35 0 " />
+            <!--top bar-->
+            <Grid Grid.Row="0">
+                <Button x:Name="ButtonBack" Click="ButtonBack_OnClick" Content="Back"
+                        Width="75" Height="25" HorizontalAlignment="Left" Margin="35,0" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="35,0">
+                    <Image x:Name="CoinIcon" Width="25" Height="25" Margin="0,0,10,0" />
+                    <TextBlock x:Name="CoinsText" Text="0" VerticalAlignment="Center"
+                               FontSize="18" FontWeight="Bold" />
+                </StackPanel>
+            </Grid>
 
-            <!--objects grid-->
-            <ScrollViewer Grid.Row="1" MaxWidth="600">
-                <Grid Margin="20 0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
+            <!--tabs-->
+            <TabControl Grid.Row="1" Grid.RowSpan="2" Margin="20">
+                <!--bird skin tab-->
+                <TabItem Header="Bird Skins">
+                    <ScrollViewer>
+                        <UniformGrid Columns="2">
+                            <!--skin items add here-->
+                            <ItemsControl x:Name="SkinsItemsControl">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Margin="10" BorderThickness="1" BorderBrush="Gray"
+                                                Background="White">
+                                            <StackPanel Margin="10">
+                                                <Image Height="100" Margin="0,0,0,10" />
+                                                <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" />
+                                                <TextBlock Text="{Binding Price}" HorizontalAlignment="Center" />
+                                                <Button Content="Buy" Height="40" Margin="0,10,0,0" />
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </UniformGrid>
+                    </ScrollViewer>
+                </TabItem>
 
-                    <!--grids inside-->
-
-                    <StackPanel Grid.Row="0" Grid.Column="0" Margin="15">
-                        <Rectangle Fill="Aqua" Margin="0 0 0 15" Height="100" />
-                        <Button Content="Buy" Height="40" />
-                    </StackPanel>
-                    <StackPanel Grid.Row="0" Grid.Column="1" Margin="15 ">
-                        <Rectangle Fill="Aqua" Margin="0 0 0 15" Height="100" />
-                        <Button Content="Buy" Height="40" />
-                    </StackPanel>
-                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="15">
-                        <Rectangle Fill="Aqua" Margin="0 0 0 15" Height="100" />
-                        <Button Content="Buy" Height="40" />
-                    </StackPanel>
-                    <StackPanel Grid.Row="1" Grid.Column="1" Margin="15">
-                        <Rectangle Fill="Aqua" Margin="0 0 0 15" Height="100" />
-                        <Button Content="Buy" Height="40" />
-                    </StackPanel>
-                    <StackPanel Grid.Row="2" Grid.Column="0" Margin="15">
-                        <Rectangle Fill="Aqua" Margin="0 0 0 15" Height="100" />
-                        <Button Content="Buy" Height="40" />
-                    </StackPanel>
-                    <StackPanel Grid.Row="2" Grid.Column="1" Margin="15">
-                        <Rectangle Fill="Aqua" Margin="0 0 0 15" Height="100" />
-                        <Button Content="Buy" Height="40" />
-                    </StackPanel>
-                    <StackPanel Grid.Row="3" Grid.Column="0" Margin="15">
-                        <Rectangle Fill="Aqua" Margin="0 0 0 15" Height="100" />
-                        <Button Content="Buy" Height="40" />
-                    </StackPanel>
-                    <StackPanel Grid.Row="3" Grid.Column="1" Margin="15">
-                        <Rectangle Fill="Aqua" Margin="0 0 0 15" Height="100" />
-                        <Button Content="Buy" Height="40" />
-                    </StackPanel>
-                    <StackPanel Grid.Row="4" Grid.Column="0" Margin="15">
-                        <Rectangle Fill="Aqua" Margin="0 0 0 15" Height="100" />
-                        <Button Content="Buy" Height="40" />
-                    </StackPanel>
-                    <StackPanel Grid.Row="4" Grid.Column="1" Margin="15">
-                        <Rectangle Fill="Aqua" Margin="0 0 0 15" Height="100" />
-                        <Button Content="Buy" Height="40" />
-                    </StackPanel>
-                </Grid>
-            </ScrollViewer>
+                <!--powerups-->
+                <TabItem Header="Power-ups">
+                    <ScrollViewer>
+                        <UniformGrid Columns="2">
+                            <!--powerup add here-->
+                            <ItemsControl x:Name="PowerupsItemsControl">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Margin="10" BorderThickness="1" BorderBrush="Gray"
+                                                Background="White">
+                                            <StackPanel Margin="10">
+                                                <Image Height="100" Margin="0,0,0,10" />
+                                                <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" />
+                                                <TextBlock Text="{Binding Level}" HorizontalAlignment="Center" />
+                                                <TextBlock Text="{Binding Price}" HorizontalAlignment="Center" />
+                                                <Button Content="Upgrade" Height="40" Margin="0,10,0,0" />
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </UniformGrid>
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
         </Grid>
     </Grid>
 </Window>

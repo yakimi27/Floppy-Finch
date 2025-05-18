@@ -1,9 +1,11 @@
 ﻿using System.Windows;
 using System.Windows.Media.Imaging;
 using FloppyFinchGameModes.Menus;
+using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
+using FloppyFinchWindows.GameModes.ExtendedMode;
 
-namespace FloppyFinchWindows.GameModes.ExtendedMode;
+namespace FloppyFinchGameModes.GameModes.ExtendedMode;
 
 public partial class ExtendedModeGameOverWindow : Window
 {
@@ -25,6 +27,7 @@ public partial class ExtendedModeGameOverWindow : Window
 
         LoseScreenScoreTextBlock.Text = $"You scored: {score}";
         GameImage.Source = gameImage;
+        UpdateAccountInfo(score);
     }
 
     private void RestartButton_Click(object sender, RoutedEventArgs e)
@@ -46,5 +49,11 @@ public partial class ExtendedModeGameOverWindow : Window
     private void ExitButton_Click(object sender, RoutedEventArgs e)
     {
         Close();
+    }
+
+    private void UpdateAccountInfo(int score)
+    {
+        AccountManager.CurrentAccount!.Coins += score;
+        AccountManager.SaveAccount(AccountManager.CurrentAccount);
     }
 }

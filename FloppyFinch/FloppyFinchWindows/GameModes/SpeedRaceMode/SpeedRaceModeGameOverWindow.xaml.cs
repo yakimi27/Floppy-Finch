@@ -1,9 +1,11 @@
 ﻿using System.Windows;
 using System.Windows.Media.Imaging;
 using FloppyFinchGameModes.Menus;
+using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
+using FloppyFinchWindows.GameModes.SpeedRaceMode;
 
-namespace FloppyFinchWindows.GameModes.SpeedRaceMode;
+namespace FloppyFinchGameModes.GameModes.SpeedRaceMode;
 
 public partial class SpeedRaceModeGameOverWindow : Window
 {
@@ -28,6 +30,7 @@ public partial class SpeedRaceModeGameOverWindow : Window
         LoseScreenScoreTextBlock.Text = $"You scored: {score}";
         GameImage.Source = gameImage;
         _gameSpeed = gameSpeed;
+        UpdateAccountInfo(score, gameSpeed);
     }
 
     private void RestartButton_Click(object sender, RoutedEventArgs e)
@@ -49,5 +52,22 @@ public partial class SpeedRaceModeGameOverWindow : Window
     private void ExitButton_Click(object sender, RoutedEventArgs e)
     {
         Close();
+    }
+
+    private void UpdateAccountInfo(int score, int gameSpeed)
+    {
+        var multiplier = gameSpeed switch
+        {
+            13 => 3.0,
+            var speedValue when speedValue > 9 => 2.0,
+            var speedValue when speedValue > 6 => 1.25,
+            var speedValue when speedValue > 3 => 0.75,
+            var speedValue when speedValue <= 3 => 0.5,
+            _ => 1.0
+        };
+
+        score = (int)(score * multiplier);
+        AccountManager.CurrentAccount!.Coins += score;
+        AccountManager.SaveAccount(AccountManager.CurrentAccount);
     }
 }
