@@ -51,6 +51,9 @@ public partial class MainMenuWindow : Window
 
     private void ButtonLeaderboards_OnClick(object sender, RoutedEventArgs e)
     {
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        var leaderboardMenuWindow = new LeaderboardMenuWindow();
+        leaderboardMenuWindow.Show();
         Close();
     }
 
@@ -79,7 +82,6 @@ public partial class MainMenuWindow : Window
             Left = AccountManager.CurrentAccount.WindowPositionX;
             Top = AccountManager.CurrentAccount.WindowPositionY;
         }
-        else return;
     }
 
     private void SaveWindowStateToAccount()

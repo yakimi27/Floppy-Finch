@@ -34,7 +34,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Button Grid.Row="0" x:Name="ButtonShopBack" Click="ButtonShopBack_OnClick" Content="Back" Width="75"
+            <Button Grid.Row="0" x:Name="ButtonBack" Click="ButtonBack_OnClick" Content="Back" Width="75"
                     Height="25"
                     HorizontalAlignment="Left" Margin="35 0 " />
 

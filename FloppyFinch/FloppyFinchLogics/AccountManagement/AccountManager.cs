@@ -6,6 +6,15 @@ namespace FloppyFinchLogics.AccountManagement;
 
 public static class AccountManager
 {
+    private static readonly double ScreenWidth = SystemParameters.PrimaryScreenWidth;
+    private static readonly double ScreenHeight = SystemParameters.PrimaryScreenHeight;
+
+    private static readonly int DefaultWindowWidth = 400;
+    private static readonly int DefaultWindowHeight = 600;
+
+    private static readonly int DefaultCenterX = (int)((ScreenWidth - DefaultWindowWidth) / 2);
+    private static readonly int DefaultCenterY = (int)((ScreenHeight - DefaultWindowHeight) / 2);
+
     private static readonly string AppDataRoot = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
         "FloppyFinch");
@@ -19,6 +28,7 @@ public static class AccountManager
     }
 
     public static AccountData? CurrentAccount { get; set; }
+    public static List<AccountData> Accounts { get; } = new();
     public static bool IsGuest { get; private set; }
 
     public static void LoginAsGuest()
@@ -42,14 +52,6 @@ public static class AccountManager
         var salt = PasswordHasher.GenerateSalt();
         var hash = PasswordHasher.HashPassword(password, salt);
 
-        var screenWidth = SystemParameters.PrimaryScreenWidth;
-        var screenHeight = SystemParameters.PrimaryScreenHeight;
-
-        var windowWidth = 600;
-        var windowHeight = 400;
-
-        var centerX = (int)((screenWidth - windowWidth) / 2);
-        var centerY = (int)((screenHeight - windowHeight) / 2);
 
         var account = new AccountData
         {
@@ -58,13 +60,14 @@ public static class AccountManager
             PasswordHash = Convert.ToBase64String(hash),
             Coins = 0,
             HighScore = 0,
-            WindowWidth = windowWidth,
-            WindowHeight = windowHeight,
-            WindowPositionX = centerX,
-            WindowPositionY = centerY
+            WindowWidth = DefaultWindowWidth,
+            WindowHeight = DefaultWindowHeight,
+            WindowPositionX = DefaultCenterX,
+            WindowPositionY = DefaultCenterY
         };
 
         SaveAccount(account);
+        CurrentAccount = account;
         return true;
     }
 
@@ -103,5 +106,46 @@ public static class AccountManager
 
         var account = JsonSerializer.Deserialize<AccountData>(File.ReadAllText(path));
         return account;
+    }
+
+    public static void ClearAccountData(AccountData account)
+    {
+        account.Coins = 0;
+        account.HighScore = 0;
+        account.WindowWidth = DefaultWindowWidth;
+        account.WindowHeight = DefaultWindowHeight;
+        account.WindowPositionX = DefaultCenterX;
+        account.WindowPositionY = DefaultCenterY;
+        SaveAccount(account);
+    }
+
+    public static void DeleteAccount(AccountData account)
+    {
+        var path = GetAccountPath(account.Username);
+        if (File.Exists(path)) File.Delete(path);
+        CurrentAccount = null;
+        IsGuest = false;
+    }
+
+    public static void LoadAllAccounts()
+    {
+        Accounts.Clear();
+
+        var folderPath = Path.Combine(AppDataRoot, "Accounts");
+        if (!Directory.Exists(folderPath))
+            return;
+
+        foreach (var file in Directory.GetFiles(folderPath, "*.json"))
+            try
+            {
+                var json = File.ReadAllText(file);
+                var account = JsonSerializer.Deserialize<AccountData>(json);
+                if (account != null)
+                    Accounts.Add(account);
+            }
+            catch
+            {
+                //skip
+            }
     }
 }

@@ -42,10 +42,10 @@ public partial class SignInWindow : Window
                 });
             SaveWindowProperties();
             AccountManager.Login(account);
+            AccountManager.SaveAccount(account);
             var mainMenuWindow = new MainMenuWindow();
             mainMenuWindow.Show();
             Close();
-            AccountManager.SaveAccount(account);
         }
         else
         {

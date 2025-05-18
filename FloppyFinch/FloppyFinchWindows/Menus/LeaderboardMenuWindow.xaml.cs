@@ -1,15 +1,17 @@
 ﻿using System.Windows;
-using FloppyFinchGameModes.Menus;
+using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
-using WindowState = System.Windows.WindowState;
 
-namespace FloppyFinchWindows.Menus;
+namespace FloppyFinchGameModes.Menus;
 
-public partial class ShopMenuWindow : Window
+public partial class LeaderboardMenuWindow : Window
 {
-    public ShopMenuWindow()
+    public LeaderboardMenuWindow()
     {
         InitializeComponent();
+        AccountManager.LoadAllAccounts();
+        var leaderboardData = new LeaderboardManager();
+        DataContext = leaderboardData;
         Application.Current.MainWindow = this;
         if (WindowStateData.Maximized)
         {

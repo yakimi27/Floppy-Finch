@@ -48,17 +48,21 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Grid.Row="0" Content="Chose resolution preset:" Margin="0 10 0 0" />
-                    <ComboBox Grid.Column="1" Grid.Row="0" Margin="0 10 0 0">
-                        <ComboBoxItem Content="1920 x 1200" />
-                        <ComboBoxItem Content="1920 x 1080" />
-                        <ComboBoxItem Content="600 x 400" />
+                    <ComboBox Grid.Column="1" Grid.Row="0" Margin="0 10 0 0" >
+                        <ComboBoxItem x:Name="BoxItemResolution1920X1200" Content="1920 x 1200" />
+                        <ComboBoxItem x:Name="BoxItemResolution1920X1080" Content="1920 x 1080" />
+                        <ComboBoxItem x:Name="BoxItemResolution1600X900" Content="1600 x 900" />
+                        <ComboBoxItem x:Name="BoxItemResolution1366X768" Content="1366 x 768" />
+                        <ComboBoxItem x:Name="BoxItemResolution1280X720" Content="1280 x 720" />
+                        <ComboBoxItem x:Name="BoxItemResolution1024X768" Content="1024 x 768" />
+                        <ComboBoxItem x:Name="BoxItemResolution800X600" Content="800 x 600" />
+                        <ComboBoxItem x:Name="BoxItemResolution600X400" Content="600 x 400" />
                     </ComboBox>
 
                     <Label Grid.Column="0" Grid.Row="1" Content="Chose appearance:" Margin="0 10 0 0" />
                     <ComboBox Grid.Column="1" Grid.Row="1" Margin="0 10 0 0">
-                        <ComboBoxItem Content="Light Mode" />
-                        <ComboBoxItem Content="Dark mode" />
-                        <ComboBoxItem Content="Automatic" />
+                        <ComboBoxItem x:Name="BoxItemLightMode" Content="Light Mode" />
+                        <ComboBoxItem x:Name="BoxItemDarkMode" Content="Dark mode" />
                     </ComboBox>
 
                     <Label Grid.Column="0" Grid.Row="2" Content="Chose language:" Margin="0 10 0 0" />
@@ -72,8 +76,10 @@
                 <Label Content="Account settings" Margin="0 5" FontSize="16" />
                 <Button x:Name="ButtonSignOut" Click="ButtonSignOut_OnClick" Content="Sign out" Margin="0 5"
                         Height="30" />
-                <Button Content="Clear account data" Margin="0 5" Height="30" />
-                <Button Content="Delete account" Margin="0 5" Height="30" />
+                <Button x:Name="ButtonClearAccountData" Click="ButtonClearAccountData_OnClick"
+                        Content="Clear account data" Margin="0 5" Height="30" />
+                <Button x:Name="ButtonDeleteAccount" Click="ButtonDeleteAccount_OnClick" Content="Delete account"
+                        Margin="0 5" Height="30" />
             </StackPanel>
         </Grid>
     </Grid>

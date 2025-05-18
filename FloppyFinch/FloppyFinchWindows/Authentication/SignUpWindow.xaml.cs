@@ -84,8 +84,17 @@ public partial class SignUpWindow : Window
         var success = AccountManager.Register(username, password);
         if (success)
         {
-            MessageBox.Show("Account successfully created!", "Success!", MessageBoxButton.OK);
+            if (CheckBoxRememberMe.IsChecked == true)
+                SessionManager.SaveSession(new SessionData
+                {
+                    LastUsername = username,
+                    RememberMe = true
+                });
+
+            SaveWindowProperties();
             WindowStateData.SaveWindowState(Application.Current.MainWindow);
+            AccountManager.SaveAccount(AccountManager.CurrentAccount);
+            MessageBox.Show("Account successfully created!", "Success!", MessageBoxButton.OK);
             var mainMenuWindow = new MainMenuWindow();
             mainMenuWindow.Show();
             Close();
@@ -106,6 +115,7 @@ public partial class SignUpWindow : Window
 
     private void ButtonPlayAsGuest_OnClick(object sender, RoutedEventArgs e)
     {
+        AccountManager.LoginAsGuest();
         WindowStateData.SaveWindowState(Application.Current.MainWindow);
         var mainMenuWindow = new MainMenuWindow();
         mainMenuWindow.Show();
@@ -174,5 +184,15 @@ public partial class SignUpWindow : Window
         TextBoxConfirmPassword.Visibility = Visibility.Collapsed;
         PasswordBoxPassword.Visibility = Visibility.Visible;
         PasswordBoxConfirmPassword.Visibility = Visibility.Visible;
+    }
+
+    private void SaveWindowProperties()
+    {
+        var mainWindow = Application.Current.MainWindow;
+        WindowStateData.Maximized = mainWindow.WindowState == WindowState.Maximized;
+        WindowStateData.WindowWidth = mainWindow.Width;
+        WindowStateData.WindowHeight = mainWindow.Height;
+        WindowStateData.WindowPositionX = mainWindow.Left;
+        WindowStateData.WindowPositionY = mainWindow.Top;
     }
 }
