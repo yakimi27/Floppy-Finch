@@ -4,7 +4,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
-        Title="Floppy Finch" Height="auto" Width="auto" MinHeight="600" MinWidth="400">
+        Title="Floppy Finch" Height="auto" Width="auto" MinHeight="600" MinWidth="400"
+        Closing="SettingsMenuWindow_OnClosing">
     <Grid>
         <Canvas Cursor="Help" Height="15" Width="15" Background="Transparent" VerticalAlignment="Top"
                 HorizontalAlignment="Right" Margin="8" ToolTipService.InitialShowDelay="100">
@@ -30,7 +31,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Button Grid.Row="0" Grid.Column="0" x:Name="ButtonShopBack" Click="ButtonSettingsBack_OnClick"
+            <Button Grid.Row="0" Grid.Column="0" x:Name="ButtonBack" Click="ButtonBack_OnClick"
                     Content="Back" Width="75"
                     Height="25"
                     HorizontalAlignment="Left" Margin="35 0 " />
@@ -48,7 +49,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Grid.Row="0" Content="Chose resolution preset:" Margin="0 10 0 0" />
-                    <ComboBox Grid.Column="1" Grid.Row="0" Margin="0 10 0 0" >
+                    <ComboBox Grid.Column="1" Grid.Row="0" Margin="0 10 0 0">
                         <ComboBoxItem x:Name="BoxItemResolution1920X1200" Content="1920 x 1200" />
                         <ComboBoxItem x:Name="BoxItemResolution1920X1080" Content="1920 x 1080" />
                         <ComboBoxItem x:Name="BoxItemResolution1600X900" Content="1600 x 900" />

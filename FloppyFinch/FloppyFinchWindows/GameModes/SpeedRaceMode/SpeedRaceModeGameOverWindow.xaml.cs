@@ -35,6 +35,8 @@ public partial class SpeedRaceModeGameOverWindow : Window
 
     private void RestartButton_Click(object sender, RoutedEventArgs e)
     {
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        SaveWindowStateToAccount();
         var speedRaceGameplayWindow = new SpeedRaceModeGameplayWindow(_gameSpeed);
         speedRaceGameplayWindow.Show();
         Close();
@@ -43,6 +45,8 @@ public partial class SpeedRaceModeGameOverWindow : Window
 
     private void MainMenuButton_Click(object sender, RoutedEventArgs e)
     {
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        SaveWindowStateToAccount();
         WindowStateData.SaveWindowState(Application.Current.MainWindow!);
         var mainMenuWindow = new MainMenuWindow();
         mainMenuWindow.Show();
@@ -51,6 +55,8 @@ public partial class SpeedRaceModeGameOverWindow : Window
 
     private void ExitButton_Click(object sender, RoutedEventArgs e)
     {
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        SaveWindowStateToAccount();
         Close();
     }
 
@@ -69,5 +75,22 @@ public partial class SpeedRaceModeGameOverWindow : Window
         score = (int)(score * multiplier);
         AccountManager.CurrentAccount!.Coins += score;
         AccountManager.SaveAccount(AccountManager.CurrentAccount);
+    }
+
+    private static void SaveWindowStateToAccount()
+    {
+        if (AccountManager.CurrentAccount == null) return;
+        AccountManager.CurrentAccount!.MaximizedWindow = WindowStateData.Maximized;
+        AccountManager.CurrentAccount.WindowWidth = (int)WindowStateData.WindowWidth;
+        AccountManager.CurrentAccount.WindowHeight = (int)WindowStateData.WindowHeight;
+        AccountManager.CurrentAccount.WindowPositionX = (int)WindowStateData.WindowPositionX;
+        AccountManager.CurrentAccount.WindowPositionY = (int)WindowStateData.WindowPositionY;
+        AccountManager.SaveAccount(AccountManager.CurrentAccount);
+    }
+
+    private void SpeedRaceModeGameOverWindow_OnClosing(object? sender, EventArgs e)
+    {
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        SaveWindowStateToAccount();
     }
 }

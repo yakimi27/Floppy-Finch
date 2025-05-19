@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
@@ -25,9 +26,10 @@ public partial class SettingsMenuWindow : Window
         }
     }
 
-    private void ButtonSettingsBack_OnClick(object sender, RoutedEventArgs e)
+    private void ButtonBack_OnClick(object sender, RoutedEventArgs e)
     {
         WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        SaveWindowStateToAccount();
         var mainMenuWindow = new MainMenuWindow();
         mainMenuWindow.Show();
         Close();
@@ -37,20 +39,21 @@ public partial class SettingsMenuWindow : Window
     {
         WindowStateData.SaveWindowState(Application.Current.MainWindow);
         SaveWindowStateToAccount();
-        AccountManager.SaveAccount(AccountManager.CurrentAccount);
         SessionManager.ClearSession();
         AccountManager.CurrentAccount = null;
         new SignInWindow().Show();
         Close();
     }
 
-    private void SaveWindowStateToAccount()
+    private static void SaveWindowStateToAccount()
     {
-        AccountManager.CurrentAccount.MaximizedWindow = WindowStateData.Maximized;
+        if (AccountManager.CurrentAccount == null) return;
+        AccountManager.CurrentAccount!.MaximizedWindow = WindowStateData.Maximized;
         AccountManager.CurrentAccount.WindowWidth = (int)WindowStateData.WindowWidth;
         AccountManager.CurrentAccount.WindowHeight = (int)WindowStateData.WindowHeight;
         AccountManager.CurrentAccount.WindowPositionX = (int)WindowStateData.WindowPositionX;
         AccountManager.CurrentAccount.WindowPositionY = (int)WindowStateData.WindowPositionY;
+        AccountManager.SaveAccount(AccountManager.CurrentAccount);
     }
 
     private void ButtonClearAccountData_OnClick(object sender, RoutedEventArgs e)
@@ -91,5 +94,11 @@ public partial class SettingsMenuWindow : Window
         else if (result == MessageBoxResult.Cancel)
         {
         }
+    }
+
+    private void SettingsMenuWindow_OnClosing(object? sender, CancelEventArgs e)
+    {
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        SaveWindowStateToAccount();
     }
 }

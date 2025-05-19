@@ -61,7 +61,6 @@ public partial class MainMenuWindow : Window
     {
         WindowStateData.SaveWindowState(Application.Current.MainWindow);
         SaveWindowStateToAccount();
-        AccountManager.SaveAccount(AccountManager.CurrentAccount);
         Close();
     }
 
@@ -84,12 +83,20 @@ public partial class MainMenuWindow : Window
         }
     }
 
-    private void SaveWindowStateToAccount()
+    private static void SaveWindowStateToAccount()
     {
-        AccountManager.CurrentAccount.MaximizedWindow = WindowStateData.Maximized;
+        if (AccountManager.CurrentAccount == null) return;
+        AccountManager.CurrentAccount!.MaximizedWindow = WindowStateData.Maximized;
         AccountManager.CurrentAccount.WindowWidth = (int)WindowStateData.WindowWidth;
         AccountManager.CurrentAccount.WindowHeight = (int)WindowStateData.WindowHeight;
         AccountManager.CurrentAccount.WindowPositionX = (int)WindowStateData.WindowPositionX;
         AccountManager.CurrentAccount.WindowPositionY = (int)WindowStateData.WindowPositionY;
+        AccountManager.SaveAccount(AccountManager.CurrentAccount);
+    }
+
+    private void MainMenuWindow_OnClosing(object? sender, EventArgs e)
+    {
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        SaveWindowStateToAccount();
     }
 }

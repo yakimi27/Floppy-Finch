@@ -1,11 +1,11 @@
 ﻿using System.Windows;
+using FloppyFinchGameModes.GameModes.ExtendedMode;
 using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
-using FloppyFinchWindows.GameModes.ExtendedMode;
 using FloppyFinchWindows.GameModes.SpeedRaceMode;
 using FloppyFinchWindows.GameModes.TargetScoreMode;
-using ClassicModeGameplayWindow = FloppyFinchWindows.GameModes.ClassicMode.ClassicModeGameplayWindow;
+using ClassicModeGameplayWindow = FloppyFinchGameModes.GameModes.ClassicMode.ClassicModeGameplayWindow;
 using WindowState = System.Windows.WindowState;
 
 namespace FloppyFinchWindows.Menus;
@@ -64,18 +64,25 @@ public partial class GameModesMenuWindow : Window
     {
         WindowStateData.SaveWindowState(Application.Current.MainWindow);
         SaveWindowStateToAccount();
-        AccountManager.SaveAccount(AccountManager.CurrentAccount);
         var mainMenuWindow = new MainMenuWindow();
         mainMenuWindow.Show();
         Close();
     }
 
-    private void SaveWindowStateToAccount()
+    private static void SaveWindowStateToAccount()
     {
-        AccountManager.CurrentAccount.MaximizedWindow = WindowStateData.Maximized;
+        if (AccountManager.CurrentAccount == null) return;
+        AccountManager.CurrentAccount!.MaximizedWindow = WindowStateData.Maximized;
         AccountManager.CurrentAccount.WindowWidth = (int)WindowStateData.WindowWidth;
         AccountManager.CurrentAccount.WindowHeight = (int)WindowStateData.WindowHeight;
         AccountManager.CurrentAccount.WindowPositionX = (int)WindowStateData.WindowPositionX;
         AccountManager.CurrentAccount.WindowPositionY = (int)WindowStateData.WindowPositionY;
+        AccountManager.SaveAccount(AccountManager.CurrentAccount);
+    }
+
+    private void GameModesMenuWindow_OnClosing(object? sender, EventArgs e)
+    {
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        SaveWindowStateToAccount();
     }
 }

@@ -3,7 +3,6 @@ using System.Windows.Media.Imaging;
 using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
-using FloppyFinchWindows.GameModes.ExtendedMode;
 
 namespace FloppyFinchGameModes.GameModes.ExtendedMode;
 
@@ -32,6 +31,8 @@ public partial class ExtendedModeGameOverWindow : Window
 
     private void RestartButton_Click(object sender, RoutedEventArgs e)
     {
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        SaveWindowStateToAccount();
         var extendedGameplayWindow = new ExtendedModeModeGameplayWindow();
         extendedGameplayWindow.Show();
         Close();
@@ -41,6 +42,7 @@ public partial class ExtendedModeGameOverWindow : Window
     private void MainMenuButton_Click(object sender, RoutedEventArgs e)
     {
         WindowStateData.SaveWindowState(Application.Current.MainWindow!);
+        SaveWindowStateToAccount();
         var mainMenuWindow = new MainMenuWindow();
         mainMenuWindow.Show();
         Close();
@@ -48,6 +50,8 @@ public partial class ExtendedModeGameOverWindow : Window
 
     private void ExitButton_Click(object sender, RoutedEventArgs e)
     {
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        SaveWindowStateToAccount();
         Close();
     }
 
@@ -55,5 +59,22 @@ public partial class ExtendedModeGameOverWindow : Window
     {
         AccountManager.CurrentAccount!.Coins += score;
         AccountManager.SaveAccount(AccountManager.CurrentAccount);
+    }
+
+    private static void SaveWindowStateToAccount()
+    {
+        if (AccountManager.CurrentAccount == null) return;
+        AccountManager.CurrentAccount!.MaximizedWindow = WindowStateData.Maximized;
+        AccountManager.CurrentAccount.WindowWidth = (int)WindowStateData.WindowWidth;
+        AccountManager.CurrentAccount.WindowHeight = (int)WindowStateData.WindowHeight;
+        AccountManager.CurrentAccount.WindowPositionX = (int)WindowStateData.WindowPositionX;
+        AccountManager.CurrentAccount.WindowPositionY = (int)WindowStateData.WindowPositionY;
+        AccountManager.SaveAccount(AccountManager.CurrentAccount);
+    }
+
+    private void ExtendedModeGameOverWindow_OnClosing(object? sender, EventArgs e)
+    {
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        SaveWindowStateToAccount();
     }
 }

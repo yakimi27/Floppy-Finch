@@ -16,11 +16,13 @@ public class ExtendedModeGame : Game
     private const int ScoreMultiplierPowerUpIndex = 3;
     private const int PipeOffset = 100;
     private readonly TextBlock _heartsTextBlock;
+    private readonly Border _itemJetpack;
+    private readonly Border _itemScoreMultiplayer;
+    private readonly Border _itemShield;
     private readonly List<PowerUp> _powerUps = new();
     private readonly UniformGrid? _powerUpSpaceGrid;
-    private readonly Border itemJetpack;
-    private readonly Border itemScoreMultiplayer;
-    private readonly Border itemShield;
+
+    private bool _gamePaused;
 
 
     public ExtendedModeGame(Canvas canvas, TextBlock scoreTextBlock, TextBlock heartsTextBlock,
@@ -34,9 +36,9 @@ public class ExtendedModeGame : Game
         _heartsTextBlock = heartsTextBlock;
         _powerUpSpaceGrid = powerUpSpaceGrid;
         PowerUpProperties.Initialize(powerUpSpaceGrid);
-        itemJetpack = PowerUpProgress.CreateItem("Jetpack", true);
-        itemScoreMultiplayer = PowerUpProgress.CreateItem("Score Multiplayer", true);
-        itemShield = PowerUpProgress.CreateItem("Shield", true);
+        _itemJetpack = PowerUpProgress.CreateItem("Jetpack", true);
+        _itemScoreMultiplayer = PowerUpProgress.CreateItem("Score Multiplayer", true);
+        _itemShield = PowerUpProgress.CreateItem("Shield", true);
     }
 
     internal static int Jetpack { get; set; } /*jetpack duration is upgradeable and sets in config*/
@@ -107,7 +109,7 @@ public class ExtendedModeGame : Game
                     GameCanvas.Children.Remove(nextPipe.TopPipe);
                     GameCanvas.Children.Remove(nextPipe.BottomPipe);
                     await StartTimer(1);
-                    GameTimerResume();
+                    if (!_gamePaused) GameTimerResume();
                 }
             }
         }
@@ -177,16 +179,16 @@ public class ExtendedModeGame : Game
                 return;
             case PowerUp.PowerUpType.Jetpack:
                 PowerUpProperties.JetpackDuration();
-                progressBarItem = itemJetpack;
+                progressBarItem = _itemJetpack;
                 break;
             case PowerUp.PowerUpType.ScoreMultiplier:
                 if (!ScoreMultiplier)
-                    progressBarItem = itemScoreMultiplayer;
+                    progressBarItem = _itemScoreMultiplayer;
                 PowerUpProperties.ScoreMultiplierDuration();
                 break;
             case PowerUp.PowerUpType.Shield:
                 if (!Shield)
-                    progressBarItem = itemShield;
+                    progressBarItem = _itemShield;
                 PowerUpProperties.ShieldDuration();
                 break;
         }
@@ -227,6 +229,7 @@ public class ExtendedModeGame : Game
     public override void PauseGame(bool paused)
     {
         PowerUpProperties.SetPauseState(paused);
+        _gamePaused = !_gamePaused;
         base.PauseGame(paused);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
@@ -31,19 +32,26 @@ public partial class ShopMenuWindow : Window
     {
         WindowStateData.SaveWindowState(Application.Current.MainWindow);
         SaveWindowStateToAccount();
-        AccountManager.SaveAccount(AccountManager.CurrentAccount);
         var mainMenuWindow = new MainMenuWindow();
         mainMenuWindow.Show();
         Close();
     }
 
 
-    private void SaveWindowStateToAccount()
+    private static void SaveWindowStateToAccount()
     {
-        AccountManager.CurrentAccount.MaximizedWindow = WindowStateData.Maximized;
+        if (AccountManager.CurrentAccount == null) return;
+        AccountManager.CurrentAccount!.MaximizedWindow = WindowStateData.Maximized;
         AccountManager.CurrentAccount.WindowWidth = (int)WindowStateData.WindowWidth;
         AccountManager.CurrentAccount.WindowHeight = (int)WindowStateData.WindowHeight;
         AccountManager.CurrentAccount.WindowPositionX = (int)WindowStateData.WindowPositionX;
         AccountManager.CurrentAccount.WindowPositionY = (int)WindowStateData.WindowPositionY;
+        AccountManager.SaveAccount(AccountManager.CurrentAccount);
+    }
+
+    private void ShopMenuWindow_OnClosing(object? sender, CancelEventArgs e)
+    {
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        SaveWindowStateToAccount();
     }
 }

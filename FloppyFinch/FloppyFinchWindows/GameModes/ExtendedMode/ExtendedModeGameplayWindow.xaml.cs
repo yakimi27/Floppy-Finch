@@ -1,13 +1,13 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
-using FloppyFinchGameModes.GameModes.ExtendedMode;
 using FloppyFinchGameModes.Menus;
+using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.GameLogics.Core;
 using FloppyFinchLogics.GameLogics.ExtendedMode;
 using FloppyFinchLogics.WindowLogics;
 
-namespace FloppyFinchWindows.GameModes.ExtendedMode;
+namespace FloppyFinchGameModes.GameModes.ExtendedMode;
 
 public partial class ExtendedModeModeGameplayWindow : Window
 {
@@ -49,6 +49,8 @@ public partial class ExtendedModeModeGameplayWindow : Window
     {
         Dispatcher.Invoke(() =>
         {
+            WindowStateData.SaveWindowState(Application.Current.MainWindow);
+            SaveWindowStateToAccount();
             var gameOverWindow = new ExtendedModeGameOverWindow(score, Game.CaptureGameCanvas());
             gameOverWindow.Show();
             Close();
@@ -73,6 +75,8 @@ public partial class ExtendedModeModeGameplayWindow : Window
 
     private void ButtonReturnMainMenu_OnClick(object sender, RoutedEventArgs e)
     {
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        SaveWindowStateToAccount();
         var mainMenuWindow = new MainMenuWindow();
         mainMenuWindow.Show();
         Close();
@@ -124,16 +128,22 @@ public partial class ExtendedModeModeGameplayWindow : Window
     private void RefreshLayout()
     {
         PowerUpSpaceGrid.Children.Clear();
-        /*
-        var itemJetpack = CreateItem("Jetpack", false);
-        var itemScoreMultiplayer = CreateItem("Score Multiplayer", false);
-        var itemShield = CreateItem("Shield", false);
+    }
 
-        if (itemJetpack.Visibility == Visibility.Visible) PowerUpSpaceGrid.Children.Add(itemJetpack);
-        if (itemScoreMultiplayer.Visibility == Visibility.Visible) PowerUpSpaceGrid.Children.Add(itemScoreMultiplayer);
-        if (itemShield.Visibility == Visibility.Visible) PowerUpSpaceGrid.Children.Add(itemShield);
-?
-        PowerUpSpaceGrid.Columns = PowerUpSpaceGrid.Children.Count > 0 ? PowerUpSpaceGrid.Children.Count : 1;
-        */
+    private static void SaveWindowStateToAccount()
+    {
+        if (AccountManager.CurrentAccount == null) return;
+        AccountManager.CurrentAccount!.MaximizedWindow = WindowStateData.Maximized;
+        AccountManager.CurrentAccount.WindowWidth = (int)WindowStateData.WindowWidth;
+        AccountManager.CurrentAccount.WindowHeight = (int)WindowStateData.WindowHeight;
+        AccountManager.CurrentAccount.WindowPositionX = (int)WindowStateData.WindowPositionX;
+        AccountManager.CurrentAccount.WindowPositionY = (int)WindowStateData.WindowPositionY;
+        AccountManager.SaveAccount(AccountManager.CurrentAccount);
+    }
+
+    private void ExtendedModeModeGameplayWindow_OnClosing(object? sender, EventArgs e)
+    {
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        SaveWindowStateToAccount();
     }
 }

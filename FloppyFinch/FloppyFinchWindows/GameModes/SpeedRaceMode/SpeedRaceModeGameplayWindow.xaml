@@ -6,7 +6,7 @@
         mc:Ignorable="d"
         Title="Floppy Finch" Height="auto" Width="auto" MinHeight="600" MinWidth="400"
         ResizeMode="NoResize"
-        KeyDown="Window_KeyDown" MouseDown="Window_MouseDown">
+        KeyDown="Window_KeyDown" MouseDown="Window_MouseDown" Closing="SpeedRaceModeGameplayWindow_OnClosing">
     <Grid>
         <Canvas Name="GameCanvas" Background="LightBlue" />
         <TextBlock x:Name="ScoreText" Text="0" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 100 0 0"

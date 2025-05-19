@@ -30,18 +30,25 @@ public partial class LeaderboardMenuWindow : Window
     {
         WindowStateData.SaveWindowState(Application.Current.MainWindow);
         SaveWindowStateToAccount();
-        AccountManager.SaveAccount(AccountManager.CurrentAccount);
         var mainMenuWindow = new MainMenuWindow();
         mainMenuWindow.Show();
         Close();
     }
 
-    private void SaveWindowStateToAccount()
+    private static void SaveWindowStateToAccount()
     {
-        AccountManager.CurrentAccount.MaximizedWindow = WindowStateData.Maximized;
+        if (AccountManager.CurrentAccount == null) return;
+        AccountManager.CurrentAccount!.MaximizedWindow = WindowStateData.Maximized;
         AccountManager.CurrentAccount.WindowWidth = (int)WindowStateData.WindowWidth;
         AccountManager.CurrentAccount.WindowHeight = (int)WindowStateData.WindowHeight;
         AccountManager.CurrentAccount.WindowPositionX = (int)WindowStateData.WindowPositionX;
         AccountManager.CurrentAccount.WindowPositionY = (int)WindowStateData.WindowPositionY;
+        AccountManager.SaveAccount(AccountManager.CurrentAccount);
+    }
+
+    private void LeaderboardMenuWindow_OnClosing(object? sender, EventArgs e)
+    {
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        SaveWindowStateToAccount();
     }
 }

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Loaded="MainMenuWindow_OnLoaded"
-        Title="Floppy Finch" Height="auto" Width="auto" MinHeight="600" MinWidth="400">
+        Title="Floppy Finch" Height="auto" Width="auto" MinHeight="600" MinWidth="400"
+        Closing="MainMenuWindow_OnClosing">
     <Grid>
         <Canvas Cursor="Help" Height="15" Width="15" Background="Transparent" VerticalAlignment="Top"
                 HorizontalAlignment="Right"

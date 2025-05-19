@@ -5,7 +5,7 @@ using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
 using WindowState = System.Windows.WindowState;
 
-namespace FloppyFinchWindows.GameModes.ClassicMode;
+namespace FloppyFinchGameModes.GameModes.ClassicMode;
 
 public partial class ClassicModeGameOverWindow : Window
 {
@@ -42,6 +42,8 @@ public partial class ClassicModeGameOverWindow : Window
 
     private void RestartButton_Click(object sender, RoutedEventArgs e)
     {
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        SaveWindowStateToAccount();
         var classicGameplayWindow = new ClassicModeGameplayWindow();
         classicGameplayWindow.Show();
         Close();
@@ -50,7 +52,8 @@ public partial class ClassicModeGameOverWindow : Window
 
     private void MainMenuButton_Click(object sender, RoutedEventArgs e)
     {
-        WindowStateData.SaveWindowState(Application.Current.MainWindow!);
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        SaveWindowStateToAccount();
         var mainMenuWindow = new MainMenuWindow();
         mainMenuWindow.Show();
         Close();
@@ -58,6 +61,8 @@ public partial class ClassicModeGameOverWindow : Window
 
     private void ExitButton_Click(object sender, RoutedEventArgs e)
     {
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        SaveWindowStateToAccount();
         Close();
     }
 
@@ -66,5 +71,22 @@ public partial class ClassicModeGameOverWindow : Window
         AccountManager.CurrentAccount!.Coins += score;
         if (score > AccountManager.CurrentAccount.HighScore) AccountManager.CurrentAccount.HighScore = score;
         AccountManager.SaveAccount(AccountManager.CurrentAccount);
+    }
+
+    private static void SaveWindowStateToAccount()
+    {
+        if (AccountManager.CurrentAccount == null) return;
+        AccountManager.CurrentAccount!.MaximizedWindow = WindowStateData.Maximized;
+        AccountManager.CurrentAccount.WindowWidth = (int)WindowStateData.WindowWidth;
+        AccountManager.CurrentAccount.WindowHeight = (int)WindowStateData.WindowHeight;
+        AccountManager.CurrentAccount.WindowPositionX = (int)WindowStateData.WindowPositionX;
+        AccountManager.CurrentAccount.WindowPositionY = (int)WindowStateData.WindowPositionY;
+        AccountManager.SaveAccount(AccountManager.CurrentAccount);
+    }
+
+    private void ClassicModeGameOverWindow_OnClosing(object? sender, EventArgs e)
+    {
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        SaveWindowStateToAccount();
     }
 }
