@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows;
+using System.Windows.Controls;
 using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
@@ -9,6 +10,8 @@ namespace FloppyFinchWindows.Menus;
 
 public partial class SettingsMenuWindow : Window
 {
+    private bool isInitializingResolutionComboBox;
+
     public SettingsMenuWindow()
     {
         InitializeComponent();
@@ -24,6 +27,8 @@ public partial class SettingsMenuWindow : Window
             Application.Current.MainWindow.Left = WindowStateData.WindowPositionX;
             Application.Current.MainWindow.Top = WindowStateData.WindowPositionY;
         }
+
+        SetUpResolutionComboBox();
     }
 
     private void ButtonBack_OnClick(object sender, RoutedEventArgs e)
@@ -100,5 +105,61 @@ public partial class SettingsMenuWindow : Window
     {
         WindowStateData.SaveWindowState(Application.Current.MainWindow);
         SaveWindowStateToAccount();
+    }
+
+    private void ButtonResetScreenPosition_OnClick(object sender, RoutedEventArgs e)
+    {
+        var screenWidth = SystemParameters.PrimaryScreenWidth;
+        var screenHeight = SystemParameters.PrimaryScreenHeight;
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        var defaultCenterX = (int)((screenWidth - WindowStateData.WindowWidth) / 2);
+        var defaultCenterY = (int)((screenHeight - WindowStateData.WindowHeight) / 2);
+        Application.Current.MainWindow.Left = defaultCenterX >= 0 ? defaultCenterX : 0;
+        Application.Current.MainWindow.Top = defaultCenterY >= 0 ? defaultCenterY : 0;
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
+        SaveWindowStateToAccount();
+    }
+
+    private void SetUpResolutionComboBox()
+    {
+        isInitializingResolutionComboBox = true;
+
+        var currentResolution = $"{(int)WindowStateData.WindowWidth} x {(int)WindowStateData.WindowHeight}";
+
+        ComboBoxResolution.Items.Add(currentResolution);
+        ComboBoxResolution.Items.Add("1920 x 1200");
+        ComboBoxResolution.Items.Add("1920 x 1080");
+        ComboBoxResolution.Items.Add("1600 x 900");
+        ComboBoxResolution.Items.Add("1366 x 768");
+        ComboBoxResolution.Items.Add("1280 x 720");
+        ComboBoxResolution.Items.Add("1024 x 768");
+        ComboBoxResolution.Items.Add("800 x 600");
+        ComboBoxResolution.Items.Add("400 x 600");
+
+        ComboBoxResolution.SelectedItem = currentResolution;
+
+        isInitializingResolutionComboBox = false;
+    }
+
+    private void ComboBoxResolution_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (isInitializingResolutionComboBox)
+            return;
+
+        if (ComboBoxResolution.SelectedItem is string selectedResolution)
+        {
+            var parts = selectedResolution.Split('x');
+            if (parts.Length == 2 &&
+                int.TryParse(parts[0].Trim(), out var width) &&
+                int.TryParse(parts[1].Trim(), out var height))
+            {
+                Application.Current.MainWindow.Width = width;
+                Application.Current.MainWindow.Height = height;
+
+                WindowStateData.SaveWindowState(Application.Current.MainWindow);
+
+                ButtonResetScreenPosition_OnClick(sender, e);
+            }
+        }
     }
 }
