@@ -77,4 +77,53 @@
         </Compile>
     </ItemGroup>
 
+    <ItemGroup>
+        <Folder Include="Assets\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="Assets\Bird\classic_0.png"/>
+        <None Remove="Assets\Bird\classic_1.png"/>
+        <None Remove="Assets\Bird\classic_2.png"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="Assets\Bird\skin_1_blue_0.png"/>
+        <Resource Include="Assets\Bird\skin_1_blue_0.png"/>
+        <None Remove="Assets\Bird\skin_1_blue_1.png"/>
+        <Resource Include="Assets\Bird\skin_1_blue_1.png"/>
+        <None Remove="Assets\Bird\skin_1_blue_2.png"/>
+        <Resource Include="Assets\Bird\skin_1_blue_2.png"/>
+        <None Remove="Assets\Bird\skin_0_classic_0.png"/>
+        <Resource Include="Assets\Bird\skin_0_classic_0.png"/>
+        <None Remove="Assets\Bird\skin_0_classic_1.png"/>
+        <Resource Include="Assets\Bird\skin_0_classic_1.png"/>
+        <None Remove="Assets\Bird\skin_0_classic_2.png"/>
+        <Resource Include="Assets\Bird\skin_0_classic_2.png"/>
+        <None Remove="Assets\Bird\skin_2_black_0.png"/>
+        <Resource Include="Assets\Bird\skin_2_black_0.png"/>
+        <None Remove="Assets\Bird\skin_2_black_1.png"/>
+        <Resource Include="Assets\Bird\skin_2_black_1.png"/>
+        <None Remove="Assets\Bird\skin_2_black_2.png"/>
+        <Resource Include="Assets\Bird\skin_2_black_2.png"/>
+        <None Remove="Assets\Bird\skin_3_green_0.png"/>
+        <Resource Include="Assets\Bird\skin_3_green_0.png"/>
+        <None Remove="Assets\Bird\skin_3_green_1.png"/>
+        <Resource Include="Assets\Bird\skin_3_green_1.png"/>
+        <None Remove="Assets\Bird\skin_3_green_2.png"/>
+        <Resource Include="Assets\Bird\skin_3_green_2.png"/>
+        <None Remove="Assets\Bird\skin_4_pink_0.png"/>
+        <Resource Include="Assets\Bird\skin_4_pink_0.png"/>
+        <None Remove="Assets\Bird\skin_4_pink_1.png"/>
+        <Resource Include="Assets\Bird\skin_4_pink_1.png"/>
+        <None Remove="Assets\Bird\skin_4_pink_2.png"/>
+        <Resource Include="Assets\Bird\skin_4_pink_2.png"/>
+        <None Remove="Assets\Bird\skin_5_white_0.png"/>
+        <Resource Include="Assets\Bird\skin_5_white_0.png"/>
+        <None Remove="Assets\Bird\skin_5_white_1.png"/>
+        <Resource Include="Assets\Bird\skin_5_white_1.png"/>
+        <None Remove="Assets\Bird\skin_5_white_2.png"/>
+        <Resource Include="Assets\Bird\skin_5_white_2.png"/>
+    </ItemGroup>
+
 </Project>

@@ -2,6 +2,8 @@
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using FloppyFinchLogics.AccountManagement;
+using FloppyFinchLogics.TextureManagement;
 using FloppyFinchLogics.WindowLogics;
 
 namespace FloppyFinchLogics.GameLogics.Core;
@@ -19,13 +21,13 @@ public class Game
     protected readonly Random Random = new();
     protected int Score;
 
-
     public Game(Canvas canvas, TextBlock scoreTextBlock)
     {
         GameCanvas = canvas;
         _gameOverCanvas = canvas;
         _scoreText = scoreTextBlock;
-        Bird = new Bird(GameCanvas);
+        var currentSkin = SkinManager.LoadSkin(AccountManager.CurrentAccount!.SelectedSkin);
+        Bird = new Bird(GameCanvas, currentSkin);
         _gameTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(30) };
         _gameTimer.Tick += WaitLoop!;
         _gameTimer.Start();

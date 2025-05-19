@@ -6,6 +6,11 @@
         mc:Ignorable="d"
         Title="Floppy Finch" Height="auto" Width="auto" MinHeight="600" MinWidth="400"
         Closing="ShopMenuWindow_OnClosing">
+    <!--<Window.Resources>
+        <floppyFinchGameModes:SkinButtonConverter x:Key="SkinButtonConverter" />
+    </Window.Resources>-->
+
+
     <Grid>
         <!--resize corner info-->
         <Canvas Cursor="Help" Height="15" Width="15" Background="Transparent" VerticalAlignment="Top"
@@ -49,18 +54,23 @@
                 <!--bird skin tab-->
                 <TabItem Header="Bird Skins">
                     <ScrollViewer>
-                        <UniformGrid Columns="2">
+                        <UniformGrid>
                             <!--skin items add here-->
-                            <ItemsControl x:Name="SkinsItemsControl">
+                            <ItemsControl x:Name="SkinsItemsControl" Margin="25">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Border Margin="10" BorderThickness="1" BorderBrush="Gray"
                                                 Background="White">
                                             <StackPanel Margin="10">
-                                                <Image Height="100" Margin="0,0,0,10" />
+                                                <Image Source="{Binding Image}" Height="100" Margin="0,0,0,10"
+                                                       RenderOptions.BitmapScalingMode="NearestNeighbor" />
                                                 <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" />
-                                                <TextBlock Text="{Binding Price}" HorizontalAlignment="Center" />
-                                                <Button Content="Buy" Height="40" Margin="0,10,0,0" />
+                                                <Label x:Name="LabelCoinsWarning" Content="Not enough coins."
+                                                       Visibility="{Binding NotEnoughCoins}" HorizontalAlignment="Center"/>
+                                                <Button
+                                                    Content="{Binding ButtonLabel}"
+                                                    Click="SkinButton_Click" Height="40" Margin="0,10,0,0"
+                                                    IsEnabled="{Binding IsSelected}" MaxWidth="150"/>
                                             </StackPanel>
                                         </Border>
                                     </DataTemplate>

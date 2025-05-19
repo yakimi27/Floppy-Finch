@@ -8,7 +8,7 @@
         ResizeMode="NoResize"
         KeyDown="Window_KeyDown" MouseDown="Window_MouseDown" Closing="SpeedRaceModeGameplayWindow_OnClosing">
     <Grid>
-        <Canvas Name="GameCanvas" Background="LightBlue" />
+        <Canvas Name="GameCanvas" Background="LightBlue" RenderOptions.BitmapScalingMode="NearestNeighbor" />
         <TextBlock x:Name="ScoreText" Text="0" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 100 0 0"
                    FontSize="26" Visibility="Hidden" />
         <TextBlock x:Name="KeyWait" Text="Press space to start" VerticalAlignment="Top" HorizontalAlignment="Center"

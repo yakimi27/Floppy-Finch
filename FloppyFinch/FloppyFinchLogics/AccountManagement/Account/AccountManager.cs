@@ -52,7 +52,6 @@ public static class AccountManager
         var salt = PasswordHasher.GenerateSalt();
         var hash = PasswordHasher.HashPassword(password, salt);
 
-
         var account = new AccountData
         {
             Username = username,
@@ -60,6 +59,8 @@ public static class AccountManager
             PasswordHash = Convert.ToBase64String(hash),
             Coins = 0,
             HighScore = 0,
+            SelectedSkin = "Classic",
+            UnlockedSkins = ["Classic"],
             WindowWidth = DefaultWindowWidth,
             WindowHeight = DefaultWindowHeight,
             WindowPositionX = DefaultCenterX,
