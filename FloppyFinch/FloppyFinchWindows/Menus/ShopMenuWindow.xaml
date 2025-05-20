@@ -3,14 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:resources="clr-namespace:FloppyFinchWindows.Resources"
         mc:Ignorable="d"
         Title="Floppy Finch" Height="auto" Width="auto" MinHeight="600" MinWidth="400"
         Closing="ShopMenuWindow_OnClosing">
-    <!--<Window.Resources>
-        <floppyFinchGameModes:SkinButtonConverter x:Key="SkinButtonConverter" />
-    </Window.Resources>-->
-
-
     <Grid>
         <!--resize corner info-->
         <Canvas Cursor="Help" Height="15" Width="15" Background="Transparent" VerticalAlignment="Top"
@@ -40,7 +36,8 @@
 
             <!--top bar-->
             <Grid Grid.Row="0">
-                <Button x:Name="ButtonBack" Click="ButtonBack_OnClick" Content="Back"
+                <Button x:Name="ButtonBack" Click="ButtonBack_OnClick"
+                        Content="{x:Static resources:Strings.BackButtonText}"
                         Width="75" Height="25" HorizontalAlignment="Left" Margin="35,0" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="35,0">
                     <Image x:Name="CoinIcon" Width="25" Height="25" Margin="0,0,10,0" />
@@ -81,7 +78,6 @@
                         </UniformGrid>
                     </ScrollViewer>
                 </TabItem>
-
                 <!--powerups-->
                 <TabItem Header="Power-ups">
                     <ScrollViewer>

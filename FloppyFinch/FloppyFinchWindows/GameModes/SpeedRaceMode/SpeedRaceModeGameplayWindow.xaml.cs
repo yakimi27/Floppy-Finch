@@ -1,12 +1,11 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
-using FloppyFinchGameModes.GameModes.SpeedRaceMode;
-using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.GameLogics.Core;
 using FloppyFinchLogics.GameLogics.SpeedRaceMode;
 using FloppyFinchLogics.WindowLogics;
+using FloppyFinchWindows.Menus;
 
 namespace FloppyFinchWindows.GameModes.SpeedRaceMode;
 

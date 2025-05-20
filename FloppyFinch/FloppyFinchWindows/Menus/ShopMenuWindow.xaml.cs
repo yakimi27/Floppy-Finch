@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.GameLogics.ExtendedMode;
 using FloppyFinchLogics.TextureManagement;

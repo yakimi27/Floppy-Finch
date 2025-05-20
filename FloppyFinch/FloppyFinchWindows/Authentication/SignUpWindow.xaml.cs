@@ -1,9 +1,9 @@
 ﻿using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
+using FloppyFinchWindows.Menus;
 
 namespace FloppyFinchWindows.Authentication;
 

@@ -1,11 +1,10 @@
 ﻿using System.Windows;
 using System.Windows.Media.Imaging;
-using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
-using FloppyFinchWindows.GameModes.SpeedRaceMode;
+using FloppyFinchWindows.Menus;
 
-namespace FloppyFinchGameModes.GameModes.SpeedRaceMode;
+namespace FloppyFinchWindows.GameModes.SpeedRaceMode;
 
 public partial class SpeedRaceModeGameOverWindow : Window
 {

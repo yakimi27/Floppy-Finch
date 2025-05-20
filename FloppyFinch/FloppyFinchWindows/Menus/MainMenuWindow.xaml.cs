@@ -1,10 +1,9 @@
 ﻿using System.Windows;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
-using FloppyFinchWindows.Menus;
 using WindowState = System.Windows.WindowState;
 
-namespace FloppyFinchGameModes.Menus;
+namespace FloppyFinchWindows.Menus;
 
 public partial class MainMenuWindow : Window
 {

@@ -1,13 +1,13 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
-using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.GameLogics.Core;
 using FloppyFinchLogics.WindowLogics;
+using FloppyFinchWindows.Menus;
 using WindowState = System.Windows.WindowState;
 
-namespace FloppyFinchGameModes.GameModes.ClassicMode;
+namespace FloppyFinchWindows.GameModes.ClassicMode;
 
 public partial class ClassicModeGameplayWindow : Window
 {

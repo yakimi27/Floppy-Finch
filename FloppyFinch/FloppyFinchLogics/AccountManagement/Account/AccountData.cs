@@ -24,4 +24,5 @@ public class AccountData
     public int WindowWidth { get; set; }
     public int WindowHeight { get; set; }
     public string SelectedSkin { get; set; }
+    public string SelectedLanguage { get; set; }
 }

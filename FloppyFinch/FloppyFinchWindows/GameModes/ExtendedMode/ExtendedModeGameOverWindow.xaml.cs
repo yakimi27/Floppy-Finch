@@ -1,10 +1,10 @@
 ﻿using System.Windows;
 using System.Windows.Media.Imaging;
-using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
+using FloppyFinchWindows.Menus;
 
-namespace FloppyFinchGameModes.GameModes.ExtendedMode;
+namespace FloppyFinchWindows.GameModes.ExtendedMode;
 
 public partial class ExtendedModeGameOverWindow : Window
 {

@@ -2,7 +2,7 @@
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
 
-namespace FloppyFinchGameModes.Menus;
+namespace FloppyFinchWindows.Menus;
 
 public partial class LeaderboardMenuWindow : Window
 {

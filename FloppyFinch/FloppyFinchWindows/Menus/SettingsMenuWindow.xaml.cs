@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
 using FloppyFinchWindows.Authentication;
@@ -10,6 +9,7 @@ namespace FloppyFinchWindows.Menus;
 
 public partial class SettingsMenuWindow : Window
 {
+    private readonly bool isInitializingLanguageComboBox;
     private bool isInitializingResolutionComboBox;
 
     public SettingsMenuWindow()
@@ -29,6 +29,12 @@ public partial class SettingsMenuWindow : Window
         }
 
         SetUpResolutionComboBox();
+        isInitializingLanguageComboBox = true;
+        if (AccountManager.CurrentAccount != null)
+            ComboBoxLanguage.SelectedItem = AccountManager.CurrentAccount.SelectedLanguage == "uk"
+                ? ComboBoxItemLanguageUkrainian
+                : ComboBoxItemLanguageEnglish;
+        isInitializingLanguageComboBox = false;
     }
 
     private void ButtonBack_OnClick(object sender, RoutedEventArgs e)
@@ -161,5 +167,24 @@ public partial class SettingsMenuWindow : Window
                 ButtonResetScreenPosition_OnClick(sender, e);
             }
         }
+    }
+
+    private void ComboBoxLanguage_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (isInitializingLanguageComboBox) return;
+        if (AccountManager.CurrentAccount == null)
+            return;
+
+        if (ComboBoxLanguage.SelectedItem.Equals(ComboBoxItemLanguageUkrainian))
+        {
+            App.ChangeLanguage("uk");
+            AccountManager.CurrentAccount.SelectedLanguage = "uk";
+            AccountManager.SaveAccount(AccountManager.CurrentAccount);
+            return;
+        }
+
+        App.ChangeLanguage("en");
+        AccountManager.CurrentAccount.SelectedLanguage = "en";
+        AccountManager.SaveAccount(AccountManager.CurrentAccount);
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Media.Imaging;
-using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
+using FloppyFinchWindows.Menus;
 using WindowState = System.Windows.WindowState;
 
 namespace FloppyFinchWindows.GameModes.TargetScoreMode;

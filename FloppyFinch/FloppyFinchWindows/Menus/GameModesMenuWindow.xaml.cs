@@ -1,11 +1,10 @@
 ﻿using System.Windows;
-using FloppyFinchGameModes.GameModes.ExtendedMode;
-using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
+using FloppyFinchWindows.GameModes.ExtendedMode;
 using FloppyFinchWindows.GameModes.SpeedRaceMode;
 using FloppyFinchWindows.GameModes.TargetScoreMode;
-using ClassicModeGameplayWindow = FloppyFinchGameModes.GameModes.ClassicMode.ClassicModeGameplayWindow;
+using ClassicModeGameplayWindow = FloppyFinchWindows.GameModes.ClassicMode.ClassicModeGameplayWindow;
 using WindowState = System.Windows.WindowState;
 
 namespace FloppyFinchWindows.Menus;

@@ -1,11 +1,11 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
-using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.GameLogics.Core;
 using FloppyFinchLogics.GameLogics.TargetScoreMode;
 using FloppyFinchLogics.WindowLogics;
+using FloppyFinchWindows.Menus;
 using WindowState = System.Windows.WindowState;
 
 namespace FloppyFinchWindows.GameModes.TargetScoreMode;
