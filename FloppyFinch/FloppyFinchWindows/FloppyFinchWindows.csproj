@@ -78,10 +78,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Assets\"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <None Remove="Assets\Bird\classic_0.png"/>
         <None Remove="Assets\Bird\classic_1.png"/>
         <None Remove="Assets\Bird\classic_2.png"/>
@@ -124,6 +120,14 @@
         <Resource Include="Assets\Bird\skin_5_white_1.png"/>
         <None Remove="Assets\Bird\skin_5_white_2.png"/>
         <Resource Include="Assets\Bird\skin_5_white_2.png"/>
+        <None Remove="Assets\PowerUps\heart_powerup.png"/>
+        <Resource Include="Assets\PowerUps\heart_powerup.png"/>
+        <None Remove="Assets\PowerUps\jetpack_powerup.png"/>
+        <Resource Include="Assets\PowerUps\jetpack_powerup.png"/>
+        <None Remove="Assets\PowerUps\score_multiplier_powerup.png"/>
+        <Resource Include="Assets\PowerUps\score_multiplier_powerup.png"/>
+        <None Remove="Assets\PowerUps\shield_powerup.png"/>
+        <Resource Include="Assets\PowerUps\shield_powerup.png"/>
     </ItemGroup>
 
 </Project>

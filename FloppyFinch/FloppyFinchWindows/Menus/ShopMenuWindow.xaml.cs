@@ -3,7 +3,9 @@ using System.Windows;
 using System.Windows.Controls;
 using FloppyFinchGameModes.Menus;
 using FloppyFinchLogics.AccountManagement;
+using FloppyFinchLogics.GameLogics.ExtendedMode;
 using FloppyFinchLogics.TextureManagement;
+using FloppyFinchLogics.TextureManagement.PowerUps;
 using FloppyFinchLogics.WindowLogics;
 using WindowState = System.Windows.WindowState;
 
@@ -31,6 +33,7 @@ public partial class ShopMenuWindow : Window
         CoinsText.Text = AccountManager.CurrentAccount!.Coins.ToString();
 
         LoadSkins();
+        LoadPowerUps();
     }
 
     private void ButtonBack_OnClick(object sender, RoutedEventArgs e)
@@ -118,6 +121,20 @@ public partial class ShopMenuWindow : Window
         SkinsItemsControl.ItemsSource = skins;
     }
 
+    private void SkinButton_Click(object sender, RoutedEventArgs e)
+    {
+        var button = (Button)sender;
+        var skinItem = (SkinItem)button.DataContext;
+
+        if (skinItem.IsOwned)
+            SelectSkin(skinItem);
+        else
+            BuySkin(skinItem);
+
+        UpdateCoinsDisplay();
+        LoadSkins();
+        LoadPowerUps();
+    }
 
     private void BuySkin(SkinItem skin)
     {
@@ -127,6 +144,7 @@ public partial class ShopMenuWindow : Window
             AccountManager.CurrentAccount.UnlockedSkins.Add(skin.Name);
             AccountManager.SaveAccount(AccountManager.CurrentAccount);
             LoadSkins();
+            LoadPowerUps();
         }
     }
 
@@ -139,17 +157,65 @@ public partial class ShopMenuWindow : Window
         }
     }
 
-    private void SkinButton_Click(object sender, RoutedEventArgs e)
+    private void LoadPowerUps()
     {
-        var button = (Button)sender;
-        var skinItem = (SkinItem)button.DataContext;
+        var powerUps = new List<PowerUpItem>
+        {
+            new()
+            {
+                Id = 0,
+                Name = "Jetpack",
+                Price = CalculatePowerUpPrice(175, AccountManager.CurrentAccount.PowerUpLevels[0]),
+                Level = AccountManager.CurrentAccount.PowerUpLevels[0],
+                Image = PowerUpManager.LoadPowerUp(PowerUp.PowerUpType.Jetpack)
+            },
+            new()
+            {
+                Id = 1,
+                Name = "Score Multiplier",
+                Price = CalculatePowerUpPrice(150, AccountManager.CurrentAccount.PowerUpLevels[1]),
+                Level = AccountManager.CurrentAccount.PowerUpLevels[1],
+                Image = PowerUpManager.LoadPowerUp(PowerUp.PowerUpType.ScoreMultiplier)
+            },
+            new()
+            {
+                Id = 2,
+                Name = "Shield",
+                Price = CalculatePowerUpPrice(100, AccountManager.CurrentAccount.PowerUpLevels[2]),
+                Level = AccountManager.CurrentAccount.PowerUpLevels[2],
+                Image = PowerUpManager.LoadPowerUp(PowerUp.PowerUpType.Shield)
+            }
+        };
 
-        if (skinItem.IsOwned)
-            SelectSkin(skinItem);
-        else
-            BuySkin(skinItem);
+        PowerupsItemsControl.ItemsSource = powerUps;
+    }
 
-        CoinsText.Text = AccountManager.CurrentAccount!.Coins.ToString();
+    private int CalculatePowerUpPrice(int basePrice, int currentLevel)
+    {
+        return basePrice * (1 + currentLevel / 2);
+    }
+
+    private void PowerUpButton_Click(object sender, RoutedEventArgs e)
+    {
+        var button = sender as Button;
+        var powerUpItem = button?.DataContext as PowerUpItem;
+
+        if (powerUpItem == null || powerUpItem.IsMaxed ||
+            AccountManager.CurrentAccount!.Coins < powerUpItem.Price)
+            return;
+
+        AccountManager.CurrentAccount.Coins -= powerUpItem.Price;
+
+        AccountManager.CurrentAccount.PowerUpLevels[powerUpItem.Id]++;
+
+        UpdateCoinsDisplay();
         LoadSkins();
+        LoadPowerUps();
+        AccountManager.SaveAccount(AccountManager.CurrentAccount);
+    }
+
+    private void UpdateCoinsDisplay()
+    {
+        CoinsText.Text = AccountManager.CurrentAccount!.Coins.ToString();
     }
 }

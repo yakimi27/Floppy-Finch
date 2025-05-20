@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Shapes;
+using FloppyFinchLogics.TextureManagement.PowerUps;
 
 namespace FloppyFinchLogics.GameLogics.ExtendedMode;
 
@@ -16,17 +16,17 @@ public class PowerUp
     }
 
     private readonly Canvas _gameCanvas;
-    private readonly Rectangle _powerUp;
+    private readonly Image _powerUp;
 
     public PowerUp(Canvas gameCanvas, double x, double y, PowerUpType type)
     {
         _gameCanvas = gameCanvas;
         Type = type;
-        _powerUp = new Rectangle
+        _powerUp = new Image
         {
             Width = 40,
             Height = 40,
-            Fill = GetPowerUpColor(type)
+            Source = PowerUpManager.LoadPowerUp(type)
         };
         Canvas.SetLeft(_powerUp, x);
         Canvas.SetTop(_powerUp, y);
@@ -72,7 +72,7 @@ public class PowerUp
         _gameCanvas.Children.Remove(_powerUp);
     }
 
-    public Rectangle GetShape()
+    public Image GetShape()
     {
         return _powerUp;
     }

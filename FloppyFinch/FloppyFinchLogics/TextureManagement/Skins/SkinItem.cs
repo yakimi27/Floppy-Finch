@@ -6,10 +6,10 @@ namespace FloppyFinchLogics.TextureManagement;
 
 public class SkinItem
 {
+    public ImageSource Image { get; set; }
     public string Name { get; set; }
     public int Price { get; set; }
     public bool IsOwned { get; set; }
-    public ImageSource Image { get; set; }
     public bool IsSelected { get; set; }
 
     public string ButtonLabel
@@ -33,4 +33,6 @@ public class SkinItem
             return Visibility.Visible;
         }
     }
+
+    public bool ButtonEnabled => NotEnoughCoins == Visibility.Collapsed && IsSelected;
 }

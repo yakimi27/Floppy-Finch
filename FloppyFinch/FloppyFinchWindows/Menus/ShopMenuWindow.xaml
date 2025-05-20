@@ -65,12 +65,14 @@
                                                 <Image Source="{Binding Image}" Height="100" Margin="0,0,0,10"
                                                        RenderOptions.BitmapScalingMode="NearestNeighbor" />
                                                 <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" />
-                                                <Label x:Name="LabelCoinsWarning" Content="Not enough coins."
-                                                       Visibility="{Binding NotEnoughCoins}" HorizontalAlignment="Center"/>
+                                                <Label x:Name="LabelCoinsWarning" Content="Not enough coins!"
+                                                       Visibility="{Binding NotEnoughCoins}"
+                                                       Foreground="Red"
+                                                       HorizontalAlignment="Center" />
                                                 <Button
                                                     Content="{Binding ButtonLabel}"
                                                     Click="SkinButton_Click" Height="40" Margin="0,10,0,0"
-                                                    IsEnabled="{Binding IsSelected}" MaxWidth="150"/>
+                                                    IsEnabled="{Binding ButtonEnabled}" MaxWidth="150" />
                                             </StackPanel>
                                         </Border>
                                     </DataTemplate>
@@ -83,23 +85,35 @@
                 <!--powerups-->
                 <TabItem Header="Power-ups">
                     <ScrollViewer>
-                        <UniformGrid Columns="2">
+                        <UniformGrid>
                             <!--powerup add here-->
-                            <ItemsControl x:Name="PowerupsItemsControl">
+                            <ItemsControl x:Name="PowerupsItemsControl" Margin="25">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Border Margin="10" BorderThickness="1" BorderBrush="Gray"
                                                 Background="White">
                                             <StackPanel Margin="10">
-                                                <Image Height="100" Margin="0,0,0,10" />
-                                                <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" />
-                                                <TextBlock Text="{Binding Level}" HorizontalAlignment="Center" />
-                                                <TextBlock Text="{Binding Price}" HorizontalAlignment="Center" />
-                                                <Button Content="Upgrade" Height="40" Margin="0,10,0,0" />
+                                                <Image Source="{Binding Image}" Height="100" Margin="0,0,0,10"
+                                                       RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                                                <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"
+                                                           FontWeight="Bold" Margin="0,0,0,5" />
+                                                <TextBlock Text="{Binding Level, StringFormat='Level: {0}'}"
+                                                           HorizontalAlignment="Center" />
+                                                <Label Content="Not enough coins!"
+                                                       Visibility="{Binding NotEnoughCoins}"
+                                                       Foreground="Red"
+                                                       HorizontalAlignment="Center" />
+                                                <Button Content="{Binding ButtonLabel}"
+                                                        Click="PowerUpButton_Click"
+                                                        Height="40"
+                                                        Margin="0,10,0,0"
+                                                        IsEnabled="{Binding CanUpgrade}"
+                                                        MaxWidth="150" />
                                             </StackPanel>
                                         </Border>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
+
                             </ItemsControl>
                         </UniformGrid>
                     </ScrollViewer>

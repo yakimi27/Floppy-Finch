@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using FloppyFinchLogics.AccountManagement;
 
 namespace FloppyFinchLogics.GameLogics.ExtendedMode;
 
@@ -7,11 +8,11 @@ public class PowerUpProperties
 {
     private static UniformGrid? _powerUpSpaceGrid;
     private static int _scoreMultiplayerDuration;
-    private static readonly int MaxScoreMultiplayerDuration = 15;
+    private static readonly int MaxScoreMultiplierDuration = 5;
     private static int _shieldDuration;
-    private static readonly int MaxShieldDuration = 15;
+    private static readonly int MaxShieldDuration = 5;
     private static int _jetpackDuration;
-    private static readonly int MaxJetpackDuration = 15;
+    private static readonly int MaxJetpackDuration = 5;
 
     private static bool _paused;
 
@@ -34,12 +35,16 @@ public class PowerUpProperties
 
     public static void JetpackDuration()
     {
-        ExtendedModeGame.Jetpack = MaxJetpackDuration;
+        ExtendedModeGame.Jetpack = AccountManager.CurrentAccount == null
+            ? MaxJetpackDuration
+            : AccountManager.CurrentAccount.PowerUpLevels[0] * MaxJetpackDuration;
     }
 
-    public static async void ScoreMultiplierDuration(int seconds = 10)
+    public static async void ScoreMultiplierDuration()
     {
-        _scoreMultiplayerDuration = MaxScoreMultiplayerDuration;
+        _scoreMultiplayerDuration = AccountManager.CurrentAccount == null
+            ? MaxScoreMultiplierDuration
+            : AccountManager.CurrentAccount.PowerUpLevels[1] * MaxScoreMultiplierDuration;
 
         if (!ExtendedModeGame.ScoreMultiplier)
         {
@@ -54,16 +59,20 @@ public class PowerUpProperties
         }
     }
 
-    public static async void ShieldDuration(int seconds = 15)
+    public static async void ShieldDuration()
     {
         if (_shieldCancellation != null)
         {
-            _shieldDuration = MaxShieldDuration;
+            _shieldDuration = AccountManager.CurrentAccount == null
+                ? MaxShieldDuration
+                : AccountManager.CurrentAccount.PowerUpLevels[1] * MaxShieldDuration;
             return;
         }
 
         _shieldCancellation = new CancellationTokenSource();
-        _shieldDuration = MaxShieldDuration;
+        _shieldDuration = AccountManager.CurrentAccount == null
+            ? MaxShieldDuration
+            : AccountManager.CurrentAccount.PowerUpLevels[2] * MaxShieldDuration;
         ExtendedModeGame.Shield = true;
 
         try
@@ -103,9 +112,15 @@ public class PowerUpProperties
         var progressBar = (ProgressBar)((StackPanel)progressBarItem.Child).Children[1];
         var duration = powerUpType switch
         {
-            PowerUp.PowerUpType.Jetpack => MaxJetpackDuration,
-            PowerUp.PowerUpType.ScoreMultiplier => MaxScoreMultiplayerDuration,
-            PowerUp.PowerUpType.Shield => MaxShieldDuration,
+            PowerUp.PowerUpType.Jetpack => AccountManager.CurrentAccount == null
+                ? MaxJetpackDuration
+                : AccountManager.CurrentAccount.PowerUpLevels[0] * MaxJetpackDuration,
+            PowerUp.PowerUpType.ScoreMultiplier => AccountManager.CurrentAccount == null
+                ? MaxScoreMultiplierDuration
+                : AccountManager.CurrentAccount.PowerUpLevels[1] * MaxScoreMultiplierDuration,
+            PowerUp.PowerUpType.Shield => AccountManager.CurrentAccount == null
+                ? MaxShieldDuration
+                : AccountManager.CurrentAccount.PowerUpLevels[2] * MaxShieldDuration,
             _ => 0
         };
 

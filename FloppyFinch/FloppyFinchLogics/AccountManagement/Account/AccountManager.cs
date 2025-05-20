@@ -61,6 +61,7 @@ public static class AccountManager
             HighScore = 0,
             SelectedSkin = "Classic",
             UnlockedSkins = ["Classic"],
+            PowerUpLevels = [1, 1, 1], /*Jetpack, Score, Shield*/
             WindowWidth = DefaultWindowWidth,
             WindowHeight = DefaultWindowHeight,
             WindowPositionX = DefaultCenterX,
