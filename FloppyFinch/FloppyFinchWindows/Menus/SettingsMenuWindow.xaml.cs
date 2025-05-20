@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
 using FloppyFinchWindows.Authentication;
+using FloppyFinchWindows.Resources;
 
 namespace FloppyFinchWindows.Menus;
 
@@ -69,14 +70,16 @@ public partial class SettingsMenuWindow : Window
 
     private void ButtonClearAccountData_OnClick(object sender, RoutedEventArgs e)
     {
-        var result = MessageBox.Show("Are you sure?", "Clear account data.", MessageBoxButton.OKCancel);
+        var result = MessageBox.Show($"{Strings.AccountActionConfirmationMessageBox}",
+            $"{Strings.ClearAccountDataTitleMessageBox}", MessageBoxButton.OKCancel);
         if (result == MessageBoxResult.OK)
         {
             if (AccountManager.CurrentAccount != null)
             {
                 AccountManager.ClearAccountData(AccountManager.CurrentAccount);
                 AccountManager.SaveAccount(AccountManager.CurrentAccount);
-                MessageBox.Show("Account's data successfully cleared.", "Success.", MessageBoxButton.OK);
+                MessageBox.Show($"{Strings.AccountDataClearedMessageBox}", $"{Strings.SuccessTitleMessageBox}",
+                    MessageBoxButton.OK);
                 Application.Current.MainWindow.Width = AccountManager.CurrentAccount.WindowWidth;
                 Application.Current.MainWindow.Height = AccountManager.CurrentAccount.WindowHeight;
                 Application.Current.MainWindow.Left = AccountManager.CurrentAccount.WindowPositionX;
@@ -90,13 +93,15 @@ public partial class SettingsMenuWindow : Window
 
     private void ButtonDeleteAccount_OnClick(object sender, RoutedEventArgs e)
     {
-        var result = MessageBox.Show("Are you sure?", "Delete account.", MessageBoxButton.OKCancel);
+        var result = MessageBox.Show($"{Strings.AccountActionConfirmationMessageBox}",
+            $"{Strings.DeleteAccountTitleMessageBox}", MessageBoxButton.OKCancel);
         if (result == MessageBoxResult.OK)
         {
             if (AccountManager.CurrentAccount != null)
             {
                 AccountManager.DeleteAccount(AccountManager.CurrentAccount);
-                MessageBox.Show("Account deleted successfully.", "Success", MessageBoxButton.OK);
+                MessageBox.Show($"{Strings.AccountDeletedSuccessMessageBox}", $"{Strings.SuccessTitleMessageBox}",
+                    MessageBoxButton.OK);
                 SessionManager.ClearSession();
                 new SignInWindow().Show();
                 Close();
@@ -175,16 +180,28 @@ public partial class SettingsMenuWindow : Window
         if (AccountManager.CurrentAccount == null)
             return;
 
+
         if (ComboBoxLanguage.SelectedItem.Equals(ComboBoxItemLanguageUkrainian))
         {
             App.ChangeLanguage("uk");
+
             AccountManager.CurrentAccount.SelectedLanguage = "uk";
             AccountManager.SaveAccount(AccountManager.CurrentAccount);
+
+            var updateUkrainianWindow = new SettingsMenuWindow();
+            updateUkrainianWindow.Show();
+            Close();
+
             return;
         }
 
         App.ChangeLanguage("en");
+
         AccountManager.CurrentAccount.SelectedLanguage = "en";
         AccountManager.SaveAccount(AccountManager.CurrentAccount);
+
+        var updateEnglishWindow = new SettingsMenuWindow();
+        updateEnglishWindow.Show();
+        Close();
     }
 }

@@ -60,6 +60,60 @@ namespace FloppyFinchWindows.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure?.
+        /// </summary>
+        public static string AccountActionConfirmationMessageBox {
+            get {
+                return ResourceManager.GetString("AccountActionConfirmationMessageBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account&apos;s data successfully cleared..
+        /// </summary>
+        public static string AccountDataClearedMessageBox {
+            get {
+                return ResourceManager.GetString("AccountDataClearedMessageBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account deleted successfully..
+        /// </summary>
+        public static string AccountDeletedSuccessMessageBox {
+            get {
+                return ResourceManager.GetString("AccountDeletedSuccessMessageBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account settings.
+        /// </summary>
+        public static string AccountSettingsLabelText {
+            get {
+                return ResourceManager.GetString("AccountSettingsLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark mode.
+        /// </summary>
+        public static string AppearanceDarkModeComboBoxItemText {
+            get {
+                return ResourceManager.GetString("AppearanceDarkModeComboBoxItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light mode.
+        /// </summary>
+        public static string AppearanceLightModeComboBoxItemText {
+            get {
+                return ResourceManager.GetString("AppearanceLightModeComboBoxItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         public static string BackButtonText {
@@ -69,11 +123,92 @@ namespace FloppyFinchWindows.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chose appearance:.
+        /// </summary>
+        public static string ChoseAppearanceLabelText {
+            get {
+                return ResourceManager.GetString("ChoseAppearanceLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chose language:.
+        /// </summary>
+        public static string ChoseLanguageLabelText {
+            get {
+                return ResourceManager.GetString("ChoseLanguageLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chose resolution preset:.
+        /// </summary>
+        public static string ChoseResolutionLabelText {
+            get {
+                return ResourceManager.GetString("ChoseResolutionLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear account data.
+        /// </summary>
+        public static string ClearAccountDataButtonText {
+            get {
+                return ResourceManager.GetString("ClearAccountDataButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear account data..
+        /// </summary>
+        public static string ClearAccountDataTitleMessageBox {
+            get {
+                return ResourceManager.GetString("ClearAccountDataTitleMessageBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete account.
+        /// </summary>
+        public static string DeleteAccountButtonText {
+            get {
+                return ResourceManager.GetString("DeleteAccountButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete account..
+        /// </summary>
+        public static string DeleteAccountTitleMessageBox {
+            get {
+                return ResourceManager.GetString("DeleteAccountTitleMessageBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         public static string ExitButtonText {
             get {
                 return ResourceManager.GetString("ExitButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Place.
+        /// </summary>
+        public static string FirstPlaceTextBlockText {
+            get {
+                return ResourceManager.GetString("FirstPlaceTextBlockText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gameplay Settings.
+        /// </summary>
+        public static string GameplaySettingsLabelText {
+            get {
+                return ResourceManager.GetString("GameplaySettingsLabelText", resourceCulture);
             }
         }
         
@@ -96,6 +231,24 @@ namespace FloppyFinchWindows.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset screen position.
+        /// </summary>
+        public static string ResetScreenPositionButtonText {
+            get {
+                return ResourceManager.GetString("ResetScreenPositionButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To adjust resolution resize window..
+        /// </summary>
+        public static string ResizeWindowToolTipText {
+            get {
+                return ResourceManager.GetString("ResizeWindowToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string SettingsButtonText {
@@ -110,6 +263,24 @@ namespace FloppyFinchWindows.Resources {
         public static string ShopButtonText {
             get {
                 return ResourceManager.GetString("ShopButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign out.
+        /// </summary>
+        public static string SignOutButtonText {
+            get {
+                return ResourceManager.GetString("SignOutButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Success..
+        /// </summary>
+        public static string SuccessTitleMessageBox {
+            get {
+                return ResourceManager.GetString("SuccessTitleMessageBox", resourceCulture);
             }
         }
     }

@@ -15,7 +15,7 @@
             <Line X1="0" Y1="0" X2="15" Y2="0" Stroke="Black" />
             <Line X1="15" Y1="0" X2="15" Y2="15" Stroke="Black" />
             <Canvas.ToolTip>
-                <ToolTip Content="To adjust resolution resize window." />
+                <ToolTip Content="{x:Static resources:Strings.ResizeWindowToolTipText}" />
             </Canvas.ToolTip>
         </Canvas>
         <Canvas Cursor="Help" Height="15" Width="15" Background="Transparent" VerticalAlignment="Bottom"
@@ -24,7 +24,7 @@
             <Line X1="0" Y1="15" X2="15" Y2="15" Stroke="Black" />
             <Line X1="0" Y1="0" X2="0" Y2="15" Stroke="Black" />
             <Canvas.ToolTip>
-                <ToolTip Content="To adjust resolution resize window." />
+                <ToolTip Content="{x:Static resources:Strings.ResizeWindowToolTipText}" />
             </Canvas.ToolTip>
         </Canvas>
         <Grid>
@@ -41,16 +41,21 @@
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Content="Floppy Finch" VerticalAlignment="Center" HorizontalAlignment="Center"
                    FontSize="32" />
-            <Button x:Name="ButtonPlay" Click="ButtonPlay_OnClick" Grid.Row="1" Content="{x:Static resources:Strings.PlayButtonText}" Margin="50 20"
+            <Button x:Name="ButtonPlay" Click="ButtonPlay_OnClick" Grid.Row="1"
+                    Content="{x:Static resources:Strings.PlayButtonText}" Margin="50 20"
                     MaxWidth="400" MaxHeight="85" />
-            <Button x:Name="ButtonShop" Click="ButtonShop_OnClick" Grid.Row="2" Content="{x:Static resources:Strings.ShopButtonText}" Margin="50 20"
+            <Button x:Name="ButtonShop" Click="ButtonShop_OnClick" Grid.Row="2"
+                    Content="{x:Static resources:Strings.ShopButtonText}" Margin="50 20"
                     MaxWidth="400" MaxHeight="85" />
-            <Button x:Name="ButtonSettings" Click="ButtonSettings_OnClick" Grid.Row="3" Content="{x:Static resources:Strings.SettingsButtonText}"
+            <Button x:Name="ButtonSettings" Click="ButtonSettings_OnClick" Grid.Row="3"
+                    Content="{x:Static resources:Strings.SettingsButtonText}"
                     Margin="50 20"
                     MaxWidth="400" MaxHeight="85" />
-            <Button x:Name="ButtonLeaderboards" Click="ButtonLeaderboards_OnClick" Grid.Row="4" Content="{x:Static resources:Strings.LeaderboardButtonText}"
+            <Button x:Name="ButtonLeaderboards" Click="ButtonLeaderboards_OnClick" Grid.Row="4"
+                    Content="{x:Static resources:Strings.LeaderboardButtonText}"
                     Margin="50 20" MaxWidth="400" MaxHeight="85" />
-            <Button x:Name="ButtonExit" Click="ButtonExit_OnClick" Grid.Row="5" Content="{x:Static resources:Strings.ExitButtonText}" Margin="50 20"
+            <Button x:Name="ButtonExit" Click="ButtonExit_OnClick" Grid.Row="5"
+                    Content="{x:Static resources:Strings.ExitButtonText}" Margin="50 20"
                     MaxWidth="400" MaxHeight="85" />
         </Grid>
 

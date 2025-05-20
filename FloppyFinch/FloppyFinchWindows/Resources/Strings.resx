@@ -42,4 +42,61 @@
     <data name="ExitButtonText" xml:space="preserve">
         <value>Exit</value>
     </data>
+    <data name="ResizeWindowToolTipText" xml:space="preserve">
+        <value>To adjust resolution resize window.</value>
+    </data>
+    <data name="GameplaySettingsLabelText" xml:space="preserve">
+        <value>Gameplay Settings</value>
+    </data>
+    <data name="ChoseResolutionLabelText" xml:space="preserve">
+        <value>Chose resolution preset:</value>
+    </data>
+    <data name="ChoseAppearanceLabelText" xml:space="preserve">
+        <value>Chose appearance:</value>
+    </data>
+    <data name="ChoseLanguageLabelText" xml:space="preserve">
+        <value>Chose language:</value>
+    </data>
+    <data name="AccountSettingsLabelText" xml:space="preserve">
+        <value>Account settings</value>
+    </data>
+    <data name="SignOutButtonText" xml:space="preserve">
+        <value>Sign out</value>
+    </data>
+    <data name="ResetScreenPositionButtonText" xml:space="preserve">
+        <value>Reset screen position</value>
+    </data>
+    <data name="ClearAccountDataButtonText" xml:space="preserve">
+        <value>Clear account data</value>
+    </data>
+    <data name="DeleteAccountButtonText" xml:space="preserve">
+        <value>Delete account</value>
+    </data>
+    <data name="AppearanceLightModeComboBoxItemText" xml:space="preserve">
+        <value>Light mode</value>
+    </data>
+    <data name="AppearanceDarkModeComboBoxItemText" xml:space="preserve">
+        <value>Dark mode</value>
+    </data>
+    <data name="AccountDeletedSuccessMessageBox" xml:space="preserve">
+        <value>Account deleted successfully.</value>
+    </data>
+    <data name="SuccessTitleMessageBox" xml:space="preserve">
+        <value>Success.</value>
+    </data>
+    <data name="AccountActionConfirmationMessageBox" xml:space="preserve">
+        <value>Are you sure?</value>
+    </data>
+    <data name="DeleteAccountTitleMessageBox" xml:space="preserve">
+        <value>Delete account.</value>
+    </data>
+    <data name="ClearAccountDataTitleMessageBox" xml:space="preserve">
+        <value>Clear account data.</value>
+    </data>
+    <data name="AccountDataClearedMessageBox" xml:space="preserve">
+        <value>Account's data successfully cleared.</value>
+    </data>
+    <data name="FirstPlaceTextBlockText" xml:space="preserve">
+        <value>First Place</value>
+    </data>
 </root>

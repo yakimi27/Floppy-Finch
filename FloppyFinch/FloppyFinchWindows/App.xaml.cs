@@ -3,6 +3,7 @@ using System.Windows;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchWindows.Authentication;
 using FloppyFinchWindows.Menus;
+using FloppyFinchWindows.Resources;
 
 namespace FloppyFinchWindows;
 
@@ -20,6 +21,13 @@ public partial class App : Application
             if (account != null)
             {
                 AccountManager.CurrentAccount = account;
+
+                var culture = new CultureInfo(AccountManager.CurrentAccount.SelectedLanguage);
+                Thread.CurrentThread.CurrentUICulture = culture;
+                Thread.CurrentThread.CurrentCulture = culture;
+                CultureInfo.DefaultThreadCurrentCulture = culture;
+                CultureInfo.DefaultThreadCurrentUICulture = culture;
+
                 new MainMenuWindow().Show();
                 return;
             }
@@ -28,28 +36,17 @@ public partial class App : Application
         }
 
         new SignInWindow().Show();
-
-        // Set both UI and regular culture
-        var culture = new CultureInfo(AccountManager.CurrentAccount.SelectedLanguage);
-        Thread.CurrentThread.CurrentUICulture = culture;
-        Thread.CurrentThread.CurrentCulture = culture;
-
-        // For WPF, also set these to ensure proper resource loading
-        CultureInfo.DefaultThreadCurrentCulture = culture;
-        CultureInfo.DefaultThreadCurrentUICulture = culture;
     }
 
     public static void ChangeLanguage(string languageCode)
     {
         var culture = new CultureInfo(languageCode);
-        
-        // Update cultures
+
         Thread.CurrentThread.CurrentUICulture = culture;
         Thread.CurrentThread.CurrentCulture = culture;
         CultureInfo.DefaultThreadCurrentCulture = culture;
         CultureInfo.DefaultThreadCurrentUICulture = culture;
-        
-        // Update the culture of the resource manager
-        FloppyFinchWindows.Resources.Strings.Culture = culture;
+
+        Strings.Culture = culture;
     }
 }
