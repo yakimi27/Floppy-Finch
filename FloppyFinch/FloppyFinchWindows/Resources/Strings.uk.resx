@@ -43,7 +43,7 @@
         <value>Успіх.</value>
     </data>
     <data name="SignOutButtonText" xml:space="preserve">
-        <value>Вийти</value>
+        <value>Вийти з акаунту</value>
     </data>
     <data name="ResetScreenPositionButtonText" xml:space="preserve">
         <value>Скинути позицію вікна</value>
@@ -167,5 +167,38 @@
     </data>
     <data name="SpeedToolTipText" xml:space="preserve">
         <value>Мінімальна швидкість = 1, максимальна швидкість = 13.</value>
+    </data>
+    <data name="TargetScoreTextBlockText" xml:space="preserve">
+        <value>Ціль рахунку: </value>
+    </data>
+    <data name="WhiteSkinLabelText" xml:space="preserve">
+        <value>Білий</value>
+    </data>
+    <data name="ShieldPowerUpLabelText" xml:space="preserve">
+        <value>Щит</value>
+    </data>
+    <data name="ScoreMultiplierPowerUpLabelText" xml:space="preserve">
+        <value>Множник Рахунку</value>
+    </data>
+    <data name="PinkSkinLabelText" xml:space="preserve">
+        <value>Рожевий</value>
+    </data>
+    <data name="GreenSkinLabelText" xml:space="preserve">
+        <value>Зелений</value>
+    </data>
+    <data name="JetpackPowerUpLabelText" xml:space="preserve">
+        <value>Джетпак</value>
+    </data>
+    <data name="ClassicSkinLabelText" xml:space="preserve">
+        <value>Класичний</value>
+    </data>
+    <data name="BlackSkinLabelText" xml:space="preserve">
+        <value>Чорний</value>
+    </data>
+    <data name="BlueSkinLabelText" xml:space="preserve">
+        <value>Синій</value>
+    </data>
+    <data name="PowerUpLevelTextBoxText" xml:space="preserve">
+        <value>Рівень:</value>
     </data>
 </root>

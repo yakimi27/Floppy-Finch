@@ -63,7 +63,7 @@
                                             <StackPanel Margin="10">
                                                 <Image Source="{Binding Image}" Height="100" Margin="0,0,0,10"
                                                        RenderOptions.BitmapScalingMode="NearestNeighbor" />
-                                                <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" />
+                                                <TextBlock Text="{Binding DisplayName}" HorizontalAlignment="Center" />
                                                 <Label x:Name="LabelCoinsWarning"
                                                        Content="{x:Static resources:Strings.NotEnoughCoinsText}"
                                                        Visibility="{Binding NotEnoughCoins}"
@@ -94,10 +94,16 @@
                                             <StackPanel Margin="10">
                                                 <Image Source="{Binding Image}" Height="100" Margin="0,0,0,10"
                                                        RenderOptions.BitmapScalingMode="NearestNeighbor" />
-                                                <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"
+                                                <TextBlock Text="{Binding DisplayName}" HorizontalAlignment="Center"
                                                            FontWeight="Bold" Margin="0,0,0,5" />
-                                                <TextBlock Text="{Binding Level, StringFormat='Level: {0}'}"
-                                                           HorizontalAlignment="Center" />
+                                                <TextBlock HorizontalAlignment="Center">
+                                                    <TextBlock.Text>
+                                                        <MultiBinding StringFormat="{}{0} {1}">
+                                                            <Binding Source="{x:Static resources:Strings.PowerUpLevelTextBoxText}"/>
+                                                            <Binding Path="Level"/>
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
                                                 <Label Content="{x:Static resources:Strings.NotEnoughCoinsText}"
                                                        Visibility="{Binding NotEnoughCoins}"
                                                        Foreground="Red"

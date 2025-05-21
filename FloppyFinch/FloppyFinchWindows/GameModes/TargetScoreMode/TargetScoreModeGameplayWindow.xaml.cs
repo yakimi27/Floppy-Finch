@@ -6,6 +6,7 @@ using FloppyFinchLogics.GameLogics.Core;
 using FloppyFinchLogics.GameLogics.TargetScoreMode;
 using FloppyFinchLogics.WindowLogics;
 using FloppyFinchWindows.Menus;
+using FloppyFinchWindows.Resources;
 using WindowState = System.Windows.WindowState;
 
 namespace FloppyFinchWindows.GameModes.TargetScoreMode;
@@ -43,7 +44,7 @@ public partial class TargetScoreModeGameplayWindow : Window
         };
 
         _modeGame = new TargetScoreModeGame(GameCanvas, ScoreText, ref _targetScoreValue, TargetScoreProgressBar);
-        TargetScoreText.Text = "Target score: " + _targetScoreValue;
+        TargetScoreText.Text = $"{Strings.TargetScoreTextBlockText}" + _targetScoreValue;
         TargetScoreProgressBar.Maximum = _targetScoreValue;
         _modeGame.OnGameOver += OpenModeGameOverWindow;
     }
@@ -119,7 +120,7 @@ public partial class TargetScoreModeGameplayWindow : Window
 
     private void UpdatePauseUi()
     {
-        ButtonGamePause.Content = _pauseState ? "Resume" : "Pause";
+        ButtonGamePause.Content = _pauseState ? $"{Strings.ResumeButtonText}" : $"{Strings.PauseButtonText}";
         ButtonReturnMainMenu.Visibility = _pauseState ? Visibility.Visible : Visibility.Hidden;
         ButtonReturnMainMenu.Margin = _pauseState ? new Thickness(105, 15, 15, 15) : new Thickness(15);
     }

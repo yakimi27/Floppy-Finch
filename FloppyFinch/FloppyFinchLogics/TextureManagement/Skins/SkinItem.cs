@@ -8,6 +8,7 @@ public class SkinItem
 {
     public ImageSource Image { get; set; }
     public string Name { get; set; }
+    public string DisplayName { set; get; }
     public int Price { get; set; }
     public bool IsOwned { get; set; }
     public bool IsSelected { get; set; }

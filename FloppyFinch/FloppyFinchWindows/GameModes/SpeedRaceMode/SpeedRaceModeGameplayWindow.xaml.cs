@@ -6,6 +6,7 @@ using FloppyFinchLogics.GameLogics.Core;
 using FloppyFinchLogics.GameLogics.SpeedRaceMode;
 using FloppyFinchLogics.WindowLogics;
 using FloppyFinchWindows.Menus;
+using FloppyFinchWindows.Resources;
 
 namespace FloppyFinchWindows.GameModes.SpeedRaceMode;
 
@@ -89,9 +90,7 @@ public partial class SpeedRaceModeGameplayWindow : Window
         _pauseState = !_pauseState;
         _modeGame.PauseGame(_pauseState);
 
-        ButtonGamePause.Content = _pauseState ? "Resume" : "Pause";
-        ButtonReturnMainMenu.Visibility = _pauseState ? Visibility.Visible : Visibility.Hidden;
-        ButtonReturnMainMenu.Margin = _pauseState ? new Thickness(105, 15, 15, 15) : new Thickness(15);
+        UpdatePauseUi();
     }
 
     private void SetItemsVisibility()
@@ -122,7 +121,7 @@ public partial class SpeedRaceModeGameplayWindow : Window
 
     private void UpdatePauseUi()
     {
-        ButtonGamePause.Content = _pauseState ? "Resume" : "Pause";
+        ButtonGamePause.Content = _pauseState ? $"{Strings.ResumeButtonText}" : $"{Strings.PauseButtonText}";
         ButtonReturnMainMenu.Visibility = _pauseState ? Visibility.Visible : Visibility.Hidden;
         ButtonReturnMainMenu.Margin = _pauseState ? new Thickness(105, 15, 15, 15) : new Thickness(15);
     }

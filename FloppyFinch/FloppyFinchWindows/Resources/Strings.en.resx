@@ -168,4 +168,37 @@
     <data name="FastSpeedToolTipText" xml:space="preserve">
         <value>Set speed = 10; Default speed = 5.</value>
     </data>
+    <data name="TargetScoreTextBlockText" xml:space="preserve">
+        <value>Target score: </value>
+    </data>
+    <data name="ShieldPowerUpLabelText" xml:space="preserve">
+        <value>Shield</value>
+    </data>
+    <data name="ScoreMultiplierPowerUpLabelText" xml:space="preserve">
+        <value>Score Multiplier</value>
+    </data>
+    <data name="PinkSkinLabelText" xml:space="preserve">
+        <value>Pink</value>
+    </data>
+    <data name="JetpackPowerUpLabelText" xml:space="preserve">
+        <value>Jetpack</value>
+    </data>
+    <data name="GreenSkinLabelText" xml:space="preserve">
+        <value>Green</value>
+    </data>
+    <data name="ClassicSkinLabelText" xml:space="preserve">
+        <value>Classic</value>
+    </data>
+    <data name="BlackSkinLabelText" xml:space="preserve">
+        <value>Black</value>
+    </data>
+    <data name="BlueSkinLabelText" xml:space="preserve">
+        <value>Blue</value>
+    </data>
+    <data name="WhiteSkinLabelText" xml:space="preserve">
+        <value>White</value>
+    </data>
+    <data name="PowerUpLevelTextBoxText" xml:space="preserve">
+        <value>Level:</value>
+    </data>
 </root>

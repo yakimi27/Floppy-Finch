@@ -8,6 +8,7 @@ using FloppyFinchLogics.TextureManagement.Coins;
 using FloppyFinchLogics.TextureManagement.PowerUps;
 using FloppyFinchLogics.WindowLogics;
 using WindowState = System.Windows.WindowState;
+using FloppyFinchWindows.Resources;
 
 namespace FloppyFinchWindows.Menus;
 
@@ -70,50 +71,56 @@ public partial class ShopMenuWindow : Window
         {
             new()
             {
+                DisplayName = $"{Strings.ClassicSkinLabelText}",
                 Name = "Classic",
                 Price = 0,
                 IsOwned = true,
-                Image = SkinManager.LoadClassicSkin().Frames[0],
+                Image = SkinManager.LoadClassicSkin().Frames[2],
                 IsSelected = currentSkin != "Classic"
             },
             new()
             {
+                DisplayName = $"{Strings.BlueSkinLabelText}",
                 Name = "Blue",
                 Price = 200,
                 IsOwned = AccountManager.CurrentAccount.UnlockedSkins.Contains("Blue"),
-                Image = SkinManager.LoadBlueSkin().Frames[0],
+                Image = SkinManager.LoadBlueSkin().Frames[2],
                 IsSelected = currentSkin != "Blue"
             },
             new()
             {
+                DisplayName = $"{Strings.BlackSkinLabelText}",
                 Name = "Black",
                 Price = 200,
                 IsOwned = AccountManager.CurrentAccount.UnlockedSkins.Contains("Black"),
-                Image = SkinManager.LoadBlackSkin().Frames[0],
+                Image = SkinManager.LoadBlackSkin().Frames[2],
                 IsSelected = currentSkin != "Black"
             },
             new()
             {
+                DisplayName = $"{Strings.GreenSkinLabelText}",
                 Name = "Green",
                 Price = 200,
                 IsOwned = AccountManager.CurrentAccount.UnlockedSkins.Contains("Green"),
-                Image = SkinManager.LoadGreenSkin().Frames[0],
+                Image = SkinManager.LoadGreenSkin().Frames[2],
                 IsSelected = currentSkin != "Green"
             },
             new()
             {
+                DisplayName = $"{Strings.PinkSkinLabelText}",
                 Name = "Pink",
                 Price = 200,
                 IsOwned = AccountManager.CurrentAccount.UnlockedSkins.Contains("Pink"),
-                Image = SkinManager.LoadPinkSkin().Frames[0],
+                Image = SkinManager.LoadPinkSkin().Frames[2],
                 IsSelected = currentSkin != "Pink"
             },
             new()
             {
+                DisplayName = $"{Strings.WhiteSkinLabelText}",
                 Name = "White",
                 Price = 200,
                 IsOwned = AccountManager.CurrentAccount.UnlockedSkins.Contains("White"),
-                Image = SkinManager.LoadWhiteSkin().Frames[0],
+                Image = SkinManager.LoadWhiteSkin().Frames[2],
                 IsSelected = currentSkin != "White"
             }
         };
@@ -164,6 +171,7 @@ public partial class ShopMenuWindow : Window
             new()
             {
                 Id = 0,
+                DisplayName = $"{Strings.JetpackPowerUpLabelText}",
                 Name = "Jetpack",
                 Price = CalculatePowerUpPrice(175, AccountManager.CurrentAccount.PowerUpLevels[0]),
                 Level = AccountManager.CurrentAccount.PowerUpLevels[0],
@@ -172,6 +180,7 @@ public partial class ShopMenuWindow : Window
             new()
             {
                 Id = 1,
+                DisplayName = $"{Strings.ScoreMultiplierPowerUpLabelText}",
                 Name = "Score Multiplier",
                 Price = CalculatePowerUpPrice(150, AccountManager.CurrentAccount.PowerUpLevels[1]),
                 Level = AccountManager.CurrentAccount.PowerUpLevels[1],
@@ -180,6 +189,7 @@ public partial class ShopMenuWindow : Window
             new()
             {
                 Id = 2,
+                DisplayName = $"{Strings.ShieldPowerUpLabelText}",
                 Name = "Shield",
                 Price = CalculatePowerUpPrice(100, AccountManager.CurrentAccount.PowerUpLevels[2]),
                 Level = AccountManager.CurrentAccount.PowerUpLevels[2],

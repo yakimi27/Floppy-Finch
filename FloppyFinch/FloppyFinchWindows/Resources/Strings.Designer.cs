@@ -132,6 +132,24 @@ namespace FloppyFinchWindows.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Black.
+        /// </summary>
+        public static string BlackSkinLabelText {
+            get {
+                return ResourceManager.GetString("BlackSkinLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blue.
+        /// </summary>
+        public static string BlueSkinLabelText {
+            get {
+                return ResourceManager.GetString("BlueSkinLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chose background appearance:.
         /// </summary>
         public static string ChoseAppearanceLabelText {
@@ -155,6 +173,15 @@ namespace FloppyFinchWindows.Resources {
         public static string ChoseResolutionLabelText {
             get {
                 return ResourceManager.GetString("ChoseResolutionLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Classic.
+        /// </summary>
+        public static string ClassicSkinLabelText {
+            get {
+                return ResourceManager.GetString("ClassicSkinLabelText", resourceCulture);
             }
         }
         
@@ -258,6 +285,24 @@ namespace FloppyFinchWindows.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Green.
+        /// </summary>
+        public static string GreenSkinLabelText {
+            get {
+                return ResourceManager.GetString("GreenSkinLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jetpack.
+        /// </summary>
+        public static string JetpackPowerUpLabelText {
+            get {
+                return ResourceManager.GetString("JetpackPowerUpLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leaderboard.
         /// </summary>
         public static string LeaderboardButtonText {
@@ -303,6 +348,15 @@ namespace FloppyFinchWindows.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pink.
+        /// </summary>
+        public static string PinkSkinLabelText {
+            get {
+                return ResourceManager.GetString("PinkSkinLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Play.
         /// </summary>
         public static string PlayButtonText {
@@ -344,6 +398,15 @@ namespace FloppyFinchWindows.Resources {
         public static string PlayTargetScoreModeText {
             get {
                 return ResourceManager.GetString("PlayTargetScoreModeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level:.
+        /// </summary>
+        public static string PowerUpLevelTextBoxText {
+            get {
+                return ResourceManager.GetString("PowerUpLevelTextBoxText", resourceCulture);
             }
         }
         
@@ -402,6 +465,15 @@ namespace FloppyFinchWindows.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Score Multiplier.
+        /// </summary>
+        public static string ScoreMultiplierPowerUpLabelText {
+            get {
+                return ResourceManager.GetString("ScoreMultiplierPowerUpLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Set own speed:.
         /// </summary>
         public static string SetOwnSpeedLabelContent {
@@ -416,6 +488,15 @@ namespace FloppyFinchWindows.Resources {
         public static string SettingsButtonText {
             get {
                 return ResourceManager.GetString("SettingsButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shield.
+        /// </summary>
+        public static string ShieldPowerUpLabelText {
+            get {
+                return ResourceManager.GetString("ShieldPowerUpLabelText", resourceCulture);
             }
         }
         
@@ -506,6 +587,24 @@ namespace FloppyFinchWindows.Resources {
         public static string SuccessTitleMessageBox {
             get {
                 return ResourceManager.GetString("SuccessTitleMessageBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Target score: .
+        /// </summary>
+        public static string TargetScoreTextBlockText {
+            get {
+                return ResourceManager.GetString("TargetScoreTextBlockText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to White.
+        /// </summary>
+        public static string WhiteSkinLabelText {
+            get {
+                return ResourceManager.GetString("WhiteSkinLabelText", resourceCulture);
             }
         }
         

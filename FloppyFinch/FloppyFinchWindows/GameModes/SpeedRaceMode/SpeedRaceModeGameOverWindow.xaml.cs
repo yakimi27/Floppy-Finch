@@ -3,6 +3,7 @@ using System.Windows.Media.Imaging;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
 using FloppyFinchWindows.Menus;
+using FloppyFinchWindows.Resources;
 
 namespace FloppyFinchWindows.GameModes.SpeedRaceMode;
 
@@ -26,7 +27,7 @@ public partial class SpeedRaceModeGameOverWindow : Window
             Application.Current.MainWindow.Top = WindowStateData.WindowPositionY;
         }
 
-        LoseScreenScoreTextBlock.Text = $"You scored: {score}";
+        LoseScreenScoreTextBlock.Text = $"{Strings.YouScoredTextBlockText} {score}";
         GameImage.Source = gameImage;
         _gameSpeed = gameSpeed;
         UpdateAccountInfo(score, gameSpeed);

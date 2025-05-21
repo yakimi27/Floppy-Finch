@@ -17,11 +17,12 @@
                    Margin="0 200 0 0"
                    FontSize="26" Visibility="Visible" />
         <Button x:Name="ButtonReturnMainMenu" Click="ButtonReturnMainMenu_OnClick"
-                Content="Main Menu" Width="75"
+                Content="{x:Static resources:Strings.MainMenuButtonText}" Width="90"
                 Height="25"
                 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15" Visibility="Visible" />
-        <Button x:Name="ButtonGamePause" Click="ButtonGamePause_OnClick" Content="Pause"
-                Width="75"
+        <Button x:Name="ButtonGamePause" Click="ButtonGamePause_OnClick"
+                Content="{x:Static resources:Strings.PauseButtonText}"
+                Width="80"
                 Height="25"
                 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15" Visibility="Hidden"
                 Focusable="False" />

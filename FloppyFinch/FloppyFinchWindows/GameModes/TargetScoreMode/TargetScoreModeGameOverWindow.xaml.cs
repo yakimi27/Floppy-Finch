@@ -3,6 +3,7 @@ using System.Windows.Media.Imaging;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
 using FloppyFinchWindows.Menus;
+using FloppyFinchWindows.Resources;
 using WindowState = System.Windows.WindowState;
 
 namespace FloppyFinchWindows.GameModes.TargetScoreMode;
@@ -30,10 +31,10 @@ public partial class TargetScoreModeGameOverWindow : Window
         _isTargetAchieved = score == targetScoreValue;
 
         if (_isTargetAchieved)
-            GameOverLabel.Content = "Congratulations!";
+            GameOverLabel.Content = $"{Strings.CongratulationsLabelContent}";
         else
-            GameOverLabel.Content = "Game over";
-        LoseScreenScoreTextBlock.Text = $"You scored: {score}";
+            GameOverLabel.Content = $"{Strings.GameOverLabelContent}";
+        LoseScreenScoreTextBlock.Text = $"{Strings.YouScoredTextBlockText} {score}";
 
         GameImage.Source = gameImage;
         UpdateAccountInfo(score, _isTargetAchieved);
