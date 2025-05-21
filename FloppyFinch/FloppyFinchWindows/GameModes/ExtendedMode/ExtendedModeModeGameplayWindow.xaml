@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:resources="clr-namespace:FloppyFinchWindows.Resources"
         mc:Ignorable="d"
         Title="Floppy Finch" Height="auto" Width="auto" MinHeight="600" MinWidth="400"
         ResizeMode="NoResize"
@@ -11,15 +12,17 @@
         <Canvas Name="GameCanvas" Background="LightBlue" RenderOptions.BitmapScalingMode="NearestNeighbor" />
         <TextBlock x:Name="ScoreText" Text="0" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 100 0 0"
                    FontSize="26" Visibility="Hidden" />
-        <TextBlock x:Name="KeyWait" Text="Press space to start" VerticalAlignment="Top" HorizontalAlignment="Center"
+        <TextBlock x:Name="KeyWait" Text="{x:Static resources:Strings.PressSpaceTextBlockText}" VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
                    Margin="0 200 0 0"
                    FontSize="26" Visibility="Visible" />
         <Button x:Name="ButtonReturnMainMenu" Click="ButtonReturnMainMenu_OnClick"
-                Content="Main Menu" Width="75"
+                Content="{x:Static resources:Strings.MainMenuButtonText}" Width="90"
                 Height="25"
                 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15" Visibility="Visible" />
-        <Button x:Name="ButtonGamePause" Click="ButtonGamePause_OnClick" Content="Pause"
-                Width="75"
+        <Button x:Name="ButtonGamePause" Click="ButtonGamePause_OnClick"
+                Content="{x:Static resources:Strings.PauseButtonText}"
+                Width="80"
                 Height="25"
                 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15" Visibility="Hidden"
                 Focusable="False" />
@@ -29,8 +32,8 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Rectangle Grid.Column="0" Width="10" Height="10" Fill="Red" />
-            <TextBlock Grid.Column="1" Text="1" x:Name="HeartsCountLabel" Margin="10 0 0 0" />
+            <Image Grid.Column="0" x:Name="ImageHeart" Height="25" RenderOptions.BitmapScalingMode="NearestNeighbor" />
+            <TextBlock Grid.Column="1" Text="1" Height="25" FontSize="14" x:Name="HeartsCountLabel" Margin="10 0 0 0" />
         </Grid>
         <UniformGrid x:Name="PowerUpSpaceGrid" Rows="1" VerticalAlignment="Bottom" MaxWidth="600px" />
     </Grid>

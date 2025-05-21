@@ -6,7 +6,7 @@ namespace FloppyFinchLogics.TextureManagement.PowerUps;
 
 public static class PowerUpManager
 {
-    private const string BaseImagePath = "pack://application:,,,/FloppyFinchWindows;component/Assets/PowerUps";
+    private const string BaseImagePath = "pack://application:,,,/FloppyFinchWindows;component/Assets/PowerUp";
 
     private static BitmapImage LoadHeartPowerUp()
     {

@@ -3,6 +3,7 @@ using System.Windows.Media.Imaging;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
 using FloppyFinchWindows.Menus;
+using FloppyFinchWindows.Resources;
 using WindowState = System.Windows.WindowState;
 
 namespace FloppyFinchWindows.GameModes.ClassicMode;
@@ -28,13 +29,13 @@ public partial class ClassicModeGameOverWindow : Window
         GameImage.Source = gameImage;
         if (score > AccountManager.CurrentAccount!.HighScore)
         {
-            LabelGameOver.Content = "Congratulations!";
-            TextBlockScoredPoints.Text = $"New high score: {score}";
+            LabelGameOver.Content = $"{Strings.CongratulationsLabelContent}";
+            TextBlockScoredPoints.Text = $"{Strings.NewHighScoreTextBoxText} {score}";
         }
         else
         {
-            LabelGameOver.Content = "Game over";
-            TextBlockScoredPoints.Text = $"You scored: {score}";
+            LabelGameOver.Content = $"{Strings.GameOverLabelContent}";
+            TextBlockScoredPoints.Text = $"{Strings.YouScoredTextBlockText} {score}";
         }
 
         UpdateAccountInfo(score);

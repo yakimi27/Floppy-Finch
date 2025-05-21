@@ -4,8 +4,10 @@ using System.Windows.Interop;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.GameLogics.Core;
 using FloppyFinchLogics.GameLogics.ExtendedMode;
+using FloppyFinchLogics.TextureManagement.PowerUps;
 using FloppyFinchLogics.WindowLogics;
 using FloppyFinchWindows.Menus;
+using Strings = FloppyFinchWindows.Resources.Strings;
 
 namespace FloppyFinchWindows.GameModes.ExtendedMode;
 
@@ -39,6 +41,8 @@ public partial class ExtendedModeModeGameplayWindow : Window
             var hwndTarget = hwndSource.CompositionTarget;
             if (hwndTarget != null) hwndTarget.RenderMode = RenderMode.Default;
         };
+
+        ImageHeart.Source = PowerUpManager.LoadPowerUp(0);
 
         _modeGame = new ExtendedModeGame(GameCanvas, ScoreText, HeartsCountLabel, PowerUpSpaceGrid);
         _modeGame.OnGameOver += OpenModeGameOverWindow;
@@ -87,9 +91,7 @@ public partial class ExtendedModeModeGameplayWindow : Window
         _pauseState = !_pauseState;
         _modeGame.PauseGame(_pauseState);
 
-        ButtonGamePause.Content = _pauseState ? "Resume" : "Pause";
-        ButtonReturnMainMenu.Visibility = _pauseState ? Visibility.Visible : Visibility.Hidden;
-        ButtonReturnMainMenu.Margin = _pauseState ? new Thickness(105, 15, 15, 15) : new Thickness(15);
+        UpdatePauseUi();
     }
 
     private void SetItemsVisibility()
@@ -120,7 +122,7 @@ public partial class ExtendedModeModeGameplayWindow : Window
 
     private void UpdatePauseUi()
     {
-        ButtonGamePause.Content = _pauseState ? "Resume" : "Pause";
+        ButtonGamePause.Content = _pauseState ? $"{Strings.ResumeButtonText}" : $"{Strings.PauseButtonText}";
         ButtonReturnMainMenu.Visibility = _pauseState ? Visibility.Visible : Visibility.Hidden;
         ButtonReturnMainMenu.Margin = _pauseState ? new Thickness(105, 15, 15, 15) : new Thickness(15);
     }

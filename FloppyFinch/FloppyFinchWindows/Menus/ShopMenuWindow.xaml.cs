@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.GameLogics.ExtendedMode;
 using FloppyFinchLogics.TextureManagement;
+using FloppyFinchLogics.TextureManagement.Coins;
 using FloppyFinchLogics.TextureManagement.PowerUps;
 using FloppyFinchLogics.WindowLogics;
 using WindowState = System.Windows.WindowState;
@@ -28,7 +29,7 @@ public partial class ShopMenuWindow : Window
             Application.Current.MainWindow.Top = WindowStateData.WindowPositionY;
         }
 
-        /*CoinIcon.Source = new BitmapImage(new Uri("pack://application:,,,/FloppyFinchWindows;component/Assets/UI/coin.png"));*/
+        CoinIcon.Source = CoinManager.LoadCoin();
         CoinsText.Text = AccountManager.CurrentAccount!.Coins.ToString();
 
         LoadSkins();

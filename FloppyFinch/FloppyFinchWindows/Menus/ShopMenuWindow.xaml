@@ -14,7 +14,7 @@
             <Line X1="0" Y1="0" X2="15" Y2="0" Stroke="Black" />
             <Line X1="15" Y1="0" X2="15" Y2="15" Stroke="Black" />
             <Canvas.ToolTip>
-                <ToolTip Content="To adjust resolution resize window." />
+                <ToolTip Content="{x:Static resources:Strings.ResizeWindowToolTipText}" />
             </Canvas.ToolTip>
         </Canvas>
         <Canvas Cursor="Help" Height="15" Width="15" Background="Transparent" VerticalAlignment="Bottom"
@@ -22,7 +22,7 @@
             <Line X1="0" Y1="15" X2="15" Y2="15" Stroke="Black" />
             <Line X1="0" Y1="0" X2="0" Y2="15" Stroke="Black" />
             <Canvas.ToolTip>
-                <ToolTip Content="To adjust resolution resize window." />
+                <ToolTip Content="{x:Static resources:Strings.ResizeWindowToolTipText}" />
             </Canvas.ToolTip>
         </Canvas>
 
@@ -40,8 +40,10 @@
                         Content="{x:Static resources:Strings.BackButtonText}"
                         Width="75" Height="25" HorizontalAlignment="Left" Margin="35,0" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="35,0">
-                    <Image x:Name="CoinIcon" Width="25" Height="25" Margin="0,0,10,0" />
-                    <TextBlock x:Name="CoinsText" Text="0" VerticalAlignment="Center"
+                    <Image x:Name="CoinIcon" RenderOptions.BitmapScalingMode="NearestNeighbor" Width="25" Height="25"
+                           Margin="0,0,5,0" />
+                    <TextBlock x:Name="CoinsText" Text="0" Height="25" VerticalAlignment="Center"
+                               TextAlignment="Center"
                                FontSize="18" FontWeight="Bold" />
                 </StackPanel>
             </Grid>
@@ -49,7 +51,7 @@
             <!--tabs-->
             <TabControl Grid.Row="1" Grid.RowSpan="2" Margin="20">
                 <!--bird skin tab-->
-                <TabItem Header="Bird Skins">
+                <TabItem Header="{x:Static resources:Strings.BirdSkinsShopHeader}">
                     <ScrollViewer>
                         <UniformGrid>
                             <!--skin items add here-->
@@ -62,7 +64,8 @@
                                                 <Image Source="{Binding Image}" Height="100" Margin="0,0,0,10"
                                                        RenderOptions.BitmapScalingMode="NearestNeighbor" />
                                                 <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" />
-                                                <Label x:Name="LabelCoinsWarning" Content="Not enough coins!"
+                                                <Label x:Name="LabelCoinsWarning"
+                                                       Content="{x:Static resources:Strings.NotEnoughCoinsText}"
                                                        Visibility="{Binding NotEnoughCoins}"
                                                        Foreground="Red"
                                                        HorizontalAlignment="Center" />
@@ -79,7 +82,7 @@
                     </ScrollViewer>
                 </TabItem>
                 <!--powerups-->
-                <TabItem Header="Power-ups">
+                <TabItem Header="{x:Static resources:Strings.PowerUpsShopHeader}">
                     <ScrollViewer>
                         <UniformGrid>
                             <!--powerup add here-->
@@ -95,7 +98,7 @@
                                                            FontWeight="Bold" Margin="0,0,0,5" />
                                                 <TextBlock Text="{Binding Level, StringFormat='Level: {0}'}"
                                                            HorizontalAlignment="Center" />
-                                                <Label Content="Not enough coins!"
+                                                <Label Content="{x:Static resources:Strings.NotEnoughCoinsText}"
                                                        Visibility="{Binding NotEnoughCoins}"
                                                        Foreground="Red"
                                                        HorizontalAlignment="Center" />

@@ -3,8 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:resources="clr-namespace:FloppyFinchWindows.Resources"
         mc:Ignorable="d" ResizeMode="NoResize"
-        Title="Floppy Finch" Height="auto" Width="auto" MinHeight="600" MinWidth="400"
+        Title="Floppy Finch"
+        Icon="pack://application:,,,/FloppyFinchWindows;component/Assets/Icon/floppy_finch_icon.ico" Height="auto"
+        Width="auto" MinHeight="600" MinWidth="400"
         Closing="GameModesMenuWindow_OnClosing">
     <Grid>
         <Grid>
@@ -21,18 +24,21 @@
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Content="Choose game mode" VerticalAlignment="Center" HorizontalAlignment="Center"
                    FontSize="32" />
-            <Button x:Name="ButtonClassicMode" Click="ButtonClassicMode_OnClick" Grid.Row="1" Content="ClassicMode"
+            <Button x:Name="ButtonClassicMode" Click="ButtonClassicMode_OnClick" Grid.Row="1"
+                    Content="{x:Static resources:Strings.PlayClassicModeText}"
                     Margin="50 20"
                     MaxWidth="400" MaxHeight="85" />
-            <Button x:Name="ButtonTargetScoreMode" Click="ButtonTargetScoreMode_OnClick" Grid.Row="2"
-                    Content="Target Score" Margin="50 20"
+            <Button x:Name="ButtonTargetScoreMode" Click="ButtonTargetScoreMode_OnClick" Grid.Row="3"
+                    Content="{x:Static resources:Strings.PlayTargetScoreModeText}" Margin="50 20"
                     MaxWidth="400" MaxHeight="85" />
-            <Button x:Name="ButtonExtendedMode" Click="ButtonExtendedMode_OnClick" Grid.Row="3" Content="Extended"
+            <Button x:Name="ButtonExtendedMode" Click="ButtonExtendedMode_OnClick" Grid.Row="2"
+                    Content="{x:Static resources:Strings.PlayExtendedModeText}"
                     Margin="50 20" MaxWidth="400" MaxHeight="85" />
-            <Button x:Name="ButtonRaceMode" Click="ButtonSpeedRaceMode_OnClick" Grid.Row="4" Content="Speed Race"
+            <Button x:Name="ButtonRaceMode" Click="ButtonSpeedRaceMode_OnClick" Grid.Row="4"
+                    Content="{x:Static resources:Strings.PlaySpeedRaceModeText}"
                     Margin="50 20" MaxWidth="400" MaxHeight="85" />
             <Button x:Name="ButtonMainMenu" Click="ButtonBackToMainMenu_OnClick" Grid.Row="5"
-                    Content="Main menu"
+                    Content="{x:Static resources:Strings.MainMenuButtonText}"
                     Margin="50 20"
                     MaxWidth="400" MaxHeight="85" />
         </Grid>

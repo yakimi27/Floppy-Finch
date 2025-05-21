@@ -96,7 +96,7 @@ namespace FloppyFinchWindows.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dark mode.
+        ///   Looks up a localized string similar to Dark.
         /// </summary>
         public static string AppearanceDarkModeComboBoxItemText {
             get {
@@ -105,7 +105,7 @@ namespace FloppyFinchWindows.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Light mode.
+        ///   Looks up a localized string similar to Light.
         /// </summary>
         public static string AppearanceLightModeComboBoxItemText {
             get {
@@ -123,7 +123,16 @@ namespace FloppyFinchWindows.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chose appearance:.
+        ///   Looks up a localized string similar to Bird Skins.
+        /// </summary>
+        public static string BirdSkinsShopHeader {
+            get {
+                return ResourceManager.GetString("BirdSkinsShopHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chose background appearance:.
         /// </summary>
         public static string ChoseAppearanceLabelText {
             get {
@@ -168,6 +177,15 @@ namespace FloppyFinchWindows.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Congratulations!.
+        /// </summary>
+        public static string CongratulationsLabelContent {
+            get {
+                return ResourceManager.GetString("CongratulationsLabelContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete account.
         /// </summary>
         public static string DeleteAccountButtonText {
@@ -195,11 +213,38 @@ namespace FloppyFinchWindows.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set speed = 7; Default speed = 5..
+        /// </summary>
+        public static string FasterSpeedToolTipText {
+            get {
+                return ResourceManager.GetString("FasterSpeedToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set speed = 10; Default speed = 5..
+        /// </summary>
+        public static string FastSpeedToolTipText {
+            get {
+                return ResourceManager.GetString("FastSpeedToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First Place.
         /// </summary>
         public static string FirstPlaceTextBlockText {
             get {
                 return ResourceManager.GetString("FirstPlaceTextBlockText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game over.
+        /// </summary>
+        public static string GameOverLabelContent {
+            get {
+                return ResourceManager.GetString("GameOverLabelContent", resourceCulture);
             }
         }
         
@@ -222,11 +267,101 @@ namespace FloppyFinchWindows.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Main menu.
+        /// </summary>
+        public static string MainMenuButtonText {
+            get {
+                return ResourceManager.GetString("MainMenuButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New high score:.
+        /// </summary>
+        public static string NewHighScoreTextBoxText {
+            get {
+                return ResourceManager.GetString("NewHighScoreTextBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not enough coins..
+        /// </summary>
+        public static string NotEnoughCoinsText {
+            get {
+                return ResourceManager.GetString("NotEnoughCoinsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pause.
+        /// </summary>
+        public static string PauseButtonText {
+            get {
+                return ResourceManager.GetString("PauseButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Play.
         /// </summary>
         public static string PlayButtonText {
             get {
                 return ResourceManager.GetString("PlayButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Classic mode.
+        /// </summary>
+        public static string PlayClassicModeText {
+            get {
+                return ResourceManager.GetString("PlayClassicModeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extended mode.
+        /// </summary>
+        public static string PlayExtendedModeText {
+            get {
+                return ResourceManager.GetString("PlayExtendedModeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speed race.
+        /// </summary>
+        public static string PlaySpeedRaceModeText {
+            get {
+                return ResourceManager.GetString("PlaySpeedRaceModeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Target score.
+        /// </summary>
+        public static string PlayTargetScoreModeText {
+            get {
+                return ResourceManager.GetString("PlayTargetScoreModeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Power-ups.
+        /// </summary>
+        public static string PowerUpsShopHeader {
+            get {
+                return ResourceManager.GetString("PowerUpsShopHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Press space to start.
+        /// </summary>
+        public static string PressSpaceTextBlockText {
+            get {
+                return ResourceManager.GetString("PressSpaceTextBlockText", resourceCulture);
             }
         }
         
@@ -245,6 +380,33 @@ namespace FloppyFinchWindows.Resources {
         public static string ResizeWindowToolTipText {
             get {
                 return ResourceManager.GetString("ResizeWindowToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restart.
+        /// </summary>
+        public static string RestartButtonText {
+            get {
+                return ResourceManager.GetString("RestartButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resume.
+        /// </summary>
+        public static string ResumeButtonText {
+            get {
+                return ResourceManager.GetString("ResumeButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set own speed:.
+        /// </summary>
+        public static string SetOwnSpeedLabelContent {
+            get {
+                return ResourceManager.GetString("SetOwnSpeedLabelContent", resourceCulture);
             }
         }
         
@@ -276,11 +438,83 @@ namespace FloppyFinchWindows.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set speed = 3; Default speed = 5..
+        /// </summary>
+        public static string SlowSpeedToolTipText {
+            get {
+                return ResourceManager.GetString("SlowSpeedToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fast.
+        /// </summary>
+        public static string SpeedFastButtonText {
+            get {
+                return ResourceManager.GetString("SpeedFastButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Faster.
+        /// </summary>
+        public static string SpeedFasterButtonText {
+            get {
+                return ResourceManager.GetString("SpeedFasterButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speed presets:.
+        /// </summary>
+        public static string SpeedPresetLabelContent {
+            get {
+                return ResourceManager.GetString("SpeedPresetLabelContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slow.
+        /// </summary>
+        public static string SpeedSlowButtonText {
+            get {
+                return ResourceManager.GetString("SpeedSlowButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum speed = 1, maximum speed = 13..
+        /// </summary>
+        public static string SpeedToolTipText {
+            get {
+                return ResourceManager.GetString("SpeedToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        public static string StartButtonText {
+            get {
+                return ResourceManager.GetString("StartButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Success..
         /// </summary>
         public static string SuccessTitleMessageBox {
             get {
                 return ResourceManager.GetString("SuccessTitleMessageBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You scored:.
+        /// </summary>
+        public static string YouScoredTextBlockText {
+            get {
+                return ResourceManager.GetString("YouScoredTextBlockText", resourceCulture);
             }
         }
     }

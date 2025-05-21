@@ -67,13 +67,13 @@
         <value>Обрати мову:</value>
     </data>
     <data name="ChoseAppearanceLabelText" xml:space="preserve">
-        <value>Обрати тему:</value>
+        <value>Обрати фон гри:</value>
     </data>
     <data name="AppearanceLightModeComboBoxItemText" xml:space="preserve">
-        <value>Світлий режим</value>
+        <value>Світлий фон</value>
     </data>
     <data name="AppearanceDarkModeComboBoxItemText" xml:space="preserve">
-        <value>Темний режим</value>
+        <value>Темний фон</value>
     </data>
     <data name="AccountSettingsLabelText" xml:space="preserve">
         <value>Налаштування акаунту</value>
@@ -89,5 +89,83 @@
     </data>
     <data name="FirstPlaceTextBlockText" xml:space="preserve">
         <value>Перше Місце</value>
+    </data>
+    <data name="NotEnoughCoinsText" xml:space="preserve">
+        <value>Недостатньо монет.</value>
+    </data>
+    <data name="BirdSkinsShopHeader" xml:space="preserve">
+        <value>Скіни</value>
+    </data>
+    <data name="PowerUpsShopHeader" xml:space="preserve">
+        <value>Поліпшення</value>
+    </data>
+    <data name="PlayClassicModeText" xml:space="preserve">
+        <value>Класичний режим</value>
+    </data>
+    <data name="PlayExtendedModeText" xml:space="preserve">
+        <value>Розширений режим</value>
+    </data>
+    <data name="MainMenuButtonText" xml:space="preserve">
+        <value>Головне меню</value>
+    </data>
+    <data name="PlaySpeedRaceModeText" xml:space="preserve">
+        <value>Швидкісий режим</value>
+    </data>
+    <data name="PlayTargetScoreModeText" xml:space="preserve">
+        <value>Досягти мети</value>
+    </data>
+    <data name="YouScoredTextBlockText" xml:space="preserve">
+        <value>Ви набрали: </value>
+    </data>
+    <data name="RestartButtonText" xml:space="preserve">
+        <value>Заново</value>
+    </data>
+    <data name="GameOverLabelContent" xml:space="preserve">
+        <value>Гру закінчено</value>
+    </data>
+    <data name="NewHighScoreTextBoxText" xml:space="preserve">
+        <value>Новий рекорд: </value>
+    </data>
+    <data name="CongratulationsLabelContent" xml:space="preserve">
+        <value>Вітання!</value>
+    </data>
+    <data name="PauseButtonText" xml:space="preserve">
+        <value>Пауза</value>
+    </data>
+    <data name="PressSpaceTextBlockText" xml:space="preserve">
+        <value>Натисніть пробіл, щоб почати</value>
+    </data>
+    <data name="ResumeButtonText" xml:space="preserve">
+        <value>Продовжити</value>
+    </data>
+    <data name="SetOwnSpeedLabelContent" xml:space="preserve">
+        <value>Своя швидкість:</value>
+    </data>
+    <data name="StartButtonText" xml:space="preserve">
+        <value>Почати</value>
+    </data>
+    <data name="SpeedFastButtonText" xml:space="preserve">
+        <value>Швидко</value>
+    </data>
+    <data name="SpeedFasterButtonText" xml:space="preserve">
+        <value>Швидше</value>
+    </data>
+    <data name="SpeedSlowButtonText" xml:space="preserve">
+        <value>Повільно</value>
+    </data>
+    <data name="SpeedPresetLabelContent" xml:space="preserve">
+        <value>Пресети швидкості:</value>
+    </data>
+    <data name="FasterSpeedToolTipText" xml:space="preserve">
+        <value>Задана швидкість = 7; Звичайна швидкість = 5.</value>
+    </data>
+    <data name="FastSpeedToolTipText" xml:space="preserve">
+        <value>Задана швидкість = 10; Звичайна швидкість = 5.</value>
+    </data>
+    <data name="SlowSpeedToolTipText" xml:space="preserve">
+        <value>Задана швидкість = 3; Звичайна швидкість = 5.</value>
+    </data>
+    <data name="SpeedToolTipText" xml:space="preserve">
+        <value>Мінімальна швидкість = 1, максимальна швидкість = 13.</value>
     </data>
 </root>

@@ -3,6 +3,7 @@ using System.Windows.Media.Imaging;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
 using FloppyFinchWindows.Menus;
+using Strings = FloppyFinchWindows.Resources.Strings;
 
 namespace FloppyFinchWindows.GameModes.ExtendedMode;
 
@@ -24,7 +25,7 @@ public partial class ExtendedModeGameOverWindow : Window
             Application.Current.MainWindow.Top = WindowStateData.WindowPositionY;
         }
 
-        LoseScreenScoreTextBlock.Text = $"You scored: {score}";
+        LoseScreenScoreTextBlock.Text = $"{Strings.YouScoredTextBlockText} {score}";
         GameImage.Source = gameImage;
         UpdateAccountInfo(score);
     }

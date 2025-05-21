@@ -65,7 +65,7 @@ public class PowerUpProperties
         {
             _shieldDuration = AccountManager.CurrentAccount == null
                 ? MaxShieldDuration
-                : AccountManager.CurrentAccount.PowerUpLevels[1] * MaxShieldDuration;
+                : AccountManager.CurrentAccount.PowerUpLevels[2] * MaxShieldDuration;
             return;
         }
 

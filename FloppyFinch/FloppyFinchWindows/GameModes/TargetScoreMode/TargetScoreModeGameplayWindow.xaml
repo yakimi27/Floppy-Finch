@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:resources="clr-namespace:FloppyFinchWindows.Resources"
         mc:Ignorable="d"
         Title="Floppy Finch" Height="auto" Width="auto" MinHeight="600" MinWidth="400"
         ResizeMode="NoResize"
@@ -14,7 +15,8 @@
         <TextBlock x:Name="TargetScoreText" Text="" VerticalAlignment="Top" HorizontalAlignment="Center"
                    Margin="0 100 0 0"
                    FontSize="26" Visibility="Visible" />
-        <TextBlock x:Name="KeyWait" Text="Press space to start" VerticalAlignment="Top" HorizontalAlignment="Center"
+        <TextBlock x:Name="KeyWait" Text="{x:Static resources:Strings.PressSpaceTextBlockText}" VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
                    Margin="0 200 0 0"
                    FontSize="26" Visibility="Visible" />
         <Button x:Name="ButtonReturnMainMenu" Click="ButtonReturnMainMenu_OnClick"

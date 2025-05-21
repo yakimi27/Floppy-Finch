@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:resources="clr-namespace:FloppyFinchWindows.Resources"
         mc:Ignorable="d"
         ResizeMode="NoResize"
         Title="Floppy Finch" Height="220" Width="350">
@@ -19,22 +20,28 @@
                 <RowDefinition Height="25" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Label Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="0" Content="Speed presets:" />
-            <Button Click="SlowSpeedButton_OnClick" Content="Slow" ToolTip="Set speed = 3; Default speed = 5."
+            <Label Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="0"
+                   Content="{x:Static resources:Strings.SpeedPresetLabelContent}" />
+            <Button Click="SlowSpeedButton_OnClick" Content="{x:Static resources:Strings.SpeedSlowButtonText}"
+                    ToolTip="{x:Static resources:Strings.SlowSpeedToolTipText}"
                     ToolTipService.InitialShowDelay="500"
                     Grid.Column="0" Grid.Row="1" Margin="5" />
-            <Button Click="FasterSpeedButton_OnClick" Content="Faster" ToolTip="Set speed = 7; Default speed = 5."
+            <Button Click="FasterSpeedButton_OnClick" Content="{x:Static resources:Strings.SpeedFasterButtonText}"
+                    ToolTip="{x:Static resources:Strings.FasterSpeedToolTipText}"
                     ToolTipService.InitialShowDelay="500"
                     Grid.Column="1" Grid.Row="1" Margin="5" />
-            <Button Click="FastSpeedButton_OnClick" Content="Fast" ToolTip="Set speed = 10; Default speed = 5."
+            <Button Click="FastSpeedButton_OnClick" Content="{x:Static resources:Strings.SpeedFastButtonText}"
+                    ToolTip="{x:Static resources:Strings.FastSpeedToolTipText}"
                     ToolTipService.InitialShowDelay="500"
                     Grid.Column="2" Grid.Row="1" Margin="5" />
-            <Label Content="Set own speed:" ToolTip="Minimal speed = 1, maximum speed = 13."
+            <Label Content="{x:Static resources:Strings.SetOwnSpeedLabelContent}"
+                   ToolTip="{x:Static resources:Strings.SpeedToolTipText}"
                    ToolTipService.InitialShowDelay="500" Grid.Column="0" Grid.Row="2" VerticalContentAlignment="Center" />
             <TextBox x:Name="OwnSpeedTextBox" TextChanged="OwnSpeedTextBox_OnTextChanged" Grid.Column="1"
                      Grid.ColumnSpan="2" Grid.Row="2"
                      VerticalContentAlignment="Center" Margin="5 0" />
-            <Button x:Name="OwnSpeedStartButton" Click="OwnSpeedStartButton_OnClick" Content="Start" Grid.Row="3"
+            <Button x:Name="OwnSpeedStartButton" Click="OwnSpeedStartButton_OnClick"
+                    Content="{x:Static resources:Strings.StartButtonText}" Grid.Row="3"
                     Grid.Column="0" Grid.ColumnSpan="3"
                     Margin="5" IsEnabled="False" />
         </Grid>

@@ -52,13 +52,13 @@
         <value>Account settings</value>
     </data>
     <data name="AppearanceDarkModeComboBoxItemText" xml:space="preserve">
-        <value>Dark mode</value>
+        <value>Dark</value>
     </data>
     <data name="AppearanceLightModeComboBoxItemText" xml:space="preserve">
-        <value>Light mode</value>
+        <value>Light</value>
     </data>
     <data name="ChoseAppearanceLabelText" xml:space="preserve">
-        <value>Chose appearance:</value>
+        <value>Chose background appearance:</value>
     </data>
     <data name="ChoseLanguageLabelText" xml:space="preserve">
         <value>Chose language:</value>
@@ -89,5 +89,83 @@
     </data>
     <data name="FirstPlaceTextBlockText" xml:space="preserve">
         <value>First Place</value>
+    </data>
+    <data name="NotEnoughCoinsText" xml:space="preserve">
+        <value>Not enough coins.</value>
+    </data>
+    <data name="BirdSkinsShopHeader" xml:space="preserve">
+        <value>Bird Skins</value>
+    </data>
+    <data name="PowerUpsShopHeader" xml:space="preserve">
+        <value>Power-ups</value>
+    </data>
+    <data name="PlayClassicModeText" xml:space="preserve">
+        <value>Classic mode</value>
+    </data>
+    <data name="MainMenuButtonText" xml:space="preserve">
+        <value>Main menu</value>
+    </data>
+    <data name="PlayExtendedModeText" xml:space="preserve">
+        <value>Extended mode</value>
+    </data>
+    <data name="PlayTargetScoreModeText" xml:space="preserve">
+        <value>Target score</value>
+    </data>
+    <data name="PlaySpeedRaceModeText" xml:space="preserve">
+        <value>Speed race</value>
+    </data>
+    <data name="CongratulationsLabelContent" xml:space="preserve">
+        <value>Congratulations!</value>
+    </data>
+    <data name="GameOverLabelContent" xml:space="preserve">
+        <value>Game over</value>
+    </data>
+    <data name="NewHighScoreTextBoxText" xml:space="preserve">
+        <value>New high score:</value>
+    </data>
+    <data name="RestartButtonText" xml:space="preserve">
+        <value>Restart</value>
+    </data>
+    <data name="YouScoredTextBlockText" xml:space="preserve">
+        <value>You scored:</value>
+    </data>
+    <data name="PressSpaceTextBlockText" xml:space="preserve">
+        <value>Press space to start</value>
+    </data>
+    <data name="PauseButtonText" xml:space="preserve">
+        <value>Pause</value>
+    </data>
+    <data name="ResumeButtonText" xml:space="preserve">
+        <value>Resume</value>
+    </data>
+    <data name="StartButtonText" xml:space="preserve">
+        <value>Start</value>
+    </data>
+    <data name="SetOwnSpeedLabelContent" xml:space="preserve">
+        <value>Set own speed:</value>
+    </data>
+    <data name="SpeedPresetLabelContent" xml:space="preserve">
+        <value>Speed presets:</value>
+    </data>
+    <data name="SpeedFastButtonText" xml:space="preserve">
+        <value>Fast</value>
+    </data>
+    <data name="SpeedFasterButtonText" xml:space="preserve">
+        <value>Faster</value>
+    </data>
+    <data name="SpeedSlowButtonText" xml:space="preserve">
+        <value>Slow</value>
+    </data>
+    <data name="SlowSpeedToolTipText" xml:space="preserve">
+        <value>Set speed = 3; Default speed = 5.</value>
+    </data>
+    <data name="SpeedToolTipText" xml:space="preserve">
+        <value>Minimum speed = 1, maximum speed = 13.</value>
+    </data>
+    <data name="FasterSpeedToolTipText" xml:space="preserve">
+        <value>Set speed = 7; Default speed = 5.</value>
+    </data>
+    <data name="FastSpeedToolTipText" xml:space="preserve">
+        <value>Set speed = 10; Default speed = 5.</value>
     </data>
 </root>

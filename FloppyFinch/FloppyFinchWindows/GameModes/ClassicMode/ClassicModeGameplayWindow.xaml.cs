@@ -6,6 +6,7 @@ using FloppyFinchLogics.GameLogics.Core;
 using FloppyFinchLogics.WindowLogics;
 using FloppyFinchWindows.Menus;
 using WindowState = System.Windows.WindowState;
+using Strings = FloppyFinchWindows.Resources.Strings;
 
 namespace FloppyFinchWindows.GameModes.ClassicMode;
 
@@ -86,9 +87,7 @@ public partial class ClassicModeGameplayWindow : Window
         _pauseState = !_pauseState;
         _game.PauseGame(_pauseState);
 
-        ButtonGamePause.Content = _pauseState ? "Resume" : "Pause";
-        ButtonReturnMainMenu.Visibility = _pauseState ? Visibility.Visible : Visibility.Hidden;
-        ButtonReturnMainMenu.Margin = _pauseState ? new Thickness(105, 15, 15, 15) : new Thickness(15);
+        UpdatePauseUi();
     }
 
     private void SetItemsVisibility()
@@ -119,7 +118,7 @@ public partial class ClassicModeGameplayWindow : Window
 
     private void UpdatePauseUi()
     {
-        ButtonGamePause.Content = _pauseState ? "Resume" : "Pause";
+        ButtonGamePause.Content = _pauseState ? $"{Strings.ResumeButtonText}" : $"{Strings.PauseButtonText}";
         ButtonReturnMainMenu.Visibility = _pauseState ? Visibility.Visible : Visibility.Hidden;
         ButtonReturnMainMenu.Margin = _pauseState ? new Thickness(105, 15, 15, 15) : new Thickness(15);
     }

@@ -186,6 +186,7 @@ public partial class SettingsMenuWindow : Window
             App.ChangeLanguage("uk");
 
             AccountManager.CurrentAccount.SelectedLanguage = "uk";
+            WindowStateData.SaveWindowState(Application.Current.MainWindow);
             AccountManager.SaveAccount(AccountManager.CurrentAccount);
 
             var updateUkrainianWindow = new SettingsMenuWindow();
@@ -198,6 +199,7 @@ public partial class SettingsMenuWindow : Window
         App.ChangeLanguage("en");
 
         AccountManager.CurrentAccount.SelectedLanguage = "en";
+        WindowStateData.SaveWindowState(Application.Current.MainWindow);
         AccountManager.SaveAccount(AccountManager.CurrentAccount);
 
         var updateEnglishWindow = new SettingsMenuWindow();

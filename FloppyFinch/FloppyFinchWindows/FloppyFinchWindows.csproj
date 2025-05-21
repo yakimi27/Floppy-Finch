@@ -8,6 +8,7 @@
         <UseWPF>true</UseWPF>
         <RootNamespace>FloppyFinchWindows</RootNamespace>
         <NeutralLanguage>en</NeutralLanguage>
+        <ApplicationIcon>Assets\Icon\floppy_finch_icon.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -137,13 +138,17 @@
         <None Remove="Assets\Bird\skin_5_white_2.png"/>
         <Resource Include="Assets\Bird\skin_5_white_2.png"/>
         <None Remove="Assets\PowerUps\heart_powerup.png"/>
-        <Resource Include="Assets\PowerUps\heart_powerup.png"/>
+        <Resource Include="Assets\PowerUp\heart_powerup.png"/>
         <None Remove="Assets\PowerUps\jetpack_powerup.png"/>
-        <Resource Include="Assets\PowerUps\jetpack_powerup.png"/>
+        <Resource Include="Assets\PowerUp\jetpack_powerup.png"/>
         <None Remove="Assets\PowerUps\score_multiplier_powerup.png"/>
-        <Resource Include="Assets\PowerUps\score_multiplier_powerup.png"/>
+        <Resource Include="Assets\PowerUp\score_multiplier_powerup.png"/>
         <None Remove="Assets\PowerUps\shield_powerup.png"/>
-        <Resource Include="Assets\PowerUps\shield_powerup.png"/>
+        <Resource Include="Assets\PowerUp\shield_powerup.png"/>
+        <None Remove="Assets\Coin\coin.png"/>
+        <Resource Include="Assets\Coin\coin.png"/>
+        <None Remove="Assets\Icon\floppy_finch_icon.ico"/>
+        <Resource Include="Assets\Icon\floppy_finch_icon.ico"/>
     </ItemGroup>
 
     <ItemGroup>
