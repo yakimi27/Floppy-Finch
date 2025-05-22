@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Shapes;
+using FloppyFinchLogics.TextureManagement.Pipes;
 
 namespace FloppyFinchLogics.GameLogics.Core;
 
@@ -20,18 +20,20 @@ public class Pipe
     private readonly bool _isFinal;
 
 
-    internal readonly Rectangle BottomPipe;
-    internal readonly Rectangle TopPipe;
+    internal readonly Image BottomPipe;
+    internal readonly Image TopPipe;
+    private Rect _bottomPipeCollisionBounds;
+    private Rect _topPipeCollisionBounds;
 
     public Pipe(Canvas canvas, bool isFinal, double pipeOffset = 0)
     {
         _gameCanvas = canvas;
         _isFinal = isFinal;
 
-        var pipeColor = _isFinal ? Brushes.Gold : Brushes.Green;
+        var pipeType = _isFinal ? "Gold" : "Default";
         var height = CalculateGapHeight(canvas);
 
-        (TopPipe, BottomPipe) = CreatePipes(canvas, height, pipeColor);
+        (TopPipe, BottomPipe) = CreatePipes(canvas, height, pipeType);
         InitializePipePositions(canvas, height, pipeOffset);
 
         _gameCanvas.Children.Add(TopPipe);
@@ -63,14 +65,19 @@ public class Pipe
         return height;
     }
 
-    private static (Rectangle top, Rectangle bottom) CreatePipes(Canvas canvas, int height, Brush color)
+    private static (Image top, Image bottom) CreatePipes(Canvas canvas, int height, string type)
     {
-        var top = new Rectangle { Width = PipeWidth, Height = height, Fill = color };
-        var bottom = new Rectangle
+        var top = new Image
         {
             Width = PipeWidth,
-            Height = canvas.ActualHeight - height - GapSize,
-            Fill = color
+            Source = PipeManager.LoadTopPipe(type),
+            Stretch = Stretch.Fill
+        };
+        var bottom = new Image
+        {
+            Width = PipeWidth,
+            Source = PipeManager.LoadBottomPipe(type),
+            Stretch = Stretch.Fill
         };
         return (top, bottom);
     }
@@ -78,9 +85,13 @@ public class Pipe
     private void InitializePipePositions(Canvas canvas, int height, double pipeOffset)
     {
         Canvas.SetLeft(TopPipe, canvas.ActualWidth + pipeOffset);
-        Canvas.SetTop(TopPipe, 0);
+        Canvas.SetBottom(TopPipe, canvas.ActualHeight - height);
         Canvas.SetLeft(BottomPipe, canvas.ActualWidth);
         Canvas.SetTop(BottomPipe, height + GapSize);
+
+        _topPipeCollisionBounds = new Rect(canvas.ActualWidth + pipeOffset, 0, PipeWidth, height);
+        _bottomPipeCollisionBounds = new Rect(canvas.ActualWidth, height + GapSize, PipeWidth,
+            canvas.ActualHeight - (height + GapSize));
     }
 
     public void Update(double speed = DefaultSpeed)
@@ -88,22 +99,21 @@ public class Pipe
         var newX = Canvas.GetLeft(TopPipe) - speed;
         Canvas.SetLeft(TopPipe, newX);
         Canvas.SetLeft(BottomPipe, newX);
+
+        _topPipeCollisionBounds.X = newX;
+        _bottomPipeCollisionBounds.X = newX;
     }
 
     public bool CheckCollision(Bird bird)
     {
         var birdBounds = bird.GetBounds();
-        return birdBounds.IntersectsWith(new Rect(Canvas.GetLeft(TopPipe), Canvas.GetTop(TopPipe),
-                   TopPipe.Width, TopPipe.Height)) ||
-               birdBounds.IntersectsWith(new Rect(Canvas.GetLeft(BottomPipe), Canvas.GetTop(BottomPipe),
-                   BottomPipe.Width, BottomPipe.Height));
+        return birdBounds.IntersectsWith(_topPipeCollisionBounds) ||
+               birdBounds.IntersectsWith(_bottomPipeCollisionBounds);
     }
 
     public bool CheckPowerUpCollision(Rect powerUpBounds)
     {
-        return powerUpBounds.IntersectsWith(new Rect(Canvas.GetLeft(TopPipe), Canvas.GetTop(TopPipe),
-                   TopPipe.Width, TopPipe.Height)) ||
-               powerUpBounds.IntersectsWith(new Rect(Canvas.GetLeft(BottomPipe), Canvas.GetTop(BottomPipe),
-                   BottomPipe.Width, BottomPipe.Height));
+        return powerUpBounds.IntersectsWith(_topPipeCollisionBounds) ||
+               powerUpBounds.IntersectsWith(_bottomPipeCollisionBounds);
     }
 }

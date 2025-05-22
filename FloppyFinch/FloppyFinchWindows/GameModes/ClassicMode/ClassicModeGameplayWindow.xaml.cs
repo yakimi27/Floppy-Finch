@@ -5,7 +5,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.GameLogics.Core;
-using FloppyFinchLogics.TextureManagement.Background;
+using FloppyFinchLogics.TextureManagement.Backgrounds;
 using FloppyFinchLogics.WindowLogics;
 using FloppyFinchWindows.Menus;
 using WindowState = System.Windows.WindowState;

@@ -1,15 +1,15 @@
 ﻿using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace FloppyFinchLogics.TextureManagement.Background;
+namespace FloppyFinchLogics.TextureManagement.Backgrounds;
 
-public class BackgroundManager
+public static class BackgroundManager
 {
     private const string BaseImagePath = "pack://application:,,,/FloppyFinchWindows;component/Assets/Background";
 
-    public static BitmapImage LoadBackground(string selectedBackgoround)
+    public static BitmapImage LoadBackground(string selectedBackground)
     {
-        return selectedBackgoround == "Dark" ? LoadDarkBackground() : LoadLightBackground();
+        return selectedBackground == "Dark" ? LoadDarkBackground() : LoadLightBackground();
     }
 
     private static BitmapImage LoadLightBackground()

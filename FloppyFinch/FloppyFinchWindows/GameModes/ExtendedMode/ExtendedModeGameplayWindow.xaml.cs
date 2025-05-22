@@ -6,7 +6,7 @@ using System.Windows.Media;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.GameLogics.Core;
 using FloppyFinchLogics.GameLogics.ExtendedMode;
-using FloppyFinchLogics.TextureManagement.Background;
+using FloppyFinchLogics.TextureManagement.Backgrounds;
 using FloppyFinchLogics.TextureManagement.PowerUps;
 using FloppyFinchLogics.WindowLogics;
 using FloppyFinchWindows.Menus;

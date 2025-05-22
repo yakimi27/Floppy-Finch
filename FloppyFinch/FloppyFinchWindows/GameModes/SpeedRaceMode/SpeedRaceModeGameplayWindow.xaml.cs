@@ -6,7 +6,7 @@ using System.Windows.Media;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.GameLogics.Core;
 using FloppyFinchLogics.GameLogics.SpeedRaceMode;
-using FloppyFinchLogics.TextureManagement.Background;
+using FloppyFinchLogics.TextureManagement.Backgrounds;
 using FloppyFinchLogics.WindowLogics;
 using FloppyFinchWindows.Menus;
 using FloppyFinchWindows.Resources;
@@ -48,7 +48,7 @@ public partial class SpeedRaceModeGameplayWindow : Window
         };
 
         SetUpBackground(GameCanvas);
-        
+
         _modeGame = new SpeedRaceModeGame(GameCanvas, ScoreText, _gameSpeed);
         _modeGame.OnGameOver += OpenModeGameOverWindow;
     }
@@ -147,6 +147,7 @@ public partial class SpeedRaceModeGameplayWindow : Window
         WindowStateData.SaveWindowState(Application.Current.MainWindow);
         SaveWindowStateToAccount();
     }
+
     private static void SetUpBackground(Canvas mainCanvas)
     {
         if (AccountManager.CurrentAccount == null || AccountManager.CurrentAccount.SelectedBackground == "null")
