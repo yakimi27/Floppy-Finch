@@ -10,8 +10,8 @@ namespace FloppyFinchWindows.Menus;
 
 public partial class SettingsMenuWindow : Window
 {
-    private readonly bool isInitializingLanguageComboBox;
     private bool isInitializingResolutionComboBox;
+    private bool isInitializingSubComboBoxes;
 
     public SettingsMenuWindow()
     {
@@ -30,12 +30,7 @@ public partial class SettingsMenuWindow : Window
         }
 
         SetUpResolutionComboBox();
-        isInitializingLanguageComboBox = true;
-        if (AccountManager.CurrentAccount != null)
-            ComboBoxLanguage.SelectedItem = AccountManager.CurrentAccount.SelectedLanguage == "uk"
-                ? ComboBoxItemLanguageUkrainian
-                : ComboBoxItemLanguageEnglish;
-        isInitializingLanguageComboBox = false;
+        SetUpSubComboBoxes();
     }
 
     private void ButtonBack_OnClick(object sender, RoutedEventArgs e)
@@ -176,7 +171,7 @@ public partial class SettingsMenuWindow : Window
 
     private void ComboBoxLanguage_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (isInitializingLanguageComboBox) return;
+        if (isInitializingSubComboBoxes) return;
         if (AccountManager.CurrentAccount == null)
             return;
 
@@ -205,5 +200,33 @@ public partial class SettingsMenuWindow : Window
         var updateEnglishWindow = new SettingsMenuWindow();
         updateEnglishWindow.Show();
         Close();
+    }
+
+    private void ComboBoxBackground_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (isInitializingSubComboBoxes) return;
+        if (AccountManager.CurrentAccount == null)
+            return;
+
+        AccountManager.CurrentAccount.SelectedBackground =
+            ComboBoxBackground.SelectedItem.Equals(ComboBoxItemBackgroundOff) ? "null" :
+            ComboBoxBackground.SelectedItem.Equals(ComboBoxItemBackgroundLight) ? "Light" : "Dark";
+        AccountManager.SaveAccount(AccountManager.CurrentAccount);
+    }
+
+    private void SetUpSubComboBoxes()
+    {
+        isInitializingSubComboBoxes = true;
+        if (AccountManager.CurrentAccount != null)
+            ComboBoxLanguage.SelectedItem = AccountManager.CurrentAccount.SelectedLanguage == "uk"
+                ? ComboBoxItemLanguageUkrainian
+                : ComboBoxItemLanguageEnglish;
+        if (AccountManager.CurrentAccount != null)
+            ComboBoxBackground.SelectedItem = AccountManager.CurrentAccount.SelectedBackground == "null"
+                ? ComboBoxItemBackgroundOff
+                : AccountManager.CurrentAccount.SelectedBackground == "Light"
+                    ? ComboBoxItemBackgroundLight
+                    : ComboBoxItemBackgroundDark;
+        isInitializingSubComboBoxes = false;
     }
 }

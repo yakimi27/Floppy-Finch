@@ -149,6 +149,8 @@
         <Resource Include="Assets\Coin\coin.png"/>
         <None Remove="Assets\Icon\floppy_finch_icon.ico"/>
         <Resource Include="Assets\Icon\floppy_finch_icon.ico"/>
+        <None Remove="Assets\Background\background_light.png" />
+        <Resource Include="Assets\Background\background_light.png" />
     </ItemGroup>
 
     <ItemGroup>

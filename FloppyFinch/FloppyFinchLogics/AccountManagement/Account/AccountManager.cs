@@ -58,6 +58,7 @@ public static class AccountManager
             PasswordSalt = Convert.ToBase64String(salt),
             PasswordHash = Convert.ToBase64String(hash),
             SelectedLanguage = "en",
+            SelectedBackground = "Light",
             Coins = 0,
             HighScore = 0,
             SelectedSkin = "Classic",

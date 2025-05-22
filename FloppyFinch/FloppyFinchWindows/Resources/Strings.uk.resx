@@ -69,10 +69,10 @@
     <data name="ChoseAppearanceLabelText" xml:space="preserve">
         <value>Обрати фон гри:</value>
     </data>
-    <data name="AppearanceLightModeComboBoxItemText" xml:space="preserve">
+    <data name="BackgroundLightComboBoxItemText" xml:space="preserve">
         <value>Світлий фон</value>
     </data>
-    <data name="AppearanceDarkModeComboBoxItemText" xml:space="preserve">
+    <data name="BackgroundDarkComboBoxItemText" xml:space="preserve">
         <value>Темний фон</value>
     </data>
     <data name="AccountSettingsLabelText" xml:space="preserve">
@@ -200,5 +200,8 @@
     </data>
     <data name="PowerUpLevelTextBoxText" xml:space="preserve">
         <value>Рівень:</value>
+    </data>
+    <data name="BackgroundOffComboBoxItemText" xml:space="preserve">
+        <value>Вимкнено</value>
     </data>
 </root>

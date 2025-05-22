@@ -96,29 +96,38 @@ namespace FloppyFinchWindows.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string BackButtonText {
+            get {
+                return ResourceManager.GetString("BackButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dark.
         /// </summary>
-        public static string AppearanceDarkModeComboBoxItemText {
+        public static string BackgroundDarkComboBoxItemText {
             get {
-                return ResourceManager.GetString("AppearanceDarkModeComboBoxItemText", resourceCulture);
+                return ResourceManager.GetString("BackgroundDarkComboBoxItemText", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Light.
         /// </summary>
-        public static string AppearanceLightModeComboBoxItemText {
+        public static string BackgroundLightComboBoxItemText {
             get {
-                return ResourceManager.GetString("AppearanceLightModeComboBoxItemText", resourceCulture);
+                return ResourceManager.GetString("BackgroundLightComboBoxItemText", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Back.
+        ///   Looks up a localized string similar to Off.
         /// </summary>
-        public static string BackButtonText {
+        public static string BackgroundOffComboBoxItemText {
             get {
-                return ResourceManager.GetString("BackButtonText", resourceCulture);
+                return ResourceManager.GetString("BackgroundOffComboBoxItemText", resourceCulture);
             }
         }
         

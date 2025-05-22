@@ -83,7 +83,17 @@ public class Game
         var nextPipe = Pipes.FirstOrDefault(pipe => !pipe.IsScored);
         if (nextPipe != null && nextPipe.CheckCollision(Bird)) GameOver();
 
-        Pipes.RemoveAll(pipe => pipe.IsOutOfBounds);
+        Pipes.RemoveAll(pipe =>
+        {
+            if (pipe.IsOutOfBounds)
+            {
+                GameCanvas.Children.Remove(pipe.TopPipe);
+                GameCanvas.Children.Remove(pipe.BottomPipe);
+                return true;
+            }
+
+            return false;
+        });
 
         if (Bird.IsOutOfBounds(GameCanvas.ActualHeight)) GameOver();
     }

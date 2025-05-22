@@ -9,7 +9,7 @@
         ResizeMode="NoResize"
         KeyDown="Window_KeyDown" MouseDown="Window_MouseDown" Closing="ClassicModeGameplayWindow_OnClosing">
     <Grid>
-        <Canvas Name="GameCanvas" Background="LightBlue" RenderOptions.BitmapScalingMode="NearestNeighbor" />
+        <Canvas Name="GameCanvas" RenderOptions.BitmapScalingMode="NearestNeighbor" />
         <TextBlock x:Name="ScoreText" Text="0" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 100 0 0"
                    FontSize="26" Visibility="Hidden" />
         <TextBlock x:Name="KeyWait" Text="{x:Static resources:Strings.PressSpaceTextBlockText}" VerticalAlignment="Top"

@@ -17,7 +17,6 @@ public class AccountData
     public List<string> UnlockedSkins { get; set; }
     public List<int> PowerUpLevels { get; set; }
 
-    public bool DarkMode { get; set; }
     public bool MaximizedWindow { get; set; }
     public int WindowPositionX { get; set; }
     public int WindowPositionY { get; set; }
@@ -25,4 +24,5 @@ public class AccountData
     public int WindowHeight { get; set; }
     public string SelectedSkin { get; set; }
     public string SelectedLanguage { get; set; }
+    public string SelectedBackground { get; set; }
 }

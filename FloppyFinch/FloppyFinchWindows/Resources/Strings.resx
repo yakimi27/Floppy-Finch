@@ -72,10 +72,10 @@
     <data name="DeleteAccountButtonText" xml:space="preserve">
         <value>Delete account</value>
     </data>
-    <data name="AppearanceLightModeComboBoxItemText" xml:space="preserve">
+    <data name="BackgroundLightComboBoxItemText" xml:space="preserve">
         <value>Light</value>
     </data>
-    <data name="AppearanceDarkModeComboBoxItemText" xml:space="preserve">
+    <data name="BackgroundDarkComboBoxItemText" xml:space="preserve">
         <value>Dark</value>
     </data>
     <data name="AccountDeletedSuccessMessageBox" xml:space="preserve">
@@ -209,5 +209,8 @@
     </data>
     <data name="PowerUpLevelTextBoxText" xml:space="preserve">
         <value>Level:</value>
+    </data>
+    <data name="BackgroundOffComboBoxItemText" xml:space="preserve">
+        <value>Off</value>
     </data>
 </root>

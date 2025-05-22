@@ -55,11 +55,14 @@
 
                     <Label Grid.Column="0" Grid.Row="1" Content="{x:Static resources:Strings.ChoseAppearanceLabelText}"
                            Margin="0 10 0 0" />
-                    <ComboBox Grid.Column="1" Grid.Row="1" Margin="0 10 0 0">
-                        <ComboBoxItem x:Name="BoxItemLightMode"
-                                      Content="{x:Static resources:Strings.AppearanceLightModeComboBoxItemText}" />
-                        <ComboBoxItem x:Name="BoxItemDarkMode"
-                                      Content="{x:Static resources:Strings.AppearanceDarkModeComboBoxItemText}" />
+                    <ComboBox Grid.Column="1" Grid.Row="1" x:Name="ComboBoxBackground"
+                              SelectionChanged="ComboBoxBackground_OnSelectionChanged" Margin="0 10 0 0">
+                        <ComboBoxItem x:Name="ComboBoxItemBackgroundLight"
+                                      Content="{x:Static resources:Strings.BackgroundLightComboBoxItemText}" />
+                        <ComboBoxItem x:Name="ComboBoxItemBackgroundDark"
+                                      Content="{x:Static resources:Strings.BackgroundDarkComboBoxItemText}" />
+                        <ComboBoxItem x:Name="ComboBoxItemBackgroundOff"
+                                      Content="{x:Static resources:Strings.BackgroundOffComboBoxItemText}" />
                     </ComboBox>
 
                     <Label Grid.Column="0" Grid.Row="2" Content="{x:Static resources:Strings.ChoseLanguageLabelText}"

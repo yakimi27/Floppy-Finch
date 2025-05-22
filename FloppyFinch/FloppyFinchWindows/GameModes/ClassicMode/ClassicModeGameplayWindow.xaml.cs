@@ -1,8 +1,11 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
+using System.Windows.Media;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.GameLogics.Core;
+using FloppyFinchLogics.TextureManagement.Background;
 using FloppyFinchLogics.WindowLogics;
 using FloppyFinchWindows.Menus;
 using WindowState = System.Windows.WindowState;
@@ -40,6 +43,8 @@ public partial class ClassicModeGameplayWindow : Window
             var hwndTarget = hwndSource.CompositionTarget;
             if (hwndTarget != null) hwndTarget.RenderMode = RenderMode.Default;
         };
+
+        SetUpBackground(GameCanvas);
 
         _game = new Game(GameCanvas, ScoreText);
         _game.OnGameOver += OpenGameOverWindow;
@@ -138,5 +143,29 @@ public partial class ClassicModeGameplayWindow : Window
     {
         WindowStateData.SaveWindowState(Application.Current.MainWindow);
         SaveWindowStateToAccount();
+    }
+
+    private static void SetUpBackground(Canvas mainCanvas)
+    {
+        if (AccountManager.CurrentAccount == null || AccountManager.CurrentAccount.SelectedBackground == "null")
+        {
+            mainCanvas.Background = new SolidColorBrush(Color.FromRgb(173, 216, 230));
+            return;
+        }
+
+        var imageBrush = new ImageBrush
+        {
+            ImageSource = BackgroundManager.LoadBackground(AccountManager.CurrentAccount.SelectedBackground),
+            ViewportUnits = BrushMappingMode.Absolute,
+            Stretch = Stretch.UniformToFill,
+            AlignmentX = AlignmentX.Left,
+            AlignmentY = AlignmentY.Top
+        };
+
+        var canvasHeight = WindowStateData.WindowHeight;
+        var canvasWidth = WindowStateData.WindowWidth;
+        imageBrush.Viewport = new Rect(0, 0, canvasWidth, canvasHeight);
+
+        mainCanvas.Background = imageBrush;
     }
 }

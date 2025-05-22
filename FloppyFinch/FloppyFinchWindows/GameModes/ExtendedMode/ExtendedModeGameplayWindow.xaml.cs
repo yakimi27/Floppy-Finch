@@ -1,9 +1,12 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
+using System.Windows.Media;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.GameLogics.Core;
 using FloppyFinchLogics.GameLogics.ExtendedMode;
+using FloppyFinchLogics.TextureManagement.Background;
 using FloppyFinchLogics.TextureManagement.PowerUps;
 using FloppyFinchLogics.WindowLogics;
 using FloppyFinchWindows.Menus;
@@ -44,6 +47,7 @@ public partial class ExtendedModeModeGameplayWindow : Window
 
         ImageHeart.Source = PowerUpManager.LoadPowerUp(0);
 
+        SetUpBackground(GameCanvas);
         _modeGame = new ExtendedModeGame(GameCanvas, ScoreText, HeartsCountLabel, PowerUpSpaceGrid);
         _modeGame.OnGameOver += OpenModeGameOverWindow;
         RefreshLayout();
@@ -147,5 +151,29 @@ public partial class ExtendedModeModeGameplayWindow : Window
     {
         WindowStateData.SaveWindowState(Application.Current.MainWindow);
         SaveWindowStateToAccount();
+    }
+
+    private static void SetUpBackground(Canvas mainCanvas)
+    {
+        if (AccountManager.CurrentAccount == null || AccountManager.CurrentAccount.SelectedBackground == "null")
+        {
+            mainCanvas.Background = new SolidColorBrush(Color.FromRgb(173, 216, 230));
+            return;
+        }
+
+        var imageBrush = new ImageBrush
+        {
+            ImageSource = BackgroundManager.LoadBackground(AccountManager.CurrentAccount.SelectedBackground),
+            ViewportUnits = BrushMappingMode.Absolute,
+            Stretch = Stretch.UniformToFill,
+            AlignmentX = AlignmentX.Left,
+            AlignmentY = AlignmentY.Top
+        };
+
+        var canvasHeight = WindowStateData.WindowHeight;
+        var canvasWidth = WindowStateData.WindowWidth;
+        imageBrush.Viewport = new Rect(0, 0, canvasWidth, canvasHeight);
+
+        mainCanvas.Background = imageBrush;
     }
 }
