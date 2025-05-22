@@ -26,6 +26,7 @@ public class TargetScoreModeGame : Game
     protected override void GameLoop(object sender, EventArgs e)
     {
         Bird.Update();
+        _grassScroller.Update();
 
         if (Pipes.Count == 0 ||
             Canvas.GetLeft(Pipes.Last().TopPipe) <
@@ -77,7 +78,7 @@ public class TargetScoreModeGame : Game
 
         Pipes.RemoveAll(pipe => pipe.IsOutOfBounds);
 
-        if (Bird.IsOutOfBounds(GameCanvas.ActualHeight)) GameOver();
+        if (Bird.IsOutOfBounds(GameCanvas.ActualHeight - (int)WindowStateData.WindowPaddingBottom)) GameOver();
     }
 
     private void UpdateProgressBar()

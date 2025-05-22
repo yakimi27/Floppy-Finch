@@ -159,6 +159,10 @@
         <Resource Include="Assets\Pipe\pipe_gold_bottom.png"/>
         <None Remove="Assets\Pipe\pipe_gold_top.png"/>
         <Resource Include="Assets\Pipe\pipe_gold_top.png"/>
+        <None Remove="Assets\Background\background_dark.png"/>
+        <Resource Include="Assets\Background\background_dark.png"/>
+        <None Remove="Assets\Grass\grass.png"/>
+        <Resource Include="Assets\Grass\grass.png"/>
     </ItemGroup>
 
     <ItemGroup>

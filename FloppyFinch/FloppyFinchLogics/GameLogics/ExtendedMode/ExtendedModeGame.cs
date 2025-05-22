@@ -53,6 +53,7 @@ public class ExtendedModeGame : Game
     {
         if (Jetpack <= 0)
             Bird.Update();
+        _grassScroller.Update();
 
         if (Pipes.Count == 0 ||
             Canvas.GetLeft(Pipes.Last().TopPipe) <
@@ -130,7 +131,8 @@ public class ExtendedModeGame : Game
         if (Random.Next(1, 250) < PowerUpSpawnChance && _powerUps.Count == 0 && Jetpack <= 0)
         {
             var x = GameCanvas.ActualWidth + PipeOffset - PowerUpHeight;
-            var y = Random.NextDouble() * (GameCanvas.ActualHeight - PowerUpHeight);
+            var y = Random.NextDouble() *
+                    (GameCanvas.ActualHeight - PowerUpHeight - (int)WindowStateData.WindowPaddingBottom);
             var tempPowerUp = new PowerUp(GameCanvas, x, y, DeterminePowerUpTypeByIndex(Random.Next(1, 5)));
             var tempBounds = tempPowerUp.GetBoundsManual(x, y);
 
@@ -164,7 +166,7 @@ public class ExtendedModeGame : Game
             }
         }
 
-        if (Bird.IsOutOfBounds(GameCanvas.ActualHeight)) GameOver();
+        if (Bird.IsOutOfBounds(GameCanvas.ActualHeight - (int)WindowStateData.WindowPaddingBottom)) GameOver();
     }
 
     private void ApplyPowerUp(PowerUp.PowerUpType powerUpType)

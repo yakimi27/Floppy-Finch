@@ -4,6 +4,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.TextureManagement;
+using FloppyFinchLogics.TextureManagement.Grass;
 using FloppyFinchLogics.WindowLogics;
 
 namespace FloppyFinchLogics.GameLogics.Core;
@@ -19,11 +20,14 @@ public class Game
     protected readonly Canvas GameCanvas;
     protected readonly List<Pipe> Pipes = new();
     protected readonly Random Random = new();
+    protected Grass _grassScroller;
     protected int Score;
+
 
     public Game(Canvas canvas, TextBlock scoreTextBlock)
     {
         GameCanvas = canvas;
+        _grassScroller = new Grass(GameCanvas, GrassManager.LoadGrass());
         _gameOverCanvas = canvas;
         _scoreText = scoreTextBlock;
         var currentSkin = SkinManager.LoadSkin(AccountManager.CurrentAccount!.SelectedSkin);
@@ -50,12 +54,15 @@ public class Game
 
     private void WaitLoop(object sender, EventArgs e)
     {
+        _grassScroller.Update();
         Bird.Wait();
     }
 
     protected virtual void GameLoop(object sender, EventArgs e)
     {
         Bird.Update();
+        _grassScroller.Update();
+
 
         if (Pipes.Count == 0 ||
             Canvas.GetLeft(Pipes.Last().TopPipe) <
@@ -95,7 +102,7 @@ public class Game
             return false;
         });
 
-        if (Bird.IsOutOfBounds(GameCanvas.ActualHeight)) GameOver();
+        if (Bird.IsOutOfBounds(GameCanvas.ActualHeight - (int)WindowStateData.WindowPaddingBottom)) GameOver();
     }
 
     protected void UpdateScore()

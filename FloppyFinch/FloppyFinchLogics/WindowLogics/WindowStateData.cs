@@ -13,6 +13,16 @@ public static class WindowStateData
     public static double WindowPositionX { set; get; }
     public static double WindowPositionY { set; get; }
 
+    public static double WindowPaddingBottom
+    {
+        get
+        {
+            var padding = WindowHeight * 0.1;
+            if (padding > 88) padding = 88;
+            return padding;
+        }
+    }
+
     public static double WidthScaleFactor
     {
         get

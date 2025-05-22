@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using FloppyFinchLogics.GameLogics.Core;
+using FloppyFinchLogics.TextureManagement.Grass;
 using FloppyFinchLogics.WindowLogics;
 
 namespace FloppyFinchLogics.GameLogics.SpeedRaceMode;
@@ -12,11 +13,13 @@ public class SpeedRaceModeGame : Game
         scoreTextBlock)
     {
         _gameSpeed = gameSpeed;
+        _grassScroller = new Grass(GameCanvas, GrassManager.LoadGrass(), _gameSpeed);
     }
 
     protected override void GameLoop(object sender, EventArgs e)
     {
         Bird.Update();
+        _grassScroller.Update();
 
         if (Pipes.Count == 0 ||
             Canvas.GetLeft(Pipes.Last().TopPipe) <
@@ -46,6 +49,6 @@ public class SpeedRaceModeGame : Game
 
         Pipes.RemoveAll(pipe => pipe.IsOutOfBounds);
 
-        if (Bird.IsOutOfBounds(GameCanvas.ActualHeight)) GameOver();
+        if (Bird.IsOutOfBounds(GameCanvas.ActualHeight - (int)WindowStateData.WindowPaddingBottom)) GameOver();
     }
 }
