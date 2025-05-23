@@ -159,29 +159,38 @@ namespace FloppyFinchWindows.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chose background appearance:.
+        ///   Looks up a localized string similar to Choose background appearance:.
         /// </summary>
-        public static string ChoseAppearanceLabelText {
+        public static string ChooseAppearanceLabelText {
             get {
-                return ResourceManager.GetString("ChoseAppearanceLabelText", resourceCulture);
+                return ResourceManager.GetString("ChooseAppearanceLabelText", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chose language:.
+        ///   Looks up a localized string similar to Choose mode.
         /// </summary>
-        public static string ChoseLanguageLabelText {
+        public static string ChooseGameModeTitle {
             get {
-                return ResourceManager.GetString("ChoseLanguageLabelText", resourceCulture);
+                return ResourceManager.GetString("ChooseGameModeTitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chose resolution preset:.
+        ///   Looks up a localized string similar to Choose language:.
         /// </summary>
-        public static string ChoseResolutionLabelText {
+        public static string ChooseLanguageLabelText {
             get {
-                return ResourceManager.GetString("ChoseResolutionLabelText", resourceCulture);
+                return ResourceManager.GetString("ChooseLanguageLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose resolution preset:.
+        /// </summary>
+        public static string ChooseResolutionLabelText {
+            get {
+                return ResourceManager.GetString("ChooseResolutionLabelText", resourceCulture);
             }
         }
         

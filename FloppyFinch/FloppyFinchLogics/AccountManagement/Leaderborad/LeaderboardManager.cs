@@ -20,8 +20,8 @@ public class LeaderboardManager
                     Position = i + 2,
                     PlayerName = a.Username,
                     Score = a.HighScore,
-                    BackgroundColor = AccountManager.CurrentAccount == null ? "#F0F0F0" :
-                        a.Username == AccountManager.CurrentAccount.Username ? "#BDBDBD" : "#F0F0F0"
+                    BackgroundColor = AccountManager.CurrentAccount == null ? "#e06119" :
+                        a.Username == AccountManager.CurrentAccount.Username ? "#ff8c3a" : "#e06119"
                 }));
         }
         else

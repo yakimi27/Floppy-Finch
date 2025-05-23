@@ -60,13 +60,13 @@
     <data name="ClearAccountDataButtonText" xml:space="preserve">
         <value>Очистити дані акаунту</value>
     </data>
-    <data name="ChoseResolutionLabelText" xml:space="preserve">
+    <data name="ChooseResolutionLabelText" xml:space="preserve">
         <value>Обрати роздільну здатність:</value>
     </data>
-    <data name="ChoseLanguageLabelText" xml:space="preserve">
+    <data name="ChooseLanguageLabelText" xml:space="preserve">
         <value>Обрати мову:</value>
     </data>
-    <data name="ChoseAppearanceLabelText" xml:space="preserve">
+    <data name="ChooseAppearanceLabelText" xml:space="preserve">
         <value>Обрати фон гри:</value>
     </data>
     <data name="BackgroundLightComboBoxItemText" xml:space="preserve">
@@ -203,5 +203,8 @@
     </data>
     <data name="BackgroundOffComboBoxItemText" xml:space="preserve">
         <value>Вимкнено</value>
+    </data>
+    <data name="ChooseGameModeTitle" xml:space="preserve">
+        <value>Оберіть режим</value>
     </data>
 </root>

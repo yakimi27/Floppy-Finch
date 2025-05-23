@@ -9,13 +9,55 @@
         Title="Floppy Finch" Height="auto" Width="auto" MinHeight="600" MinWidth="400"
         Closing="MainMenuWindow_OnClosing">
     <Grid>
+
+        <Grid Background="LightSkyBlue">
+            <Canvas x:Name="CloudCanvas" SizeChanged="CloudCanvas_OnSizeChanged">
+                <Ellipse Fill="#CCFFFFFF" Width="120" Height="60">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="BackCloud1Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#CCFFFFFF" Width="100" Height="50">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="BackCloud2Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#DDFFFFFF" Width="180" Height="90">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="MiddleCloud1Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#DDFFFFFF" Width="140" Height="70">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="MiddleCloud2Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#EEFFFFFF" Width="150" Height="75">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="FrontCloud1Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#EEFFFFFF" Width="160" Height="80">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="FrontCloud2Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+            </Canvas>
+        </Grid>
+
         <Canvas Cursor="Help" Height="15" Width="15" Background="Transparent" VerticalAlignment="Top"
                 HorizontalAlignment="Right"
                 Margin="8" ToolTipService.InitialShowDelay="100">
             <Line X1="0" Y1="0" X2="15" Y2="0" Stroke="Black" />
             <Line X1="15" Y1="0" X2="15" Y2="15" Stroke="Black" />
             <Canvas.ToolTip>
-                <ToolTip Content="{x:Static resources:Strings.ResizeWindowToolTipText}" />
+                <ToolTip Style="{StaticResource ToolTipStyle}"
+                         Content="{x:Static resources:Strings.ResizeWindowToolTipText}" FontSize="8" />
             </Canvas.ToolTip>
         </Canvas>
         <Canvas Cursor="Help" Height="15" Width="15" Background="Transparent" VerticalAlignment="Bottom"
@@ -24,7 +66,8 @@
             <Line X1="0" Y1="15" X2="15" Y2="15" Stroke="Black" />
             <Line X1="0" Y1="0" X2="0" Y2="15" Stroke="Black" />
             <Canvas.ToolTip>
-                <ToolTip Content="{x:Static resources:Strings.ResizeWindowToolTipText}" />
+                <ToolTip Style="{StaticResource ToolTipStyle}"
+                         Content="{x:Static resources:Strings.ResizeWindowToolTipText}" FontSize="8" />
             </Canvas.ToolTip>
         </Canvas>
         <Grid>
@@ -39,22 +82,22 @@
                 <RowDefinition Height="*" MaxHeight="150" />
                 <RowDefinition Height="*" MaxHeight="150" />
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Content="Floppy Finch" VerticalAlignment="Center" HorizontalAlignment="Center"
-                   FontSize="32" />
-            <Button x:Name="ButtonPlay" Click="ButtonPlay_OnClick" Grid.Row="1"
+            <Label Grid.Row="0" Style="{StaticResource HeaderTextStyle}" Content="Floppy Finch"
+                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Button Style="{StaticResource ButtonStyle}" Click="ButtonPlay_OnClick" Grid.Row="1"
                     Content="{x:Static resources:Strings.PlayButtonText}" Margin="50 20"
                     MaxWidth="400" MaxHeight="85" />
-            <Button x:Name="ButtonShop" Click="ButtonShop_OnClick" Grid.Row="2"
+            <Button Style="{StaticResource ButtonStyle}" Click="ButtonShop_OnClick" Grid.Row="2"
                     Content="{x:Static resources:Strings.ShopButtonText}" Margin="50 20"
                     MaxWidth="400" MaxHeight="85" />
-            <Button x:Name="ButtonSettings" Click="ButtonSettings_OnClick" Grid.Row="3"
+            <Button Style="{StaticResource ButtonStyle}" Click="ButtonSettings_OnClick" Grid.Row="3"
                     Content="{x:Static resources:Strings.SettingsButtonText}"
                     Margin="50 20"
                     MaxWidth="400" MaxHeight="85" />
-            <Button x:Name="ButtonLeaderboards" Click="ButtonLeaderboards_OnClick" Grid.Row="4"
+            <Button Style="{StaticResource ButtonStyle}" Click="ButtonLeaderboards_OnClick" Grid.Row="4"
                     Content="{x:Static resources:Strings.LeaderboardButtonText}"
                     Margin="50 20" MaxWidth="400" MaxHeight="85" />
-            <Button x:Name="ButtonExit" Click="ButtonExit_OnClick" Grid.Row="5"
+            <Button Style="{StaticResource ButtonStyle}" Click="ButtonExit_OnClick" Grid.Row="5"
                     Content="{x:Static resources:Strings.ExitButtonText}" Margin="50 20"
                     MaxWidth="400" MaxHeight="85" />
         </Grid>

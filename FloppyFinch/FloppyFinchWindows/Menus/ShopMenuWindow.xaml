@@ -8,25 +8,67 @@
         Title="Floppy Finch" Height="auto" Width="auto" MinHeight="600" MinWidth="400"
         Closing="ShopMenuWindow_OnClosing">
     <Grid>
-        <!--resize corner info-->
+
+        <Grid Background="LightSkyBlue">
+            <Canvas x:Name="CloudCanvas" SizeChanged="CloudCanvas_OnSizeChanged">
+                <Ellipse Fill="#CCFFFFFF" Width="120" Height="60">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="BackCloud1Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#CCFFFFFF" Width="100" Height="50">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="BackCloud2Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#DDFFFFFF" Width="180" Height="90">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="MiddleCloud1Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#DDFFFFFF" Width="140" Height="70">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="MiddleCloud2Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#EEFFFFFF" Width="150" Height="75">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="FrontCloud1Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#EEFFFFFF" Width="160" Height="80">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="FrontCloud2Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+            </Canvas>
+        </Grid>
+
         <Canvas Cursor="Help" Height="15" Width="15" Background="Transparent" VerticalAlignment="Top"
                 HorizontalAlignment="Right" Margin="8" ToolTipService.InitialShowDelay="100">
             <Line X1="0" Y1="0" X2="15" Y2="0" Stroke="Black" />
             <Line X1="15" Y1="0" X2="15" Y2="15" Stroke="Black" />
             <Canvas.ToolTip>
-                <ToolTip Content="{x:Static resources:Strings.ResizeWindowToolTipText}" />
+                <ToolTip Style="{StaticResource ToolTipStyle}"
+                         Content="{x:Static resources:Strings.ResizeWindowToolTipText}" FontSize="8" />
             </Canvas.ToolTip>
         </Canvas>
         <Canvas Cursor="Help" Height="15" Width="15" Background="Transparent" VerticalAlignment="Bottom"
-                HorizontalAlignment="Left" Margin="8" ToolTipService.InitialShowDelay="100">
+                HorizontalAlignment="Left"
+                Margin="8" ToolTipService.InitialShowDelay="100">
             <Line X1="0" Y1="15" X2="15" Y2="15" Stroke="Black" />
             <Line X1="0" Y1="0" X2="0" Y2="15" Stroke="Black" />
             <Canvas.ToolTip>
-                <ToolTip Content="{x:Static resources:Strings.ResizeWindowToolTipText}" />
+                <ToolTip Style="{StaticResource ToolTipStyle}"
+                         Content="{x:Static resources:Strings.ResizeWindowToolTipText}" FontSize="8" />
             </Canvas.ToolTip>
         </Canvas>
 
-        <!--main layout-->
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
@@ -34,45 +76,46 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <!--top bar-->
             <Grid Grid.Row="0">
-                <Button x:Name="ButtonBack" Click="ButtonBack_OnClick"
-                        Content="{x:Static resources:Strings.BackButtonText}"
-                        Width="75" Height="25" HorizontalAlignment="Left" Margin="35,0" />
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="35,0">
-                    <Image x:Name="CoinIcon" RenderOptions.BitmapScalingMode="NearestNeighbor" Width="25" Height="25"
-                           Margin="0,0,5,0" />
-                    <TextBlock x:Name="CoinsText" Text="0" Height="25" VerticalAlignment="Center"
-                               TextAlignment="Center"
-                               FontSize="18" FontWeight="Bold" />
-                </StackPanel>
+                <Button Style="{StaticResource SmallButtonStyle}" Click="ButtonBack_OnClick"
+                        Content="{x:Static resources:Strings.BackButtonText}" Width="75"
+                        Height="40"
+                        HorizontalAlignment="Left" Margin="35 0 " />
+                <Border Style="{StaticResource CoinStyle}" HorizontalAlignment="Right"
+                        Margin="35,0">
+                    <StackPanel Orientation="Horizontal" Margin="15 0 ">
+                        <Image x:Name="CoinIcon" RenderOptions.BitmapScalingMode="NearestNeighbor" Width="25"
+                               Height="25"
+                               Margin="0 0 5 0" />
+                        <TextBlock x:Name="CoinsText" Text="0" Height="25" VerticalAlignment="Center"
+                                   TextAlignment="Center"
+                                   FontSize="18" Foreground="White" FontWeight="Bold" Margin="0 12 0 0" />
+                    </StackPanel>
+                </Border>
             </Grid>
-
-            <!--tabs-->
-            <TabControl Grid.Row="1" Grid.RowSpan="2" Margin="20">
-                <!--bird skin tab-->
-                <TabItem Header="{x:Static resources:Strings.BirdSkinsShopHeader}">
+            <TabControl Grid.Row="1" Grid.RowSpan="2" Margin="20" Style="{StaticResource ShopMainLayoutStyle}">
+                <TabItem Style="{StaticResource ShopHeaderStyle}"
+                         Header="{x:Static resources:Strings.BirdSkinsShopHeader}">
                     <ScrollViewer>
                         <UniformGrid>
-                            <!--skin items add here-->
                             <ItemsControl x:Name="SkinsItemsControl" Margin="25">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border Margin="10" BorderThickness="1" BorderBrush="Gray"
-                                                Background="White">
+                                        <Border Margin="10" Style="{StaticResource ShopSubLayoutStyle}" Height="230">
                                             <StackPanel Margin="10">
                                                 <Image Source="{Binding Image}" Height="100" Margin="0,0,0,10"
                                                        RenderOptions.BitmapScalingMode="NearestNeighbor" />
-                                                <TextBlock Text="{Binding DisplayName}" HorizontalAlignment="Center" />
+                                                <TextBlock Text="{Binding DisplayName}" HorizontalAlignment="Center"
+                                                           FontSize="14" Foreground="White" />
                                                 <Label x:Name="LabelCoinsWarning"
                                                        Content="{x:Static resources:Strings.NotEnoughCoinsText}"
                                                        Visibility="{Binding NotEnoughCoins}"
-                                                       Foreground="Red"
+                                                       Foreground="White"
                                                        HorizontalAlignment="Center" />
-                                                <Button
-                                                    Content="{Binding ButtonLabel}"
-                                                    Click="SkinButton_Click" Height="40" Margin="0,10,0,0"
-                                                    IsEnabled="{Binding ButtonEnabled}" MaxWidth="150" />
+                                                <Button Style="{StaticResource SmallButtonStyle}"
+                                                        Content="{Binding ButtonLabel}"
+                                                        Click="SkinButton_Click" Height="40" Margin="0 10 0 0"
+                                                        IsEnabled="{Binding ButtonEnabled}" MaxWidth="250" />
                                             </StackPanel>
                                         </Border>
                                     </DataTemplate>
@@ -81,44 +124,44 @@
                         </UniformGrid>
                     </ScrollViewer>
                 </TabItem>
-                <!--powerups-->
-                <TabItem Header="{x:Static resources:Strings.PowerUpsShopHeader}">
+                <TabItem Style="{StaticResource ShopHeaderStyle}"
+                         Header="{x:Static resources:Strings.PowerUpsShopHeader}">
                     <ScrollViewer>
                         <UniformGrid>
-                            <!--powerup add here-->
                             <ItemsControl x:Name="PowerupsItemsControl" Margin="25">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border Margin="10" BorderThickness="1" BorderBrush="Gray"
-                                                Background="White">
+                                        <Border Margin="10" Style="{StaticResource ShopSubLayoutStyle}" Height="246">
                                             <StackPanel Margin="10">
-                                                <Image Source="{Binding Image}" Height="100" Margin="0,0,0,10"
+                                                <Image Source="{Binding Image}" Height="100" Margin="0 0 0 10"
                                                        RenderOptions.BitmapScalingMode="NearestNeighbor" />
                                                 <TextBlock Text="{Binding DisplayName}" HorizontalAlignment="Center"
-                                                           FontWeight="Bold" Margin="0,0,0,5" />
-                                                <TextBlock HorizontalAlignment="Center">
+                                                           FontWeight="Bold" Margin="0 0 0 5" FontSize="14"
+                                                           Foreground="White" />
+                                                <TextBlock HorizontalAlignment="Center" Foreground="White">
                                                     <TextBlock.Text>
                                                         <MultiBinding StringFormat="{}{0} {1}">
-                                                            <Binding Source="{x:Static resources:Strings.PowerUpLevelTextBoxText}"/>
-                                                            <Binding Path="Level"/>
+                                                            <Binding
+                                                                Source="{x:Static resources:Strings.PowerUpLevelTextBoxText}" />
+                                                            <Binding Path="Level" />
                                                         </MultiBinding>
                                                     </TextBlock.Text>
                                                 </TextBlock>
                                                 <Label Content="{x:Static resources:Strings.NotEnoughCoinsText}"
                                                        Visibility="{Binding NotEnoughCoins}"
-                                                       Foreground="Red"
+                                                       Foreground="White"
                                                        HorizontalAlignment="Center" />
-                                                <Button Content="{Binding ButtonLabel}"
+                                                <Button Style="{StaticResource SmallButtonStyle}"
+                                                        Content="{Binding ButtonLabel}"
                                                         Click="PowerUpButton_Click"
                                                         Height="40"
-                                                        Margin="0,10,0,0"
+                                                        Margin="0 10 0 0"
                                                         IsEnabled="{Binding CanUpgrade}"
-                                                        MaxWidth="150" />
+                                                        MaxWidth="250" />
                                             </StackPanel>
                                         </Border>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
-
                             </ItemsControl>
                         </UniformGrid>
                     </ScrollViewer>

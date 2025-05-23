@@ -1,19 +1,22 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Shapes;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.GameLogics.ExtendedMode;
 using FloppyFinchLogics.TextureManagement;
 using FloppyFinchLogics.TextureManagement.Coins;
 using FloppyFinchLogics.TextureManagement.PowerUps;
 using FloppyFinchLogics.WindowLogics;
-using WindowState = System.Windows.WindowState;
 using FloppyFinchWindows.Resources;
+using WindowState = System.Windows.WindowState;
 
 namespace FloppyFinchWindows.Menus;
 
 public partial class ShopMenuWindow : Window
 {
+    private readonly Dictionary<Ellipse, (double OriginalWidth, double OriginalHeight)> _originalCloudSizes = new();
+
     public ShopMenuWindow()
     {
         InitializeComponent();
@@ -227,5 +230,41 @@ public partial class ShopMenuWindow : Window
     private void UpdateCoinsDisplay()
     {
         CoinsText.Text = AccountManager.CurrentAccount!.Coins.ToString();
+    }
+
+    private void CloudCanvas_OnSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        if (CloudCanvas == null) return;
+
+        var width = CloudCanvas.ActualWidth;
+        var height = CloudCanvas.ActualHeight;
+
+        BackCloud1Transform.X = width * 0.1;
+        BackCloud1Transform.Y = height * 0.1;
+
+        BackCloud2Transform.X = width * 0.7;
+        BackCloud2Transform.Y = height * 0.15;
+
+        MiddleCloud1Transform.X = width * 0.2;
+        MiddleCloud1Transform.Y = height * 0.3;
+        MiddleCloud2Transform.X = width * 0.6;
+        MiddleCloud2Transform.Y = height * 0.45;
+
+        FrontCloud1Transform.X = width * 0.15;
+        FrontCloud1Transform.Y = height * 0.7;
+
+        FrontCloud2Transform.X = width * 0.55;
+        FrontCloud2Transform.Y = height * 0.75;
+
+        var scale = Math.Min(width / 400, height / 200);
+        scale = Math.Max(0.5, Math.Min(scale, 1.5));
+
+        foreach (var child in CloudCanvas.Children)
+            if (child is Ellipse cloud && _originalCloudSizes.ContainsKey(cloud))
+            {
+                var (originalWidth, originalHeight) = _originalCloudSizes[cloud];
+                cloud.Width = originalWidth * scale;
+                cloud.Height = originalHeight * scale;
+            }
     }
 }

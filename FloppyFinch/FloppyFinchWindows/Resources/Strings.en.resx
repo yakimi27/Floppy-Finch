@@ -57,14 +57,14 @@
     <data name="BackgroundLightComboBoxItemText" xml:space="preserve">
         <value>Light</value>
     </data>
-    <data name="ChoseAppearanceLabelText" xml:space="preserve">
-        <value>Chose background appearance:</value>
+    <data name="ChooseAppearanceLabelText" xml:space="preserve">
+        <value>Choose background appearance:</value>
     </data>
-    <data name="ChoseLanguageLabelText" xml:space="preserve">
-        <value>Chose language:</value>
+    <data name="ChooseLanguageLabelText" xml:space="preserve">
+        <value>Choose language:</value>
     </data>
-    <data name="ChoseResolutionLabelText" xml:space="preserve">
-        <value>Chose resolution preset:</value>
+    <data name="ChooseResolutionLabelText" xml:space="preserve">
+        <value>Choose resolution preset:</value>
     </data>
     <data name="ClearAccountDataButtonText" xml:space="preserve">
         <value>Clear account data</value>
@@ -203,5 +203,8 @@
     </data>
     <data name="BackgroundOffComboBoxItemText" xml:space="preserve">
         <value>Off</value>
+    </data>
+    <data name="ChooseGameModeTitle" xml:space="preserve">
+        <value>Choose mode</value>
     </data>
 </root>

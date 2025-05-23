@@ -163,6 +163,15 @@
         <Resource Include="Assets\Background\background_dark.png"/>
         <None Remove="Assets\Grass\grass.png"/>
         <Resource Include="Assets\Grass\grass.png"/>
+        <None Remove="Assets\Font\PublicPixel.ttf"/>
+        <None Remove="Assets\Font\flappy-font.ttf"/>
+        <None Remove="Assets\Font\FlappyBirdRegular.ttf"/>
+        <None Remove="Assets\Font\PressStart2P.ttf"/>
+        <Resource Include="Assets\Font\PressStart2P.ttf">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Resource>
+        <None Remove="Assets\Trophy\truphy.png"/>
+        <Resource Include="Assets\Trophy\trophy.png"/>
     </ItemGroup>
 
     <ItemGroup>

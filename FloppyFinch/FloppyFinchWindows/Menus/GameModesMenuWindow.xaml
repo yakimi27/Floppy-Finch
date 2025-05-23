@@ -10,6 +10,47 @@
         Width="auto" MinHeight="600" MinWidth="400"
         Closing="GameModesMenuWindow_OnClosing">
     <Grid>
+
+        <Grid Background="LightSkyBlue">
+            <Canvas x:Name="CloudCanvas" SizeChanged="CloudCanvas_OnSizeChanged">
+                <Ellipse Fill="#CCFFFFFF" Width="120" Height="60">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="BackCloud1Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#CCFFFFFF" Width="100" Height="50">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="BackCloud2Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#DDFFFFFF" Width="180" Height="90">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="MiddleCloud1Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#DDFFFFFF" Width="140" Height="70">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="MiddleCloud2Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#EEFFFFFF" Width="150" Height="75">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="FrontCloud1Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#EEFFFFFF" Width="160" Height="80">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="FrontCloud2Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+            </Canvas>
+        </Grid>
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -22,25 +63,26 @@
                 <RowDefinition Height="*" MaxHeight="150" />
                 <RowDefinition Height="*" MaxHeight="150" />
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Content="Choose game mode" VerticalAlignment="Center" HorizontalAlignment="Center"
-                   FontSize="32" />
+            <Label Grid.Row="0" Style="{StaticResource HeaderTextStyle}"
+                   Content="{x:Static resources:Strings.ChooseGameModeTitle}" VerticalAlignment="Center"
+                   HorizontalAlignment="Center" />
             <Button x:Name="ButtonClassicMode" Click="ButtonClassicMode_OnClick" Grid.Row="1"
                     Content="{x:Static resources:Strings.PlayClassicModeText}"
                     Margin="50 20"
-                    MaxWidth="400" MaxHeight="85" />
+                    MaxWidth="400" MaxHeight="85" Style="{StaticResource ButtonStyle}" />
             <Button x:Name="ButtonTargetScoreMode" Click="ButtonTargetScoreMode_OnClick" Grid.Row="3"
                     Content="{x:Static resources:Strings.PlayTargetScoreModeText}" Margin="50 20"
-                    MaxWidth="400" MaxHeight="85" />
+                    MaxWidth="400" MaxHeight="85" Style="{StaticResource ButtonStyle}" />
             <Button x:Name="ButtonExtendedMode" Click="ButtonExtendedMode_OnClick" Grid.Row="2"
                     Content="{x:Static resources:Strings.PlayExtendedModeText}"
-                    Margin="50 20" MaxWidth="400" MaxHeight="85" />
+                    Margin="50 20" MaxWidth="400" MaxHeight="85" Style="{StaticResource ButtonStyle}" />
             <Button x:Name="ButtonRaceMode" Click="ButtonSpeedRaceMode_OnClick" Grid.Row="4"
                     Content="{x:Static resources:Strings.PlaySpeedRaceModeText}"
-                    Margin="50 20" MaxWidth="400" MaxHeight="85" />
+                    Margin="50 20" MaxWidth="400" MaxHeight="85" Style="{StaticResource ButtonStyle}" />
             <Button x:Name="ButtonMainMenu" Click="ButtonBackToMainMenu_OnClick" Grid.Row="5"
                     Content="{x:Static resources:Strings.MainMenuButtonText}"
                     Margin="50 20"
-                    MaxWidth="400" MaxHeight="85" />
+                    MaxWidth="400" MaxHeight="85" Style="{StaticResource ButtonStyle}" />
         </Grid>
     </Grid>
 </Window>
