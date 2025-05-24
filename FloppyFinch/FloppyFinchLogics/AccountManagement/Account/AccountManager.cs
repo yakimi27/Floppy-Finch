@@ -116,6 +116,11 @@ public static class AccountManager
     {
         account.Coins = 0;
         account.HighScore = 0;
+        account.SelectedLanguage = "en";
+        account.SelectedBackground = "Light";
+        account.SelectedSkin = "Classic";
+        account.UnlockedSkins = ["Classic"];
+        account.PowerUpLevels = [1, 1, 1];
         account.WindowWidth = DefaultWindowWidth;
         account.WindowHeight = DefaultWindowHeight;
         account.WindowPositionX = DefaultCenterX;

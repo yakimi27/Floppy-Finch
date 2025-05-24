@@ -4,8 +4,13 @@ public class AccountData
 {
     public AccountData()
     {
-        UnlockedSkins = new List<string>();
-        PowerUpLevels = new List<int>();
+        SelectedLanguage = "en";
+        SelectedBackground = "Light";
+        UnlockedSkins = ["Classic"];
+        SelectedSkin = "Classic";
+        PowerUpLevels = [1, 1, 1];
+        Coins = 0;
+        HighScore = 0;
     }
 
     public string Username { get; set; }

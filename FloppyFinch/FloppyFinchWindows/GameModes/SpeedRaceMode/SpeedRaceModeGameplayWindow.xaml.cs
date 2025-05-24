@@ -102,7 +102,7 @@ public partial class SpeedRaceModeGameplayWindow : Window
     {
         ScoreText.Visibility = Visibility.Visible;
         KeyWait.Visibility = Visibility.Hidden;
-        ButtonReturnMainMenu.Visibility = Visibility.Hidden;
+        ButtonReturnMainMenu.Visibility = Visibility.Collapsed;
         ButtonGamePause.Visibility = Visibility.Visible;
     }
 
@@ -127,8 +127,7 @@ public partial class SpeedRaceModeGameplayWindow : Window
     private void UpdatePauseUi()
     {
         ButtonGamePause.Content = _pauseState ? $"{Strings.ResumeButtonText}" : $"{Strings.PauseButtonText}";
-        ButtonReturnMainMenu.Visibility = _pauseState ? Visibility.Visible : Visibility.Hidden;
-        ButtonReturnMainMenu.Margin = _pauseState ? new Thickness(105, 15, 15, 15) : new Thickness(15);
+        ButtonReturnMainMenu.Visibility = _pauseState ? Visibility.Visible : Visibility.Collapsed;
     }
 
     private static void SaveWindowStateToAccount()

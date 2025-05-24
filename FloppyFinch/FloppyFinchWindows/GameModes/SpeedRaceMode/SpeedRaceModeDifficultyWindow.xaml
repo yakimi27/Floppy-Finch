@@ -6,44 +6,49 @@
         xmlns:resources="clr-namespace:FloppyFinchWindows.Resources"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="Floppy Finch" Height="220" Width="350">
-    <Grid>
-        <Grid Margin="15">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="25" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="25" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Label Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="0"
-                   Content="{x:Static resources:Strings.SpeedPresetLabelContent}" />
-            <Button Click="SlowSpeedButton_OnClick" Content="{x:Static resources:Strings.SpeedSlowButtonText}"
-                    ToolTip="{x:Static resources:Strings.SlowSpeedToolTipText}"
-                    ToolTipService.InitialShowDelay="500"
-                    Grid.Column="0" Grid.Row="1" Margin="5" />
-            <Button Click="FasterSpeedButton_OnClick" Content="{x:Static resources:Strings.SpeedFasterButtonText}"
-                    ToolTip="{x:Static resources:Strings.FasterSpeedToolTipText}"
-                    ToolTipService.InitialShowDelay="500"
-                    Grid.Column="1" Grid.Row="1" Margin="5" />
-            <Button Click="FastSpeedButton_OnClick" Content="{x:Static resources:Strings.SpeedFastButtonText}"
-                    ToolTip="{x:Static resources:Strings.FastSpeedToolTipText}"
-                    ToolTipService.InitialShowDelay="500"
-                    Grid.Column="2" Grid.Row="1" Margin="5" />
+        Title="Floppy Finch" Height="280" Width="430">
+    <Grid Background="#c34f12">
+        <StackPanel Margin="15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Label Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="0"
+                       Content="{x:Static resources:Strings.SpeedPresetLabelContent}" Foreground="White" />
+                <Button Style="{StaticResource SmallButtonStyle}" Click="SlowSpeedButton_OnClick"
+                        Content="{x:Static resources:Strings.SpeedSlowButtonText}"
+                        ToolTip="{x:Static resources:Strings.SlowSpeedToolTipText}"
+                        ToolTipService.InitialShowDelay="500"
+                        Grid.Column="0" Grid.Row="1" Margin="5" />
+                <Button Style="{StaticResource SmallButtonStyle}" Click="FasterSpeedButton_OnClick"
+                        Content="{x:Static resources:Strings.SpeedFasterButtonText}"
+                        ToolTip="{x:Static resources:Strings.FasterSpeedToolTipText}"
+                        ToolTipService.InitialShowDelay="500"
+                        Grid.Column="1" Grid.Row="1" Margin="5" />
+                <Button Style="{StaticResource SmallButtonStyle}" Click="FastSpeedButton_OnClick"
+                        Content="{x:Static resources:Strings.SpeedFastButtonText}"
+                        ToolTip="{x:Static resources:Strings.FastSpeedToolTipText}"
+                        ToolTipService.InitialShowDelay="500"
+                        Grid.Column="2" Grid.Row="1" Margin="5" />
+            </Grid>
             <Label Content="{x:Static resources:Strings.SetOwnSpeedLabelContent}"
                    ToolTip="{x:Static resources:Strings.SpeedToolTipText}"
-                   ToolTipService.InitialShowDelay="500" Grid.Column="0" Grid.Row="2" VerticalContentAlignment="Center" />
-            <TextBox x:Name="OwnSpeedTextBox" TextChanged="OwnSpeedTextBox_OnTextChanged" Grid.Column="1"
-                     Grid.ColumnSpan="2" Grid.Row="2"
-                     VerticalContentAlignment="Center" Margin="5 0" />
-            <Button x:Name="OwnSpeedStartButton" Click="OwnSpeedStartButton_OnClick"
-                    Content="{x:Static resources:Strings.StartButtonText}" Grid.Row="3"
-                    Grid.Column="0" Grid.ColumnSpan="3"
-                    Margin="5" IsEnabled="False" />
-        </Grid>
+                   ToolTipService.InitialShowDelay="500" VerticalContentAlignment="Center" Foreground="White" />
+            <TextBox Style="{StaticResource InputTextBoxStyle}" x:Name="OwnSpeedTextBox"
+                     TextChanged="OwnSpeedTextBox_OnTextChanged"
+                     VerticalContentAlignment="Center" Margin="5 0" Height="45" />
+            <Button Style="{StaticResource SmallButtonStyle}" x:Name="OwnSpeedStartButton"
+                    Click="OwnSpeedStartButton_OnClick"
+                    Content="{x:Static resources:Strings.StartButtonText}"
+                    Margin="5" Height="50" IsEnabled="False" />
+        </StackPanel>
+
     </Grid>
 </Window>

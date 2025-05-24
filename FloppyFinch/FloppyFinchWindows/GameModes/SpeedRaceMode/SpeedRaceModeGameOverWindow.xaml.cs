@@ -27,7 +27,7 @@ public partial class SpeedRaceModeGameOverWindow : Window
             Application.Current.MainWindow.Top = WindowStateData.WindowPositionY;
         }
 
-        LoseScreenScoreTextBlock.Text = $"{Strings.YouScoredTextBlockText} {score}";
+        TextBlockScoredPoints.Text = $"{Strings.YouScoredTextBlockText} {score}";
         GameImage.Source = gameImage;
         _gameSpeed = gameSpeed;
         UpdateAccountInfo(score, gameSpeed);

@@ -31,10 +31,10 @@ public partial class TargetScoreModeGameOverWindow : Window
         _isTargetAchieved = score == targetScoreValue;
 
         if (_isTargetAchieved)
-            GameOverLabel.Content = $"{Strings.CongratulationsLabelContent}";
+            LabelGameOver.Content = $"{Strings.CongratulationsLabelContent}";
         else
-            GameOverLabel.Content = $"{Strings.GameOverLabelContent}";
-        LoseScreenScoreTextBlock.Text = $"{Strings.YouScoredTextBlockText} {score}";
+            LabelGameOver.Content = $"{Strings.GameOverLabelContent}";
+        TextBlockScoredPoints.Text = $"{Strings.YouScoredTextBlockText} {score}";
 
         GameImage.Source = gameImage;
         UpdateAccountInfo(score, _isTargetAchieved);

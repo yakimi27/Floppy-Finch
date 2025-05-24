@@ -11,21 +11,25 @@
     <Grid>
         <Canvas Name="GameCanvas" RenderOptions.BitmapScalingMode="NearestNeighbor" />
         <TextBlock x:Name="ScoreText" Text="0" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 100 0 0"
-                   FontSize="26" Visibility="Hidden" />
-        <TextBlock x:Name="KeyWait" Text="{x:Static resources:Strings.PressSpaceTextBlockText}" VerticalAlignment="Top"
+                   FontSize="26" Visibility="Hidden" Foreground="White" />
+        <TextBlock Style="{StaticResource HeaderTextBlockStyle}" x:Name="KeyWait"
+                   Text="{x:Static resources:Strings.PressSpaceTextBlockText}" VerticalAlignment="Top"
                    HorizontalAlignment="Center"
-                   Margin="0 200 0 0"
-                   FontSize="26" Visibility="Visible" />
-        <Button x:Name="ButtonReturnMainMenu" Click="ButtonReturnMainMenu_OnClick"
-                Content="{x:Static resources:Strings.MainMenuButtonText}" Width="90"
-                Height="25"
-                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15" Visibility="Visible" />
-        <Button x:Name="ButtonGamePause" Click="ButtonGamePause_OnClick"
-                Content="{x:Static resources:Strings.PauseButtonText}"
-                Width="80"
-                Height="25"
-                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15" Visibility="Hidden"
-                Focusable="False" />
+                   Margin="0 200 0 0" Visibility="Visible" />
+        <StackPanel>
+            <Button Style="{StaticResource SmallButtonStyle}" x:Name="ButtonReturnMainMenu"
+                    Click="ButtonReturnMainMenu_OnClick"
+                    Content="{x:Static resources:Strings.MainMenuButtonText}"
+                    Width="180"
+                    Height="45"
+                    HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15 5 15 5" Visibility="Visible" />
+            <Button Style="{StaticResource SmallButtonStyle}" x:Name="ButtonGamePause" Click="ButtonGamePause_OnClick"
+                    Content="{x:Static resources:Strings.PauseButtonText}"
+                    Width="150"
+                    Height="45"
+                    HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15 5 15 5" Visibility="Hidden"
+                    Focusable="False" />
+        </StackPanel>
 
         <Grid VerticalAlignment="Top" HorizontalAlignment="Right" Margin="15">
             <Grid.ColumnDefinitions>
@@ -33,7 +37,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Image Grid.Column="0" x:Name="ImageHeart" Height="25" RenderOptions.BitmapScalingMode="NearestNeighbor" />
-            <TextBlock Grid.Column="1" Text="1" Height="25" FontSize="14" x:Name="HeartsCountLabel" Margin="10 0 0 0" />
+            <TextBlock Grid.Column="1" Foreground="White" Padding="0 6 0 0" Text="1" Height="25" FontSize="14" x:Name="HeartsCountLabel" Margin="10 0 0 0" />
         </Grid>
         <UniformGrid x:Name="PowerUpSpaceGrid" Rows="1" VerticalAlignment="Bottom" MaxWidth="600px" />
     </Grid>

@@ -77,7 +77,6 @@
                     Content="{x:Static resources:Strings.BackButtonText}" Width="75"
                     Height="40"
                     HorizontalAlignment="Left" Margin="35 0 " />
-
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />

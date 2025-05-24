@@ -25,7 +25,7 @@ public partial class ExtendedModeGameOverWindow : Window
             Application.Current.MainWindow.Top = WindowStateData.WindowPositionY;
         }
 
-        LoseScreenScoreTextBlock.Text = $"{Strings.YouScoredTextBlockText} {score}";
+        TextBlockScoredPoints.Text = $"{Strings.YouScoredTextBlockText} {score}";
         GameImage.Source = gameImage;
         UpdateAccountInfo(score);
     }

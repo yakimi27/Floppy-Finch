@@ -8,12 +8,55 @@
         Title="Floppy Finch" Height="auto" Width="auto" MinHeight="600" MinWidth="400"
         Closing="SettingsMenuWindow_OnClosing">
     <Grid>
+
+        <Grid Background="LightSkyBlue">
+            <Canvas x:Name="CloudCanvas" SizeChanged="CloudCanvas_OnSizeChanged">
+                <Ellipse Fill="#CCFFFFFF" Width="120" Height="60">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="BackCloud1Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#CCFFFFFF" Width="100" Height="50">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="BackCloud2Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#DDFFFFFF" Width="180" Height="90">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="MiddleCloud1Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#DDFFFFFF" Width="140" Height="70">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="MiddleCloud2Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#EEFFFFFF" Width="150" Height="75">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="FrontCloud1Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#EEFFFFFF" Width="160" Height="80">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="FrontCloud2Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+            </Canvas>
+        </Grid>
+
         <Canvas Cursor="Help" Height="15" Width="15" Background="Transparent" VerticalAlignment="Top"
-                HorizontalAlignment="Right" Margin="8" ToolTipService.InitialShowDelay="100">
+                HorizontalAlignment="Right"
+                Margin="8" ToolTipService.InitialShowDelay="100">
             <Line X1="0" Y1="0" X2="15" Y2="0" Stroke="Black" />
             <Line X1="15" Y1="0" X2="15" Y2="15" Stroke="Black" />
             <Canvas.ToolTip>
-                <ToolTip Content="{x:Static resources:Strings.ResizeWindowToolTipText}" />
+                <ToolTip Style="{StaticResource ToolTipStyle}"
+                         Content="{x:Static resources:Strings.ResizeWindowToolTipText}" FontSize="8" />
             </Canvas.ToolTip>
         </Canvas>
         <Canvas Cursor="Help" Height="15" Width="15" Background="Transparent" VerticalAlignment="Bottom"
@@ -22,74 +65,79 @@
             <Line X1="0" Y1="15" X2="15" Y2="15" Stroke="Black" />
             <Line X1="0" Y1="0" X2="0" Y2="15" Stroke="Black" />
             <Canvas.ToolTip>
-                <ToolTip Content="{x:Static resources:Strings.ResizeWindowToolTipText}" />
+                <ToolTip Style="{StaticResource ToolTipStyle}"
+                         Content="{x:Static resources:Strings.ResizeWindowToolTipText}" FontSize="8" />
             </Canvas.ToolTip>
         </Canvas>
-        <Grid>
+        <Grid Margin="35 0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="*" MaxHeight="300" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Button Grid.Row="0" Grid.Column="0" x:Name="ButtonBack" Click="ButtonBack_OnClick"
+            <Button Grid.Row="0" Style="{StaticResource SmallButtonStyle}" Click="ButtonBack_OnClick"
                     Content="{x:Static resources:Strings.BackButtonText}" Width="75"
-                    Height="25"
-                    HorizontalAlignment="Left" Margin="35 0 " />
-            <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="35 0">
-                <Label Content="{x:Static resources:Strings.GameplaySettingsLabelText}" Margin="0 5" FontSize="16" />
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="180" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <Label Grid.Column="0" Grid.Row="0"
-                           Content="{x:Static resources:Strings.ChooseResolutionLabelText}"
-                           Margin="0 10 0 0" />
-                    <ComboBox Grid.Column="1" Grid.Row="0" x:Name="ComboBoxResolution"
-                              SelectionChanged="ComboBoxResolution_OnSelectionChanged" Margin="0 10 0 0" />
-
-                    <Label Grid.Column="0" Grid.Row="1"
-                           Content="{x:Static resources:Strings.ChooseAppearanceLabelText}"
-                           Margin="0 10 0 0" />
-                    <ComboBox Grid.Column="1" Grid.Row="1" x:Name="ComboBoxBackground"
-                              SelectionChanged="ComboBoxBackground_OnSelectionChanged" Margin="0 10 0 0">
-                        <ComboBoxItem x:Name="ComboBoxItemBackgroundLight"
-                                      Content="{x:Static resources:Strings.BackgroundLightComboBoxItemText}" />
-                        <ComboBoxItem x:Name="ComboBoxItemBackgroundDark"
-                                      Content="{x:Static resources:Strings.BackgroundDarkComboBoxItemText}" />
-                        <ComboBoxItem x:Name="ComboBoxItemBackgroundOff"
-                                      Content="{x:Static resources:Strings.BackgroundOffComboBoxItemText}" />
-                    </ComboBox>
-
-                    <Label Grid.Column="0" Grid.Row="2" Content="{x:Static resources:Strings.ChooseLanguageLabelText}"
-                           Margin="0 10 0 0" />
-                    <ComboBox Grid.Column="1" Grid.Row="2" x:Name="ComboBoxLanguage"
-                              SelectionChanged="ComboBoxLanguage_OnSelectionChanged" Margin="0 10 0 0">
-                        <ComboBoxItem Content="English" x:Name="ComboBoxItemLanguageEnglish" />
-                        <ComboBoxItem Content="Українська" x:Name="ComboBoxItemLanguageUkrainian" />
-                    </ComboBox>
-                </Grid>
+                    Height="40"
+                    HorizontalAlignment="Left" />
+            <StackPanel Grid.Row="1">
+                <Label Style="{StaticResource HeaderTextStyle}"
+                       Content="{x:Static resources:Strings.GameplaySettingsLabelText}" Margin="0 5" FontSize="16" />
+                <Label Style="{StaticResource SmallLabelNoBottomStyle}"
+                       Content="{x:Static resources:Strings.ChooseResolutionLabelText}"
+                       Margin="0 10 0 0" />
+                <ComboBox Style="{StaticResource ComboBoxStyle}"
+                          Height="30" x:Name="ComboBoxResolution"
+                          SelectionChanged="ComboBoxResolution_OnSelectionChanged" />
+                <Label Style="{StaticResource SmallLabelNoBottomStyle}"
+                       Content="{x:Static resources:Strings.ChooseAppearanceLabelText}"
+                       Margin="0 10 0 0" />
+                <ComboBox Style="{StaticResource ComboBoxStyle}"
+                          Height="30" x:Name="ComboBoxBackground"
+                          SelectionChanged="ComboBoxBackground_OnSelectionChanged">
+                    <ComboBoxItem Style="{StaticResource ComboBoxItemStyle}"
+                                  x:Name="ComboBoxItemBackgroundLight"
+                                  Content="{x:Static resources:Strings.BackgroundLightComboBoxItemText}" />
+                    <ComboBoxItem Style="{StaticResource ComboBoxItemStyle}"
+                                  x:Name="ComboBoxItemBackgroundDark"
+                                  Content="{x:Static resources:Strings.BackgroundDarkComboBoxItemText}" />
+                    <ComboBoxItem Style="{StaticResource ComboBoxItemStyle}"
+                                  x:Name="ComboBoxItemBackgroundOff"
+                                  Content="{x:Static resources:Strings.BackgroundOffComboBoxItemText}" />
+                </ComboBox>
+                <Label Style="{StaticResource SmallLabelNoBottomStyle}"
+                       Content="{x:Static resources:Strings.ChooseLanguageLabelText}"
+                       Margin="0 10 0 0" />
+                <ComboBox Style="{StaticResource ComboBoxStyle}" Height="30" x:Name="ComboBoxLanguage"
+                          SelectionChanged="ComboBoxLanguage_OnSelectionChanged">
+                    <ComboBoxItem Style="{StaticResource ComboBoxItemStyle}"
+                                  Content="English" x:Name="ComboBoxItemLanguageEnglish" />
+                    <ComboBoxItem Style="{StaticResource ComboBoxItemStyle}"
+                                  Content="Українська" x:Name="ComboBoxItemLanguageUkrainian" />
+                </ComboBox>
             </StackPanel>
-            <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Margin="35 0">
-                <Label Content="{x:Static resources:Strings.AccountSettingsLabelText}" Margin="0 5" FontSize="16" />
-                <Button x:Name="ButtonSignOut" Click="ButtonSignOut_OnClick"
-                        Content="{x:Static resources:Strings.SignOutButtonText}" Margin="0 5"
-                        Height="30" />
-                <Button x:Name="ButtonResetScreenPosition" Click="ButtonResetScreenPosition_OnClick"
+            <Grid Grid.Row="2" Margin="0 0 0 15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" MaxHeight="80" />
+                    <RowDefinition Height="*" MaxHeight="80" />
+                    <RowDefinition Height="*" MaxHeight="80" />
+                    <RowDefinition Height="*" MaxHeight="80" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Style="{StaticResource HeaderTextStyle}"
+                       Content="{x:Static resources:Strings.AccountSettingsLabelText}" Margin="0 5" FontSize="16" />
+                <Button Grid.Row="1" Style="{StaticResource SmallButtonStyle}" Click="ButtonSignOut_OnClick"
+                        Content="{x:Static resources:Strings.SignOutButtonText}" Margin="0 5" />
+                <Button Grid.Row="2" Style="{StaticResource SmallButtonStyle}"
+                        Click="ButtonResetScreenPosition_OnClick"
                         Content="{x:Static resources:Strings.ResetScreenPositionButtonText}"
-                        Margin="0 5" Height="30" />
-                <Button x:Name="ButtonClearAccountData" Click="ButtonClearAccountData_OnClick"
-                        Content="{x:Static resources:Strings.ClearAccountDataButtonText}" Margin="0 5" Height="30" />
-                <Button x:Name="ButtonDeleteAccount" Click="ButtonDeleteAccount_OnClick"
+                        Margin="0 5" />
+                <Button Grid.Row="3" Style="{StaticResource SmallButtonStyle}" Click="ButtonClearAccountData_OnClick"
+                        Content="{x:Static resources:Strings.ClearAccountDataButtonText}" Margin="0 5" />
+                <Button Grid.Row="4" Style="{StaticResource SmallButtonStyle}" Click="ButtonDeleteAccount_OnClick"
                         Content="{x:Static resources:Strings.DeleteAccountButtonText}"
-                        Margin="0 5" Height="30" />
-            </StackPanel>
+                        Margin="0 5" />
+            </Grid>
         </Grid>
     </Grid>
 </Window>

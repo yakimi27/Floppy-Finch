@@ -11,32 +11,34 @@
     <Grid>
         <Image x:Name="GameImage" HorizontalAlignment="Center" VerticalAlignment="Top" Height="auto"
                Width="auto" Stretch="Fill" />
-        <Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="100" />
                 <RowDefinition Height="100" />
-                <RowDefinition Height="*" MaxHeight="150" />
-                <RowDefinition Height="*" MaxHeight="150" />
-                <RowDefinition Height="*" MaxHeight="150" />
+                <RowDefinition Height="*" MinHeight="100" MaxHeight="150" />
+                <RowDefinition Height="*" MinHeight="100" MaxHeight="150" />
+                <RowDefinition Height="*" MinHeight="100" MaxHeight="150" />
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" x:Name="LabelGameOver" Content="{x:Static resources:Strings.GameOverLabelContent}"
+            <Label Style="{StaticResource HeaderTextStyle}" Grid.Row="0" x:Name="LabelGameOver"
+                   Content="{x:Static resources:Strings.GameOverLabelContent}"
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Top" FontSize="50" />
-            <TextBlock Grid.Row="1" x:Name="TextBlockScoredPoints" Text=""
+                   VerticalAlignment="Top" FontSize="32" />
+            <TextBlock Style="{StaticResource HeaderTextBlockStyle}" Grid.Row="1" x:Name="TextBlockScoredPoints"
+                       Text=""
                        HorizontalAlignment="Center"
-                       VerticalAlignment="Top" FontSize="30" />
-            <Button Grid.Row="2" Content="{x:Static resources:Strings.RestartButtonText}" Click="RestartButton_Click"
-                    Margin="50 20" MaxWidth="400"
-                    MaxHeight="85" />
-            <Button Grid.Row="3" Content="{x:Static resources:Strings.MainMenuButtonText}" Click="MainMenuButton_Click"
-                    Margin="50 20" MaxWidth="400"
-                    MaxHeight="85" />
-            <Button Grid.Row="4" Content="{x:Static resources:Strings.ExitButtonText}" Click="ExitButton_Click"
-                    Margin="50 20" MaxWidth="400" MaxHeight="85" />
+                       VerticalAlignment="Top" />
+            <Button Style="{StaticResource ButtonStyle}" Grid.Row="2"
+                    Content="{x:Static resources:Strings.RestartButtonText}" Click="RestartButton_Click"
+                    Margin="50 20" />
+            <Button Style="{StaticResource ButtonStyle}" Grid.Row="3"
+                    Content="{x:Static resources:Strings.MainMenuButtonText}" Click="MainMenuButton_Click"
+                    Margin="50 20" />
+            <Button Style="{StaticResource ButtonStyle}" Grid.Row="4"
+                    Content="{x:Static resources:Strings.ExitButtonText}" Click="ExitButton_Click"
+                    Margin="50 20" />
         </Grid>
-
     </Grid>
 </Window>

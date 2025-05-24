@@ -19,10 +19,11 @@ public class PowerUpProgress
 
         return new Border
         {
-            Background = Brushes.LightGray,
-            BorderBrush = Brushes.Black,
-            BorderThickness = new Thickness(1),
+            Background = new SolidColorBrush(Color.FromRgb(224, 97, 25)),
+            BorderBrush = new SolidColorBrush(Color.FromRgb(0x52, 0x31, 0x03)),
+            BorderThickness = new Thickness(3, 3, 3, 10),
             Margin = new Thickness(4),
+            Padding = new Thickness(5),
             Child = new StackPanel
             {
                 Orientation = Orientation.Vertical,
@@ -32,6 +33,7 @@ public class PowerUpProgress
                     {
                         Text = $"{content}",
                         FontSize = 14,
+                        Foreground = Brushes.White,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center
                     },
