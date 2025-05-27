@@ -216,4 +216,67 @@
     <data name="ChooseGameModeTitle" xml:space="preserve">
         <value>Choose mode</value>
     </data>
+    <data name="PlayAsGuestButtonText" xml:space="preserve">
+        <value>Play as Guest</value>
+    </data>
+    <data name="GuestToolTipText" xml:space="preserve">
+        <value>Your score and progress will not be saved.</value>
+    </data>
+    <data name="AuthUsernameText" xml:space="preserve">
+        <value>Username</value>
+    </data>
+    <data name="AuthPasswordText" xml:space="preserve">
+        <value>Password</value>
+    </data>
+    <data name="AuthRememberMeText" xml:space="preserve">
+        <value>Remember me</value>
+    </data>
+    <data name="AuthShowPasswordText" xml:space="preserve">
+        <value>Show password</value>
+    </data>
+    <data name="SignInShowErrorText" xml:space="preserve">
+        <value>Wrong username or password.</value>
+    </data>
+    <data name="AuthSignInText" xml:space="preserve">
+        <value>Sign In</value>
+    </data>
+    <data name="AuthSignUpText" xml:space="preserve">
+        <value>Sign Up</value>
+    </data>
+    <data name="AuthConfirmPasswordText" xml:space="preserve">
+        <value>Confirm password</value>
+    </data>
+    <data name="AuthUsernameTakenText" xml:space="preserve">
+        <value>Username already taken!</value>
+    </data>
+    <data name="AuthUsernameShortText" xml:space="preserve">
+        <value>Username too short.</value>
+    </data>
+    <data name="AuthUsernameLongText" xml:space="preserve">
+        <value>Username too long.</value>
+    </data>
+    <data name="AuthUsernameInvalidText" xml:space="preserve">
+        <value>Invalid characters in username.</value>
+    </data>
+    <data name="AuthPasswordShortText" xml:space="preserve">
+        <value>Password too short.</value>
+    </data>
+    <data name="AuthPasswordLongText" xml:space="preserve">
+        <value>Password too long.</value>
+    </data>
+    <data name="AuthPasswordInvalidText" xml:space="preserve">
+        <value>Password doesn't meet requirements.</value>
+    </data>
+    <data name="AuthPasswordMismatchText" xml:space="preserve">
+        <value>Passwords mismatch.</value>
+    </data>
+    <data name="AccountCreatedText" xml:space="preserve">
+        <value>Account successfully created!</value>
+    </data>
+    <data name="UsernameSignUpToolTipText" xml:space="preserve">
+        <value>Username must be 3–16 characters. Use only A–Z, 0–9, underscores (_) or hyphens (-)</value>
+    </data>
+    <data name="PasswordSignUpToolTipText" xml:space="preserve">
+        <value>Password must be 4–24 characters. Include one lowercase, one uppercase letter, and one number.</value>
+    </data>
 </root>

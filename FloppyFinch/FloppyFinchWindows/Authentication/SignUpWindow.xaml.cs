@@ -5,6 +5,7 @@ using System.Windows.Shapes;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
 using FloppyFinchWindows.Menus;
+using FloppyFinchWindows.Resources;
 
 namespace FloppyFinchWindows.Authentication;
 
@@ -32,14 +33,14 @@ public partial class SignUpWindow : Window
 
         if (username.Length < 3)
         {
-            ShowError("Username too short.");
+            ShowError($"{Strings.AuthUsernameShortText}");
             ButtonSignUp.IsEnabled = false;
             return;
         }
 
         if (username.Length > 16)
         {
-            ShowError("Username too long.");
+            ShowError($"{Strings.AuthUsernameLongText}");
             ButtonSignUp.IsEnabled = false;
             return;
         }
@@ -48,21 +49,21 @@ public partial class SignUpWindow : Window
 
         if (!_match.Success)
         {
-            ShowError("Invalid characters in username.");
+            ShowError($"{Strings.AuthUsernameInvalidText}");
             ButtonSignUp.IsEnabled = false;
             return;
         }
 
         if (password.Length < 4)
         {
-            ShowError("Password too short.");
+            ShowError($"{Strings.AuthPasswordShortText}");
             ButtonSignUp.IsEnabled = false;
             return;
         }
 
         if (password.Length > 24)
         {
-            ShowError("Password too long.");
+            ShowError($"{Strings.AuthPasswordLongText}");
             ButtonSignUp.IsEnabled = false;
             return;
         }
@@ -71,14 +72,14 @@ public partial class SignUpWindow : Window
 
         if (!_match.Success)
         {
-            ShowError("Password doesn't meet requirements.");
+            ShowError($"{Strings.AuthPasswordInvalidText}");
             ButtonSignUp.IsEnabled = false;
             return;
         }
 
         if (password != confirm)
         {
-            ShowError("Passwords mismatch.");
+            ShowError($"{Strings.AuthPasswordMismatchText}");
             ButtonSignUp.IsEnabled = false;
             return;
         }
@@ -96,14 +97,14 @@ public partial class SignUpWindow : Window
             SaveWindowProperties();
             WindowStateData.SaveWindowState(Application.Current.MainWindow);
             AccountManager.SaveAccount(AccountManager.CurrentAccount);
-            MessageBox.Show("Account successfully created!", "Success!", MessageBoxButton.OK);
+            MessageBox.Show($"{Strings.AccountCreatedText}", $"{Strings.SuccessTitleMessageBox}", MessageBoxButton.OK);
             var mainMenuWindow = new MainMenuWindow();
             mainMenuWindow.Show();
             Close();
         }
         else
         {
-            ShowError("Username already taken!");
+            ShowError($"{Strings.AuthUsernameTakenText}");
         }
     }
 
@@ -232,5 +233,21 @@ public partial class SignUpWindow : Window
                 cloud.Width = originalWidth * scale;
                 cloud.Height = originalHeight * scale;
             }
+    }
+
+    private void ButtonLanguageEN_OnClick(object sender, RoutedEventArgs e)
+    {
+        App.ChangeLanguage("en");
+        var updateWindow = new SignUpWindow();
+        updateWindow.Show();
+        Close();
+    }
+
+    private void ButtonLanguageUK_OnClick(object sender, RoutedEventArgs e)
+    {
+        App.ChangeLanguage("uk");
+        var updateWindow = new SignUpWindow();
+        updateWindow.Show();
+        Close();
     }
 }

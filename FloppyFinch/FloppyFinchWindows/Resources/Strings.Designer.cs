@@ -69,6 +69,15 @@ namespace FloppyFinchWindows.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account successfully created!.
+        /// </summary>
+        public static string AccountCreatedText {
+            get {
+                return ResourceManager.GetString("AccountCreatedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account&apos;s data successfully cleared..
         /// </summary>
         public static string AccountDataClearedMessageBox {
@@ -92,6 +101,141 @@ namespace FloppyFinchWindows.Resources {
         public static string AccountSettingsLabelText {
             get {
                 return ResourceManager.GetString("AccountSettingsLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm password.
+        /// </summary>
+        public static string AuthConfirmPasswordText {
+            get {
+                return ResourceManager.GetString("AuthConfirmPasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password doesn&apos;t meet requirements..
+        /// </summary>
+        public static string AuthPasswordInvalidText {
+            get {
+                return ResourceManager.GetString("AuthPasswordInvalidText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password too long..
+        /// </summary>
+        public static string AuthPasswordLongText {
+            get {
+                return ResourceManager.GetString("AuthPasswordLongText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwords mismatch..
+        /// </summary>
+        public static string AuthPasswordMismatchText {
+            get {
+                return ResourceManager.GetString("AuthPasswordMismatchText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password too short..
+        /// </summary>
+        public static string AuthPasswordShortText {
+            get {
+                return ResourceManager.GetString("AuthPasswordShortText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string AuthPasswordText {
+            get {
+                return ResourceManager.GetString("AuthPasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remember me.
+        /// </summary>
+        public static string AuthRememberMeText {
+            get {
+                return ResourceManager.GetString("AuthRememberMeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show password.
+        /// </summary>
+        public static string AuthShowPasswordText {
+            get {
+                return ResourceManager.GetString("AuthShowPasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign In.
+        /// </summary>
+        public static string AuthSignInText {
+            get {
+                return ResourceManager.GetString("AuthSignInText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign Up.
+        /// </summary>
+        public static string AuthSignUpText {
+            get {
+                return ResourceManager.GetString("AuthSignUpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid characters in username..
+        /// </summary>
+        public static string AuthUsernameInvalidText {
+            get {
+                return ResourceManager.GetString("AuthUsernameInvalidText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username too long..
+        /// </summary>
+        public static string AuthUsernameLongText {
+            get {
+                return ResourceManager.GetString("AuthUsernameLongText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username too short..
+        /// </summary>
+        public static string AuthUsernameShortText {
+            get {
+                return ResourceManager.GetString("AuthUsernameShortText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username already taken!.
+        /// </summary>
+        public static string AuthUsernameTakenText {
+            get {
+                return ResourceManager.GetString("AuthUsernameTakenText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username.
+        /// </summary>
+        public static string AuthUsernameText {
+            get {
+                return ResourceManager.GetString("AuthUsernameText", resourceCulture);
             }
         }
         
@@ -312,6 +456,15 @@ namespace FloppyFinchWindows.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your score and progress will not be saved..
+        /// </summary>
+        public static string GuestToolTipText {
+            get {
+                return ResourceManager.GetString("GuestToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Jetpack.
         /// </summary>
         public static string JetpackPowerUpLabelText {
@@ -357,6 +510,15 @@ namespace FloppyFinchWindows.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password must be 4–24 characters. Include one lowercase, one uppercase letter, and one number..
+        /// </summary>
+        public static string PasswordSignUpToolTipText {
+            get {
+                return ResourceManager.GetString("PasswordSignUpToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pause.
         /// </summary>
         public static string PauseButtonText {
@@ -371,6 +533,15 @@ namespace FloppyFinchWindows.Resources {
         public static string PinkSkinLabelText {
             get {
                 return ResourceManager.GetString("PinkSkinLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play as Guest.
+        /// </summary>
+        public static string PlayAsGuestButtonText {
+            get {
+                return ResourceManager.GetString("PlayAsGuestButtonText", resourceCulture);
             }
         }
         
@@ -528,6 +699,15 @@ namespace FloppyFinchWindows.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wrong username or password..
+        /// </summary>
+        public static string SignInShowErrorText {
+            get {
+                return ResourceManager.GetString("SignInShowErrorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sign out.
         /// </summary>
         public static string SignOutButtonText {
@@ -614,6 +794,15 @@ namespace FloppyFinchWindows.Resources {
         public static string TargetScoreTextBlockText {
             get {
                 return ResourceManager.GetString("TargetScoreTextBlockText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username must be 3–16 characters. Use only A–Z, 0–9, underscores (_) or hyphens (-).
+        /// </summary>
+        public static string UsernameSignUpToolTipText {
+            get {
+                return ResourceManager.GetString("UsernameSignUpToolTipText", resourceCulture);
             }
         }
         

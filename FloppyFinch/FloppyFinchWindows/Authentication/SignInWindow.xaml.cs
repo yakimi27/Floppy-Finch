@@ -4,6 +4,7 @@ using System.Windows.Shapes;
 using FloppyFinchLogics.AccountManagement;
 using FloppyFinchLogics.WindowLogics;
 using FloppyFinchWindows.Menus;
+using FloppyFinchWindows.Resources;
 using WindowState = System.Windows.WindowState;
 
 namespace FloppyFinchWindows.Authentication;
@@ -53,7 +54,7 @@ public partial class SignInWindow : Window
         {
             ButtonSignIn.IsEnabled = false;
             SessionManager.ClearSession();
-            ShowError("Wrong username or password.");
+            ShowError($"{Strings.SignInShowErrorText}");
         }
     }
 
@@ -132,16 +133,6 @@ public partial class SignInWindow : Window
         PasswordBoxPassword.Visibility = Visibility.Visible;
     }
 
-    private void SignInWindow_OnLoaded(object sender, RoutedEventArgs e)
-    {
-        var session = SessionManager.LoadSession();
-        if (session.RememberMe)
-        {
-            TextBoxUsername.Text = session.LastUsername;
-            CheckBoxRememberMe.IsChecked = true;
-        }
-    }
-
     private void CloudCanvas_OnSizeChanged(object sender, SizeChangedEventArgs e)
     {
         if (CloudCanvas == null) return;
@@ -176,5 +167,21 @@ public partial class SignInWindow : Window
                 cloud.Width = originalWidth * scale;
                 cloud.Height = originalHeight * scale;
             }
+    }
+
+    private void ButtonLanguageEN_OnClick(object sender, RoutedEventArgs e)
+    {
+        App.ChangeLanguage("en");
+        var updateWindow = new SignInWindow();
+        updateWindow.Show();
+        Close();
+    }
+
+    private void ButtonLanguageUK_OnClick(object sender, RoutedEventArgs e)
+    {
+        App.ChangeLanguage("uk");
+        var updateWindow = new SignInWindow();
+        updateWindow.Show();
+        Close();
     }
 }
