@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using FloppyFinchLogics.TextureManagement.PowerUps;
 
 namespace FloppyFinchLogics.GameLogics.ExtendedMode;
@@ -33,18 +32,6 @@ public class PowerUp
     }
 
     public PowerUpType Type { get; }
-
-    private static Brush GetPowerUpColor(PowerUpType type)
-    {
-        return type switch
-        {
-            PowerUpType.Heart => Brushes.Red,
-            PowerUpType.Jetpack => Brushes.DarkGray,
-            PowerUpType.ScoreMultiplier => Brushes.Yellow,
-            PowerUpType.Shield => Brushes.Blue,
-            _ => Brushes.White
-        };
-    }
 
     public void Update(double speed)
     {

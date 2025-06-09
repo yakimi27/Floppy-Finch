@@ -8,7 +8,7 @@ namespace FloppyFinchLogics.GameLogics.ExtendedMode;
 public class ExtendedModeGame : Game
 {
     private const int PowerUpHeight = 40;
-    private const int PowerUpSpawnChance = 5; // 5% chance per game loop
+    private const int PowerUpSpawnChance = 5;
     private const double PowerUpSpeed = 5;
     private const int MaxHearts = 3;
     private const int HeartPowerUpIndex = 1;
