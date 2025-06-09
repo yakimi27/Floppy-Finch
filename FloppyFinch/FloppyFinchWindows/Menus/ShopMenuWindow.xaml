@@ -1,0 +1,172 @@
+﻿<Window x:Class="FloppyFinchWindows.Menus.ShopMenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:resources="clr-namespace:FloppyFinchWindows.Resources"
+        mc:Ignorable="d"
+        Title="Floppy Finch" Height="auto" Width="auto" MinHeight="600" MinWidth="400"
+        Closing="ShopMenuWindow_OnClosing">
+    <Grid>
+
+        <Grid Background="LightSkyBlue">
+            <Canvas x:Name="CloudCanvas" SizeChanged="CloudCanvas_OnSizeChanged">
+                <Ellipse Fill="#CCFFFFFF" Width="120" Height="60">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="BackCloud1Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#CCFFFFFF" Width="100" Height="50">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="BackCloud2Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#DDFFFFFF" Width="180" Height="90">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="MiddleCloud1Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#DDFFFFFF" Width="140" Height="70">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="MiddleCloud2Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#EEFFFFFF" Width="150" Height="75">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="FrontCloud1Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <Ellipse Fill="#EEFFFFFF" Width="160" Height="80">
+                    <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="FrontCloud2Transform" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+            </Canvas>
+        </Grid>
+
+        <Canvas Cursor="Help" Height="15" Width="15" Background="Transparent" VerticalAlignment="Top"
+                HorizontalAlignment="Right" Margin="8" ToolTipService.InitialShowDelay="100">
+            <Line X1="0" Y1="0" X2="15" Y2="0" Stroke="Black" />
+            <Line X1="15" Y1="0" X2="15" Y2="15" Stroke="Black" />
+            <Canvas.ToolTip>
+                <ToolTip Style="{StaticResource ToolTipStyle}"
+                         Content="{x:Static resources:Strings.ResizeWindowToolTipText}" FontSize="8" />
+            </Canvas.ToolTip>
+        </Canvas>
+        <Canvas Cursor="Help" Height="15" Width="15" Background="Transparent" VerticalAlignment="Bottom"
+                HorizontalAlignment="Left"
+                Margin="8" ToolTipService.InitialShowDelay="100">
+            <Line X1="0" Y1="15" X2="15" Y2="15" Stroke="Black" />
+            <Line X1="0" Y1="0" X2="0" Y2="15" Stroke="Black" />
+            <Canvas.ToolTip>
+                <ToolTip Style="{StaticResource ToolTipStyle}"
+                         Content="{x:Static resources:Strings.ResizeWindowToolTipText}" FontSize="8" />
+            </Canvas.ToolTip>
+        </Canvas>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Button Style="{StaticResource SmallButtonStyle}" Click="ButtonBack_OnClick"
+                        Content="{x:Static resources:Strings.BackButtonText}" Width="75"
+                        Height="40"
+                        HorizontalAlignment="Left" Margin="35 0 " />
+                <Border Style="{StaticResource CoinStyle}" HorizontalAlignment="Right"
+                        Margin="35,0">
+                    <StackPanel Orientation="Horizontal" Margin="15 0 ">
+                        <Image x:Name="CoinIcon" RenderOptions.BitmapScalingMode="NearestNeighbor" Width="25"
+                               Height="25"
+                               Margin="0 0 5 0" />
+                        <TextBlock x:Name="CoinsText" Text="0" Height="25" VerticalAlignment="Center"
+                                   TextAlignment="Center"
+                                   FontSize="18" Foreground="White" FontWeight="Bold" Margin="0 12 0 0" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <TabControl Grid.Row="1" Grid.RowSpan="2" Margin="20" Style="{StaticResource ShopMainLayoutStyle}">
+                <TabItem Style="{StaticResource ShopHeaderStyle}"
+                         Header="{x:Static resources:Strings.BirdSkinsShopHeader}">
+                    <ScrollViewer>
+                        <UniformGrid>
+                            <ItemsControl x:Name="SkinsItemsControl" Margin="25">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Margin="10" Style="{StaticResource ShopSubLayoutStyle}" Height="230">
+                                            <StackPanel Margin="10">
+                                                <Image Source="{Binding Image}" Height="100" Margin="0,0,0,10"
+                                                       RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                                                <TextBlock Text="{Binding DisplayName}" HorizontalAlignment="Center"
+                                                           FontSize="14" Foreground="White" />
+                                                <Label x:Name="LabelCoinsWarning"
+                                                       Content="{x:Static resources:Strings.NotEnoughCoinsText}"
+                                                       Visibility="{Binding NotEnoughCoins}"
+                                                       Foreground="White"
+                                                       HorizontalAlignment="Center" />
+                                                <Button Style="{StaticResource SmallButtonStyle}"
+                                                        Content="{Binding ButtonLabel}"
+                                                        Click="SkinButton_Click" Height="40" Margin="0 10 0 0"
+                                                        IsEnabled="{Binding ButtonEnabled}" MaxWidth="250" />
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </UniformGrid>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Style="{StaticResource ShopHeaderStyle}"
+                         Header="{x:Static resources:Strings.PowerUpsShopHeader}">
+                    <ScrollViewer>
+                        <UniformGrid>
+                            <ItemsControl x:Name="PowerupsItemsControl" Margin="25">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Margin="10" Style="{StaticResource ShopSubLayoutStyle}" Height="246">
+                                            <StackPanel Margin="10">
+                                                <Image Source="{Binding Image}" Height="100" Margin="0 0 0 10"
+                                                       RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                                                <TextBlock Text="{Binding DisplayName}" HorizontalAlignment="Center"
+                                                           FontWeight="Bold" Margin="0 0 0 5" FontSize="14"
+                                                           Foreground="White" />
+                                                <TextBlock HorizontalAlignment="Center" Foreground="White">
+                                                    <TextBlock.Text>
+                                                        <MultiBinding StringFormat="{}{0} {1}">
+                                                            <Binding
+                                                                Source="{x:Static resources:Strings.PowerUpLevelTextBoxText}" />
+                                                            <Binding Path="Level" />
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                                <Label Content="{x:Static resources:Strings.NotEnoughCoinsText}"
+                                                       Visibility="{Binding NotEnoughCoins}"
+                                                       Foreground="White"
+                                                       HorizontalAlignment="Center" />
+                                                <Button Style="{StaticResource SmallButtonStyle}"
+                                                        Content="{Binding ButtonLabel}"
+                                                        Click="PowerUpButton_Click"
+                                                        Height="40"
+                                                        Margin="0 10 0 0"
+                                                        IsEnabled="{Binding CanUpgrade}"
+                                                        MaxWidth="250" />
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </UniformGrid>
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+</Window>

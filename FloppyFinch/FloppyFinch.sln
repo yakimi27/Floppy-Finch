@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloppyFinchWindows", "FloppyFinchWindows\FloppyFinchWindows.csproj", "{1336E3F0-D46D-4506-996F-6C7960779E0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloppyFinchLogics", "FloppyFinchLogics\FloppyFinchLogics.csproj", "{BD6A6DFF-CC82-4A5F-B020-C3A39F0BADCC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1336E3F0-D46D-4506-996F-6C7960779E0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1336E3F0-D46D-4506-996F-6C7960779E0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1336E3F0-D46D-4506-996F-6C7960779E0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1336E3F0-D46D-4506-996F-6C7960779E0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD6A6DFF-CC82-4A5F-B020-C3A39F0BADCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD6A6DFF-CC82-4A5F-B020-C3A39F0BADCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD6A6DFF-CC82-4A5F-B020-C3A39F0BADCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD6A6DFF-CC82-4A5F-B020-C3A39F0BADCC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
