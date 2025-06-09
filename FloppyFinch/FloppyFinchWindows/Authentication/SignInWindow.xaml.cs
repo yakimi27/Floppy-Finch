@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Globalization;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Shapes;
 using FloppyFinchLogics.AccountManagement;
@@ -16,6 +17,14 @@ public partial class SignInWindow : Window
 
     public SignInWindow()
     {
+        var currentCulture = CultureInfo.CurrentCulture;
+        var languageCode = currentCulture.TwoLetterISOLanguageName switch
+        {
+            "uk" => "uk",
+            _ => "en"
+        };
+        App.ChangeLanguage(languageCode);
+
         InitializeComponent();
         Application.Current.MainWindow = this;
         if (WindowStateData.IsFirstStartup())

@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Shapes;
@@ -84,7 +85,9 @@ public partial class SignUpWindow : Window
             return;
         }
 
-        var success = AccountManager.Register(username, password);
+        string language = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+
+        var success = AccountManager.Register(username, password, language);
         if (success)
         {
             if (CheckBoxRememberMe.IsChecked == true)

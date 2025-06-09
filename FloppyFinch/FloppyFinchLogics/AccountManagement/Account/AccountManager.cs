@@ -43,7 +43,7 @@ public static class AccountManager
         IsGuest = false;
     }
 
-    public static bool Register(string username, string password)
+    public static bool Register(string username, string password, string language)
     {
         var path = GetAccountPath(username);
         if (File.Exists(path))
@@ -57,7 +57,7 @@ public static class AccountManager
             Username = username,
             PasswordSalt = Convert.ToBase64String(salt),
             PasswordHash = Convert.ToBase64String(hash),
-            SelectedLanguage = "uk",
+            SelectedLanguage = language,
             SelectedBackground = "Light",
             Coins = 0,
             HighScore = 0,
