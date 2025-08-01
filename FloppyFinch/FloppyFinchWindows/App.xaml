@@ -23,6 +23,8 @@
         <SolidColorBrush x:Key="PrimaryPressedBrush">#c34f12</SolidColorBrush>
 
         <Style x:Key="ButtonStyle" TargetType="Button">
+            <EventSetter Event="MouseEnter" Handler="Button_MouseEnter" />
+            <EventSetter Event="Click" Handler="Button_MouseClick" />
             <Setter Property="Background" Value="{StaticResource PrimaryOrangeBrush}" />
             <Setter Property="Foreground" Value="White" />
             <Setter Property="FontSize" Value="14" />
@@ -74,6 +76,8 @@
         </Style>
 
         <Style x:Key="SmallButtonStyle" TargetType="Button">
+            <EventSetter Event="MouseEnter" Handler="Button_MouseEnter" />
+            <EventSetter Event="Click" Handler="Button_MouseClick" />
             <Setter Property="Background" Value="{StaticResource PrimaryOrangeBrush}" />
             <Setter Property="Foreground" Value="White" />
             <Setter Property="BorderThickness" Value="3 3 3 6" />
@@ -484,6 +488,8 @@
         </Style>
 
         <Style x:Key="LanguageSwitchStyleRight" TargetType="Button">
+            <EventSetter Event="MouseEnter" Handler="Button_MouseEnter" />
+            <EventSetter Event="Click" Handler="Button_MouseClick" />
             <Setter Property="Background" Value="{StaticResource PrimaryOrangeBrush}" />
             <Setter Property="Foreground" Value="White" />
             <Setter Property="BorderThickness" Value="3 3 10 3" />

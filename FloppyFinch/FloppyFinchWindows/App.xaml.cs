@@ -1,6 +1,8 @@
 ﻿using System.Globalization;
 using System.Windows;
+using System.Windows.Input;
 using FloppyFinchLogics.AccountManagement;
+using FloppyFinchLogics.SoundLogics;
 using FloppyFinchWindows.Authentication;
 using FloppyFinchWindows.Menus;
 using FloppyFinchWindows.Resources;
@@ -48,5 +50,16 @@ public partial class App : Application
         CultureInfo.DefaultThreadCurrentUICulture = culture;
 
         Strings.Culture = culture;
+    }
+
+    private void Button_MouseEnter(object sender, MouseEventArgs e)
+    {
+        SoundApplier.Button_MouseEnter();
+    }
+
+
+    private void Button_MouseClick(object sender, RoutedEventArgs e)
+    {
+        SoundApplier.Button_MouseClick();
     }
 }

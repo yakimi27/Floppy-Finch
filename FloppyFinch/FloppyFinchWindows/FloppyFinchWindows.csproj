@@ -188,4 +188,15 @@
         </EmbeddedResource>
     </ItemGroup>
 
+    <ItemGroup>
+        <None Remove="Assets\Sounds\hover.wav"/>
+        <Content Include="Assets\Sounds\hover.wav">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="Assets\Sounds\click.wav"/>
+        <Content Include="Assets\Sounds\click.wav">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
 </Project>
