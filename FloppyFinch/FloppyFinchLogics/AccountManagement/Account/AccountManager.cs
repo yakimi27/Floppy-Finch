@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Text.Json;
 using System.Windows;
+using FloppyFinchLogics.AccountManagement.Account;
 
 namespace FloppyFinchLogics.AccountManagement;
 
@@ -64,6 +65,7 @@ public static class AccountManager
             SelectedSkin = "Classic",
             UnlockedSkins = ["Classic"],
             PowerUpLevels = [1, 1, 1], /*Jetpack, Score, Shield*/
+            Sounds = true,
             WindowWidth = DefaultWindowWidth,
             WindowHeight = DefaultWindowHeight,
             WindowPositionX = DefaultCenterX,
@@ -121,6 +123,7 @@ public static class AccountManager
         account.SelectedSkin = "Classic";
         account.UnlockedSkins = ["Classic"];
         account.PowerUpLevels = [1, 1, 1];
+        account.Sounds = true;
         account.WindowWidth = DefaultWindowWidth;
         account.WindowHeight = DefaultWindowHeight;
         account.WindowPositionX = DefaultCenterX;

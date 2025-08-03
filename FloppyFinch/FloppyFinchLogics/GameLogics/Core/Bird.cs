@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using FloppyFinchLogics.SoundLogics;
 using FloppyFinchLogics.TextureManagement;
 using FloppyFinchLogics.WindowLogics;
 
@@ -47,6 +48,7 @@ public class Bird
 
     public void Jump()
     {
+        SoundApplier.PlaySound(SoundApplier.SoundType.Flap);
         _velocity = JumpStrength;
         _bird.RenderTransform = RotateTransformJump;
         RotateTransformStatus.Angle = RotateTransformJump.Angle;

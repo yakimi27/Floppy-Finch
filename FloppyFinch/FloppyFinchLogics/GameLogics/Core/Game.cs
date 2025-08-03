@@ -3,6 +3,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using FloppyFinchLogics.AccountManagement;
+using FloppyFinchLogics.SoundLogics;
 using FloppyFinchLogics.TextureManagement;
 using FloppyFinchLogics.TextureManagement.Grass;
 using FloppyFinchLogics.WindowLogics;
@@ -35,6 +36,7 @@ public class Game
         _gameTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(30) };
         _gameTimer.Tick += WaitLoop!;
         _gameTimer.Start();
+        SoundApplier.PlaySound(SoundApplier.SoundType.Swoosh);
         UpdateScore();
     }
 
@@ -84,6 +86,7 @@ public class Game
                 pipe.IsScored = true;
                 Score++;
                 UpdateScore();
+                SoundApplier.PlaySound(SoundApplier.SoundType.Score);
             }
         }
 
@@ -125,6 +128,7 @@ public class Game
     {
         _gameTimer.Stop();
         OnGameOver(Score);
+        SoundApplier.PlaySound(SoundApplier.SoundType.Hit);
     }
 
     public virtual void PauseGame(bool paused)

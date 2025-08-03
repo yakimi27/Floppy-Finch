@@ -54,12 +54,12 @@ public partial class App : Application
 
     private void Button_MouseEnter(object sender, MouseEventArgs e)
     {
-        SoundApplier.Button_MouseEnter();
+        SoundApplier.PlaySound(SoundApplier.SoundType.MouseHover);
     }
 
 
     private void Button_MouseClick(object sender, RoutedEventArgs e)
     {
-        SoundApplier.Button_MouseClick();
+        SoundApplier.PlaySound(SoundApplier.SoundType.MouseClick);
     }
 }

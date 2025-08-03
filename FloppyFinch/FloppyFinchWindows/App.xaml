@@ -190,6 +190,7 @@
         </Style>
 
         <Style x:Key="ShopHeaderStyle" TargetType="TabItem">
+            <EventSetter Event="MouseEnter" Handler="Button_MouseEnter" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TabItem">
@@ -239,6 +240,7 @@
 
 
         <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+            <EventSetter Event="MouseEnter" Handler="Button_MouseEnter" />
             <Setter Property="Background" Value="{StaticResource PrimaryOrangeBrush}" />
             <Setter Property="Foreground" Value="White" />
             <Setter Property="BorderThickness" Value="3" />
@@ -344,6 +346,7 @@
 
 
         <Style x:Key="InputTextBoxStyle" TargetType="TextBox">
+            <EventSetter Event="MouseEnter" Handler="Button_MouseEnter" />
             <Setter Property="FontFamily" Value="{StaticResource CustomFont}" />
             <Setter Property="Background" Value="{StaticResource PrimaryOrangeBrush}" />
             <Setter Property="Foreground" Value="White" />
@@ -391,6 +394,7 @@
         </Style>
 
         <Style x:Key="InputPasswordBoxStyle" TargetType="PasswordBox">
+            <EventSetter Event="MouseEnter" Handler="Button_MouseEnter" />
             <Setter Property="FontFamily" Value="{StaticResource CustomFont}" />
             <Setter Property="Background" Value="{StaticResource PrimaryOrangeBrush}" />
             <Setter Property="Foreground" Value="White" />
@@ -447,6 +451,8 @@
         </Style>
 
         <Style x:Key="LanguageSwitchStyleLeft" TargetType="Button">
+            <EventSetter Event="MouseEnter" Handler="Button_MouseEnter" />
+            <EventSetter Event="Click" Handler="Button_MouseClick" />
             <Setter Property="Background" Value="{StaticResource PrimaryOrangeBrush}" />
             <Setter Property="Foreground" Value="White" />
             <Setter Property="BorderThickness" Value="10 3 3 3" />
